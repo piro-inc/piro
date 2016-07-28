@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react'
 
 class Options extends React.Component {
   constructor(props) {
@@ -11,8 +11,8 @@ class Options extends React.Component {
   render() {
     return (
       <div id="options-wrapper">
-        <a href="#"> //Link to the Game view/summary page - button? form?
-        <a href="#"> //Link to the Login/Register page -button? form?
+        <a href="#"></a> {/*Link to the Game view/summary page - button? form?*/}
+        <a href="#"></a> {/*Link to the Login/Register page -button? form?*/}
       </div>
     )
   }
