@@ -1,7 +1,4 @@
-import React, { Component, PropTypes } from 'react'
-import Login from './Login'
-import Options from './Options'
-import Register from './Register'
+import React from 'react'
 
 class Home extends React.Component {
   constructor (props) {
@@ -21,7 +18,7 @@ class Home extends React.Component {
 
         <div id='home-content'>
           {this.props.children}
-        </div>             {/* Options, Login or Register Components go here.*/}
+        </div> {/* Options, Login or Register Components go here.*/}
       </div>
     )
   }

@@ -11,8 +11,10 @@ require('dotenv').config()
 function setup () {
   const strategy = new LocalStrategy((username, password, done) => {
     db.findOne('users', { username }, (err, user) => {
+      if (err) return console.error(err)
       if (!user) return done(null, false)
       bcrypt.compare(password, user.password, (err, res) => {
+        if (err) return console.error(err)
         return done(null, res && user)
       })
     })
@@ -26,6 +28,7 @@ function setup () {
 
   passport.deserializeUser((id, done) => {
     db.findOne('users', { id }, (err, user) => {
+      if (err) return console.error(err)
       return done(null, user)
     })
   })

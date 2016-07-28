@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 
 class Console extends React.Component {
   constructor (props) {
@@ -16,6 +16,5 @@ class Console extends React.Component {
     )
   }
 }
-
 
 export default Console

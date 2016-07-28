@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 
 class Options extends React.Component {
   constructor (props) {

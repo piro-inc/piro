@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 
 class Register extends React.Component {
   constructor (props) {

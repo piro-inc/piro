@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 
 class Preview extends React.Component {
   constructor (props) {
