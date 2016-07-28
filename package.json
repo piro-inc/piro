@@ -7,6 +7,8 @@
     "node": "6.2.1"
   },
   "scripts": {
+    "start": "node ./server/bin/www",
+    "start:watch": "nodemon ./server/bin/www",
     "test": "cd client && babel-tape-runner test/*.js | tap-spec",
     "build": "cd client && webpack --progress --profile --colors",
     "build:watch": "cd client && webpack --progress --profile --colors --watch",
@@ -20,6 +22,10 @@
   "author": "Piro",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "passport": "^0.3.2",
     "react": "^15.2.1",
     "react-dom": "^15.2.1"
   },
