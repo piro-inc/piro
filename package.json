@@ -1,0 +1,15 @@
+{
+  "name": "piro",
+  "version": "1.0.0",
+  "description": "A scoring app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [
+    "Piro",
+    "scoring"
+  ],
+  "author": "Piro",
+  "license": "MIT"
+}
