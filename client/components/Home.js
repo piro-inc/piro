@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react'
 import Login from './Login'
 import Options from './Options'
 import Register from './Register'
@@ -15,10 +15,13 @@ class Home extends React.Component {
     return (
       <div id="home-wrapper">
         <div id="brand">
-          <img id="logo" src="#">
-          <p>Piro is awesome</p> //Description goes here.
+          <img id="logo" src="#"/>
+          <p>Piro is awesome</p> {/*Description goes here.*/}
         </div>
-        {this.props.children} //Options, Login or Register Components go here.
+
+        <div id="home-content">
+          {this.props.children}
+        </div>   {/*Options, Login or Register Components go here.*/}
       </div>
     )
   }
