@@ -1,15 +1,15 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 
 class Score extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       score: 0
-      //state goes here
+      // state goes here
     }
   }
 
-  render() {
+  render () {
     return (
       <div>
 

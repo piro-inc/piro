@@ -1,20 +1,19 @@
-import React, { Component, PropTypes } from 'react'
-
+import React from 'react'
 
 class Login extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
-      //state goes here
+      // state goes here
     }
   }
 
-  render() {
+  render () {
     return (
-      <form id="login-form" action="#">
-        <input type="text" placeholder="Enter username" id="username"/>
-        <input type="text" placeholder="Enter password" id="password"/>
-        <button type="submit">Submit</button>
+      <form id='login-form' action='#'>
+        <input type='text' placeholder='Enter username' id='username' />
+        <input type='text' placeholder='Enter password' id='password' />
+        <button type='submit'>Submit</button>
       </form>
     )
   }

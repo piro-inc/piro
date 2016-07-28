@@ -1,14 +1,14 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 
 class Console extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
-      //state goes here
+      // state goes here
     }
   }
 
-  render() {
+  render () {
     return (
       <div>
 
@@ -16,6 +16,5 @@ class Console extends React.Component {
     )
   }
 }
-
 
 export default Console

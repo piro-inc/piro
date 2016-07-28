@@ -19,7 +19,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         data: newData
-      };
+      }
     default:
       return state
   }
