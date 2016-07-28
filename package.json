@@ -12,7 +12,7 @@
     "test": "cd client && babel-tape-runner test/*.js | tap-spec",
     "build": "cd client && webpack --progress --profile --colors",
     "build:watch": "cd client && webpack --progress --profile --colors --watch",
-    "build-css": "node-sass --include-path scss scss/main.scss public/css/main.css",
+    "build-css": "node-sass --include-path scss client/scss/main.scss public/css/main.css",
     "watch-css": "nodemon -e scss -x \"npm run build-css\"",
     "dev": "cd client && webpack-dev-server --hot --inline",
     "lint": "eslint . -c ./.eslintrc.json"
