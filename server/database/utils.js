@@ -4,12 +4,12 @@ const knexConfig = require('../knexfile')
 const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
 
 function getUser(id) {
-	return knex('user').where({id})
+	return knex('users').where({id})
 }
 
-function addUser(email, password, email) {
-	const newUser = Object.assign({}, email, password, email)
-	return knex('user').returning('id').insert()
+function addUser(email, password, username) {
+	const newUser = Object.assign({}, email, password, username)
+	return knex('users').returning('id').insert(newUser)
 }
 
 module.exports = {

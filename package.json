@@ -10,6 +10,7 @@
     "start": "node ./server/bin/www",
     "start:watch": "nodemon ./server/bin/www",
     "test": "cd client && babel-tape-runner test/*.js | tap-spec",
+    "test:server": "cd server && tape test/*.js | tap-spec",
     "build": "cd client && webpack --progress --profile --colors",
     "build:watch": "cd client && webpack --progress --profile --colors --watch",
     "dev": "cd client && webpack-dev-server --hot --inline",
