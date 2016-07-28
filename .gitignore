@@ -3,3 +3,4 @@ public/bundle.js
 .env
 .DS_Store
 .log
+npm-debug.log
