@@ -3,7 +3,7 @@ import Login from './Login'
 import Options from './Options'
 import Register from './Register'
 
-class App extends React.Component {
+class Home extends React.Component {
   constructor(props) {
     super(props)
     this.state = {

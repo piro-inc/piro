@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-class App extends React.Component {
+class Options extends React.Component {
   constructor(props) {
     super(props)
     this.state = {

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 
-class App extends React.Component {
+class Login extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
