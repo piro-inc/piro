@@ -1,20 +1,21 @@
 import React from 'react'
 
-class App extends React.Component {
+class Score extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      score: 0
       // state goes here
     }
   }
 
   render () {
     return (
-      <div id='container'>
-        {this.props.children}
+      <div>
+
       </div>
     )
   }
 }
 
-export default App
+export default Score

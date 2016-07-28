@@ -1,6 +1,6 @@
 import React from 'react'
 
-class App extends React.Component {
+class Register extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -10,11 +10,11 @@ class App extends React.Component {
 
   render () {
     return (
-      <div id='container'>
-        {this.props.children}
+      <div>
+
       </div>
     )
   }
 }
 
-export default App
+export default Register
