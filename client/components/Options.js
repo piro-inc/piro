@@ -1,18 +1,18 @@
 import React, { Component, PropTypes } from 'react'
 
 class Options extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
-      //state goes here
+      // state goes here
     }
   }
 
-  render() {
+  render () {
     return (
-      <div id="options-wrapper">
-        <a href="#"></a> {/*Link to the Game view/summary page - button? form?*/}
-        <a href="#"></a> {/*Link to the Login/Register page -button? form?*/}
+      <div id='options-wrapper'>
+        <a href='#'></a> {/* Link to the Game view/summary page - button? form?*/}
+        <a href='#'></a> {/* Link to the Login/Register page -button? form?*/}
       </div>
     )
   }
