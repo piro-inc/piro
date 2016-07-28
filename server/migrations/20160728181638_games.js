@@ -1,7 +1,7 @@
 exports.up = function(knex, Promise) {
 	return knex.schema.createTableIfNotExists('games', (table) => {
 		table.increments('id').primary()
-		table.integer('user_id')
+		table.integer('user_id').references('id').inTable('users')
 		table.timestamp('date_time')
 		table.string('location')
 		table.string('team_a_name')
