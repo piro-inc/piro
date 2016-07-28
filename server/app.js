@@ -22,7 +22,7 @@ app.use(passport.initialize());
 // setupPassport();
 
 app.get('*', (req, res) =>  {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
+  res.send('hi')
 });
 
 app.listen(3000)
