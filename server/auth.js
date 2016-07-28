@@ -8,10 +8,10 @@ const nJwt = require('njwt')
 const secureRandom = require('secure-random')
 require('dotenv').config()
 
-function setup() {
+function setup () {
   const strategy = new LocalStrategy((username, password, done) => {
     db.findOne('users', { username }, (err, user) => {
-      if(!user) return done(null, false)
+      if (!user) return done(null, false)
       bcrypt.compare(password, user.password, (err, res) => {
         return done(null, res && user)
       })
@@ -31,10 +31,10 @@ function setup() {
   })
 }
 
-function createToken(id) {
+function createToken (id) {
   // Create a highly random byte array of 256 bytes
   const signingKey = secureRandom(256, { type: 'Buffer' })
-  //store the signing key in memory, for checking if jwt token is valid
+  // store the signing key in memory, for checking if jwt token is valid
   cache.put(id, signingKey.toString('base64'))
 
   const claims = {
@@ -43,16 +43,16 @@ function createToken(id) {
     scope: 'self'
   }
   const jwt = nJwt.create(claims, signingKey)
-  jwt.setExpiration(new Date().getTime() + (20*1000))
+  jwt.setExpiration(new Date().getTime() + (20 * 1000))
   return jwt.compact()
 }
 
-function authenticateUserId(req, res, next) {
+function authenticateUserId (req, res, next) {
   const keyStore = cache.get(req.params.id)
   const signingKey = keyStore && Buffer.from(keyStore, 'base64')
-  if(req.cookies['jwt.token']) {
+  if (req.cookies['jwt.token']) {
     nJwt.verify(req.cookies['jwt.token'], signingKey || new Buffer([]), (err, verifiedJwt) => {
-      if(err) {
+      if (err) {
         // Token has expired, has been tampered with, etc
         console.log(err.message)
         res.sendStatus(403)

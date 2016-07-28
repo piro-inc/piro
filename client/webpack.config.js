@@ -1,9 +1,8 @@
-const webpack = require('webpack')
 const path = require('path')
 
 module.exports = {
   entry: [
-  './index.js' // Your appʼs entry point
+    './index.js' // Your appʼs entry point
   ],
   output: {
     path: path.join(__dirname, '../public'),

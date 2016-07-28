@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 import Comments from './Comments'
 import Console from './Console'
 import Create from './Create'
@@ -12,16 +12,16 @@ import Register from './Register'
 import Score from './Score'
 
 class App extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
-      //state goes here
+      // state goes here
     }
   }
 
-  render() {
+  render () {
     return (
-      <div id="container">
+      <div id='container'>
         {this.props.children}
       </div>
     )
