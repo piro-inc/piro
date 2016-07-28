@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { addData } from '../redux/reducer'
 import Comments from './Comments'
 import Console from './Console'
 import Create from './Create'
@@ -20,13 +22,35 @@ class App extends React.Component {
     }
   }
 
+  addData = () => {
+    this.props.addData('dummy');
+  }
+
   render() {
+    console.log("AAA", this.props.reducer.data)
     return (
       <div id="container">
+        <button onClick={this.addData}>This are button</button>
         {this.props.children}
       </div>
     )
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    ...state
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    addData: (data) => {
+      dispatch(addData(data))
+    }
+  }
+}
+
+const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default AppContainer
