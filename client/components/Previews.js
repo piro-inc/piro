@@ -1,5 +1,6 @@
 import React from 'react'
 import Preview from './Preview'
+import Navbar from './Navbar'
 
 class Previews extends React.Component {
   constructor (props) {
@@ -12,6 +13,7 @@ class Previews extends React.Component {
   render () {
     return (
       <div>
+        <Navbar/>
         <Preview />
         <Preview />
         <Preview />

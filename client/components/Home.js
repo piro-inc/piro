@@ -1,4 +1,6 @@
 import React from 'react'
+import Login from './Login'
+import Register from './Register'
 
 /*THIS IS A VERY VERY DUMB COMPONENT*/
 
@@ -19,8 +21,9 @@ class Home extends React.Component {
         </div>
 
         <div id='home-content'>
-          {this.props.children}
-        </div> {/* Options, Login or Register Components go here.*/}
+          <Login />
+          <Register />
+        </div>
       </div>
     )
   }

@@ -13,7 +13,7 @@ class Options extends React.Component {
   render () {
     return (
       <div id='options-wrapper'>
-        <a href='#'></a> {/* Link to the Game view/summary page - button? form?*/}
+        <a href='http://www.google.com'>google</a> {/* Link to the Game view/summary page - button? form?*/}
         <a href='#'></a> {/* Link to the Login/Register page -button? form?*/}
       </div>
     )
