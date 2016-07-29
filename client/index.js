@@ -5,7 +5,7 @@ import io from 'socket.io-client'
 import './scss/main.scss'
 
 const socket = io()
-//store.dispatch(setSocket(socket))
+// store.dispatch(setSocket(socket))
 const reactRoot = document.getElementById('app')
 
 socket.on('message', (data) => {
