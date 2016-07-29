@@ -15,6 +15,8 @@
     "test": "npm run lint && cd client && babel-tape-runner test/*.js | tap-spec",
     "build": "cd client && webpack --progress --profile --colors",
     "build:watch": "cd client && webpack --progress --profile --colors --watch",
+    "build-css": "node-sass --include-path scss client/scss/main.scss public/css/main.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
     "dev": "cd client && webpack-dev-server --hot --inline",
     "lint": "standard",
     "fix": "standard --fix"
@@ -44,6 +46,8 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-tape-runner": "^2.0.1",
     "enzyme": "^2.4.1",
+    "eslint": "^3.1.1",
+    "node-sass": "^3.8.0",
     "react-addons-test-utils": "^15.2.1",
     "standard": "^7.1.2",
     "tap-spec": "^4.1.1",
