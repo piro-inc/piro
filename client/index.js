@@ -1,12 +1,23 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './components/App'
+import { Provider } from 'react-redux'
+import configureStore from './redux/store'
+import routes from './components/routes'
 import io from 'socket.io-client'
 import './scss/main.scss'
 
 const socket = io()
 // store.dispatch(setSocket(socket))
+const store = configureStore()
+
 const reactRoot = document.getElementById('app')
+
+ReactDOM.render(
+  <Provider store={store}>
+    {routes}
+  </Provider>,
+  reactRoot
+)
 
 socket.on('message', (data) => {
   switch (data.type) {
@@ -18,8 +29,3 @@ socket.on('message', (data) => {
       console.warn('Invalid type: ', data.type)
   }
 })
-
-ReactDOM.render(
-  <App />,
-  reactRoot
-)

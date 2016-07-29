@@ -1,7 +1,8 @@
 import React from 'react'
+import Preview from './Preview'
 import Navbar from './Navbar'
 
-class Console extends React.Component {
+class Previews extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -13,10 +14,13 @@ class Console extends React.Component {
     return (
       <div>
         <Navbar />
-        <h1>this is the console</h1>
+        <Preview />
+        <Preview />
+        <Preview />
+        <Preview />
       </div>
     )
   }
 }
 
-export default Console
+export default Previews

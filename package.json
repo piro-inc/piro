@@ -17,10 +17,8 @@
     "test": "npm run lint && npm run test:client && npm run test:server",
     "build": "cd client && webpack --progress --profile --colors",
     "build:watch": "cd client && webpack --progress --profile --colors --watch",
-    "build-css": "node-sass --include-path scss client/scss/main.scss public/css/main.css",
-    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
-    "dev": "cd client && webpack-dev-server --hot --inline",
-    "lint": "standard --fix"
+    "lint": "standard --fix",
+    "dev": "cd client && webpack-dev-server --hot --inline --history-api-fallback"
   },
   "keywords": [
     "Piro",
@@ -43,6 +41,10 @@
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "secure-random": "^1.1.1",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.6.0",
+    "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0",
     "socket.io": "^1.4.8"
   },
   "devDependencies": {

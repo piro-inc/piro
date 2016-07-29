@@ -1,12 +1,18 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { addData } from '../redux/reducer'
 
-class App extends React.Component {
+export class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       // state goes here
     }
   }
+
+  // addData = () => {
+    // this.props.addData('dummy')
+//  }
 
   render () {
     return (
@@ -17,4 +23,20 @@ class App extends React.Component {
   }
 }
 
-export default App
+function mapStateToProps (state) {
+  return {
+    ...state
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    addData: (data) => {
+      dispatch(addData(data))
+    }
+  }
+}
+
+const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App)
+
+export default AppContainer

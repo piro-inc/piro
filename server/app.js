@@ -25,6 +25,7 @@ setupPassport()
 app.use('/', sessionRoutes)
 app.use('/users', userRoutes)
 app.use('/games', gameRoutes)
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'))
 })
