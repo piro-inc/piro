@@ -2,9 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './components/App'
 import io from 'socket.io-client'
+import './scss/main.scss'
 
 const socket = io()
-
+//store.dispatch(setSocket(socket))
 const reactRoot = document.getElementById('app')
 
 socket.on('message', (data) => {
@@ -16,9 +17,9 @@ socket.on('message', (data) => {
     default:
       console.warn('Invalid type: ', data.type)
   }
-
-  ReactDOM.render(
-    <App socket={socket} />,
-    reactRoot
-  )
 })
+
+ReactDOM.render(
+  <App />,
+  reactRoot
+)
