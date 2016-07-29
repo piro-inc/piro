@@ -19,7 +19,7 @@ class Create extends React.Component {
           <input type='text' placeholder='Team A' id='team-a' />
           <input type='text' placeholder='Team B' id='team-b' />
           <input type='text' placeholder='Location' id='location' />
-          <input type='datetime' name='Date and time' id='game-date'/>
+          <input type='datetime' placeholder='Date and time' name='Date and time' id='game-date'/>
           <button type='submit'>Submit</button>
         </form>
       </div>
