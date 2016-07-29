@@ -72,6 +72,9 @@ test('Get a game from games table', function (t) {
 })
 
 test('Add user to users table', function (t) {
+
+  const expected = [{ email: 'rena@skux.com', id: 4, password: 'password', username: 'Rena' }]
+
   knex.migrate.rollback()
   .then(() => knex.migrate.latest())
   .then(() => knex.seed.run('users'))
@@ -82,9 +85,62 @@ test('Add user to users table', function (t) {
       email: 'rena@skux.com'
     })
   })
+  .then(() => {
+    return dbUtils.getOne('users', { id: 4 })
+  })
   .then((user) => {
-    console.log(user)
-    t.ok(1)
+    console.log(user, 'successfully added Rena to database')
+    t.deepEqual(user, expected, 'we got Rena back in one piece')
+    t.end()
+  })
+  .catch((err) => {
+    t.ok(0, err)
+    t.end()
+  })
+})
+
+test('Add game to games table', function (t) {
+
+  const expected = [
+  {
+    id: 4,
+    user_id: 2,
+    // Date Time is January 1st 1970 in Unix Time (Google Unix Time!)
+    date_time: 1469707200000,
+    location: 'Tommy Millions',
+    team_a_name: 'The Average Team',
+    team_b_name: 'The Pizza Team',
+    is_complete: true,
+    team_a_score: 2,
+    team_b_score: 8,
+    sport_name: 'pizza eating' 
+  }]
+
+  knex.migrate.rollback()
+  .then(() => knex.migrate.latest())
+  .then(() => knex.seed.run('games'))
+  .then(() => {
+    return dbUtils.addOne('games',
+    { user_id: 2,
+      // Here, the date is in a timestamp format to make PostgreSQL happy
+      date_time: 160729,
+      location: 'Tommy Millions',
+      team_a_name: 'The Average Team',
+      team_b_name: 'The Pizza Team',
+      is_complete: true,
+      team_a_score: 2,
+      team_b_score: 8,
+      sport_name: 'pizza eating'
+    })
+  })
+  .then(() => {
+    return dbUtils.getOne('games', { id: 4 })
+  })
+  .then((game) => {
+    // Parsing the PostgreSQL timestamp to be in the Unixtime timestamp function
+    // Turning Fri Jul 29 2016 00:00:00 GMT+1200 (NZST) into 1469707200000
+    game[0].date_time = Date.parse(game[0].date_time)
+    t.deepEqual(game, expected, 'got a game back')
     t.end()
   })
   .catch((err) => {

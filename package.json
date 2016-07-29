@@ -14,6 +14,7 @@
     "start:watch": "nodemon ./server/bin/www",
     "test": "npm run lint && cd client && babel-tape-runner test/*.js | tap-spec",
     "test:server": "cd server && tape test/*.js | tap-spec",
+    "reset-db": "cd server && knex migrate:rollback && knex migrate:latest && knex seed:run",
     "build": "cd client && webpack --progress --profile --colors",
     "build:watch": "cd client && webpack --progress --profile --colors --watch",
     "build-css": "node-sass --include-path scss client/scss/main.scss public/css/main.css",
