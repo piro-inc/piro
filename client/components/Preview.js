@@ -11,7 +11,7 @@ class Preview extends React.Component {
   render () {
     return (
       <div>
-
+        This be a game preview!
       </div>
     )
   }

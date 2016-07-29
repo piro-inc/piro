@@ -1,6 +1,6 @@
 import React from 'react'
 
-class Nav extends React.Component {
+class Navbar extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -11,10 +11,10 @@ class Nav extends React.Component {
   render () {
     return (
       <div>
-
+        <h1>This be a menu</h1>
       </div>
     )
   }
 }
 
-export default Nav
+export default Navbar
