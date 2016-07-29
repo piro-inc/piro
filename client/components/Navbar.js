@@ -1,6 +1,6 @@
 import React from 'react'
 
-class Preview extends React.Component {
+class Nav extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -11,10 +11,10 @@ class Preview extends React.Component {
   render () {
     return (
       <div>
-        This be a game preview!
+        <h1>This be a menu</h1>
       </div>
     )
   }
 }
 
-export default Preview
+export default Nav

@@ -1,5 +1,7 @@
 import React from 'react'
 
+/*THIS IS A VERY VERY DUMB COMPONENT*/
+
 class Home extends React.Component {
   constructor (props) {
     super(props)

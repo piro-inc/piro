@@ -1,6 +1,7 @@
 import React from 'react'
+import Preview from './Preview'
 
-class Nav extends React.Component {
+class Previews extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -11,10 +12,13 @@ class Nav extends React.Component {
   render () {
     return (
       <div>
-
+        <Preview />
+        <Preview />
+        <Preview />
+        <Preview />
       </div>
     )
   }
 }
 
-export default Nav
+export default Previews
