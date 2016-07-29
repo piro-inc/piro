@@ -11,7 +11,12 @@ function addOne (table, obj) {
   return knex(table).returning('id').insert(obj)
 }
 
+function getAll (table, obj) {
+  return knex(table)
+}
+
 module.exports = {
   getOne,
-  addOne
+  addOne,
+  getAll
 }
