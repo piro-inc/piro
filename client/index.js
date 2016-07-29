@@ -4,8 +4,10 @@ import { Provider } from 'react-redux'
 import configureStore from './redux/store'
 import routes from './components/routes'
 import io from 'socket.io-client'
+import './scss/main.scss'
 
 const socket = io()
+// store.dispatch(setSocket(socket))
 const store = configureStore()
 
 const reactRoot = document.getElementById('app')
