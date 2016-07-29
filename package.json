@@ -46,11 +46,7 @@
     "babel-tape-runner": "^2.0.1",
     "enzyme": "^2.4.1",
     "react-addons-test-utils": "^15.2.1",
-<<<<<<< HEAD
-    "sqlite3": "^3.1.4",
-=======
     "standard": "^7.1.2",
->>>>>>> dab6b6950c5ea88329f66da95001ccbd1c2ec0de
     "tap-spec": "^4.1.1",
     "tape": "^4.6.0",
     "webpack": "^1.13.1",

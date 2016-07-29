@@ -5,9 +5,9 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       return Promise.all([
         // Inserts seed entries
-        knex('users').insert({id: 1, username: 'user1', password: 'something', email: 'user1@email.com'}),
-        knex('users').insert({id: 2, username: 'George', password: 'something', email: 'george@email.com'}),
-        knex('users').insert({id: 3, username: 'Kristy', password: 'something', email: 'kristy@email.com'})
+        knex('users').insert({username: 'user1', password: 'something', email: 'user1@email.com'}),
+        knex('users').insert({username: 'George', password: 'something', email: 'george@email.com'}),
+        knex('users').insert({username: 'Kristy', password: 'something', email: 'kristy@email.com'})
       ])
     })
 }
