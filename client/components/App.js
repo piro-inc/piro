@@ -11,7 +11,7 @@ class App extends React.Component {
   render () {
     return (
       <div id='container'>
-        {this.props.children}
+      asdad {/* this.props.children*/}
       </div>
     )
   }
