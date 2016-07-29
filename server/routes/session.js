@@ -5,13 +5,13 @@ const createToken = require('../auth').createToken
 
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', { session: false }, (err, user, info) => {
-    if(err) return res.redirect('/')
-    if(!user) return res.redirect('/')
+    if (err) return res.redirect('/')
+    if (!user) return res.redirect('/')
     else {
       req.login(user, (err) => {
-        if(err) return next(err)
+        if (err) return next(err)
         delete user.password
-        res.cookie('jwt.token', createToken(user.id), { httpOnly: true, maxAge: 20*1000 })
+        res.cookie('jwt.token', createToken(user.id), { httpOnly: true, maxAge: 20 * 1000 })
         res.json(user)
       })
     }

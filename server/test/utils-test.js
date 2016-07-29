@@ -55,20 +55,19 @@ test('Add game to games table', (t) => {
   .then(() => knex.seed.run('game'))
   .then(() => {
     const dummyGame = {
-     user_id: 1,
-     date_time: 990108,
-     location: 'EDA',
-     team_a_name: 'the fun team',
-     team_b_name: 'the other guys',
-     is_complete: false,
-     team_a_score: 1,
-     team_b_score: 5,git
-     sport_name: 'ninja'
-   }
+      user_id: 1,
+      date_time: 990108,
+      location: 'EDA',
+      team_a_name: 'the fun team',
+      team_b_name: 'the other guys',
+      is_complete: false,
+      team_a_score: 1,
+      team_b_score: 5,
+      sport_name: 'ninja'
+    }
     return dbUtils.addOne('games', dummyGame)
   })
   .then((game) => {
-    console.log(game)
     t.ok(1)
     t.end()
   })
@@ -79,27 +78,30 @@ test('Add game to games table', (t) => {
 })
 
 test('Get all games from games table', (t) => {
+  const expected = {
+    id: 1,
+    user_id: 1,
+    location: 'EDA',
+    team_a_name: 'the fun team',
+    team_b_name: 'the other guys',
+    is_complete: false,
+    team_a_score: 1,
+    team_b_score: 5,
+    sport_name: 'ninja'
+  }
+
   knex.migrate.rollback()
   .then(() => knex.migrate.latest())
   .then(() => knex.seed.run('game'))
   .then(() => {
-    const expected = {
-     id:1,
-     user_id: 1,
-     date_time: new Date(990108).toString(),
-     location: 'EDA',
-     team_a_name: 'the fun team',
-     team_b_name: 'the other guys',
-     is_complete: false,
-     team_a_score: 1,
-     team_b_score: 5,
-     sport_name: 'ninja'
-   }
     return dbUtils.getAll('games')
   })
   .then((games) => {
-    console.log(games)
-    t.deepEqual(games[0], )
+    const res = games[0]
+    delete res.date_time
+    t.deepEqual(res, expected)
+    dbUtils.destroy()
+    knex.destroy()
     t.end()
   })
   .catch((err) => {

@@ -15,8 +15,13 @@ function getAll (table, obj) {
   return knex(table)
 }
 
+function destroy () {
+  knex.destroy()
+}
+
 module.exports = {
   getOne,
   addOne,
-  getAll
+  getAll,
+  destroy
 }

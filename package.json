@@ -12,8 +12,9 @@
   "scripts": {
     "start": "node ./server/bin/www",
     "start:watch": "nodemon ./server/bin/www",
-    "test": "npm run lint && cd client && babel-tape-runner test/*.js | tap-spec",
+    "test:client": "cd client && babel-tape-runner test/*.js | tap-spec",
     "test:server": "cd server && tape test/*.js | tap-spec",
+    "test": "npm run lint && npm run test:client && npm run test:server",
     "build": "cd client && webpack --progress --profile --colors",
     "build:watch": "cd client && webpack --progress --profile --colors --watch",
     "build-css": "node-sass --include-path scss client/scss/main.scss public/css/main.css",

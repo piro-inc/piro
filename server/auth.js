@@ -1,6 +1,6 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
-const dbUtils = require('./database/utils')
+const db = require('./database/utils')
 const bcrypt = require('bcryptjs')
 const cache = require('memory-cache')
 const nJwt = require('njwt')
@@ -11,7 +11,6 @@ function setup () {
   const strategy = new LocalStrategy((username, password, done) => {
     db.getOne('users', { username })
       .then((user) => {
-        if (err) return console.error(err)
         if (!user) return done(null, false)
         bcrypt.compare(password, user.password, (err, res) => {
           if (err) return console.error(err)
@@ -32,7 +31,6 @@ function setup () {
   passport.deserializeUser((id, done) => {
     db.getOne('users', { id })
       .then((user) => {
-        if (err) return console.error(err)
         return done(null, user)
       })
       .catch(err => {
