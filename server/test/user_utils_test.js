@@ -6,15 +6,13 @@ const knexConfig = require('../knexfile')
 
 const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
 
-test('User test works', function(t) {
+test('User test works', function (t) {
   t.ok(1, 'user test works')
   t.end()
 })
 
-test('getUser returns expected value', function(t) {
-
-  const expected = [ {email: 'george@email.com', id: 2, password: 'something', username: 'George' } ]
-
+test('getUser returns expected value', function (t) {
+  const expected = [{ email: 'george@email.com', id: 2, password: 'something', username: 'George' }]
   knex.migrate.rollback()
     .then(() => knex.migrate.latest())
     .then(() => knex.seed.run('users'))
@@ -29,6 +27,5 @@ test('getUser returns expected value', function(t) {
     .catch((err) => {
       t.ok(0, err)
       t.end()
-    })  
+    })
 })
-

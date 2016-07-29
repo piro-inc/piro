@@ -29,9 +29,7 @@ test('Get a user from users table', function (t) {
 })
 
 test('Get a comment from comments table', function (t) {
-
-  const expected = [ { id : 1, game_id: 3, comment: 'Player 1 injured' }]
-
+  const expected = [{ id: 1, game_id: 3, comment: 'Player 1 injured' }]
   knex.migrate.rollback()
     .then(() => knex.migrate.latest())
     .then(() => knex.seed.run('comments'))
@@ -50,9 +48,7 @@ test('Get a comment from comments table', function (t) {
 })
 
 test('Get a game from games table', function (t) {
-
   const expected = 'the fun team'
-
   knex.migrate.rollback()
     .then(() => knex.migrate.latest())
     .then(() => knex.seed.run('games'))
@@ -71,9 +67,7 @@ test('Get a game from games table', function (t) {
 })
 
 test('Add user to users table', function (t) {
-
   const expected = [{ email: 'rena@skux.com', id: 4, password: 'password', username: 'Rena' }]
-
   knex.migrate.rollback()
   .then(() => knex.migrate.latest())
   .then(() => knex.seed.run('users'))
@@ -99,22 +93,20 @@ test('Add user to users table', function (t) {
 })
 
 test('Add game to games table', function (t) {
-
   const expected = [
-  {
-    id: 4,
-    user_id: 2,
+    {
+      id: 4,
+      user_id: 2,
     // Date Time is January 1st 1970 in Unix Time (Google Unix Time!)
-    date_time: 1469707200000,
-    location: 'Tommy Millions',
-    team_a_name: 'The Average Team',
-    team_b_name: 'The Pizza Team',
-    is_complete: true,
-    team_a_score: 2,
-    team_b_score: 8,
-    sport_name: 'pizza eating' 
-  }]
-
+      date_time: 1469707200000,
+      location: 'Tommy Millions',
+      team_a_name: 'The Average Team',
+      team_b_name: 'The Pizza Team',
+      is_complete: true,
+      team_a_score: 2,
+      team_b_score: 8,
+      sport_name: 'pizza eating'
+    }]
   knex.migrate.rollback()
   .then(() => knex.migrate.latest())
   .then(() => knex.seed.run('games'))
@@ -149,18 +141,16 @@ test('Add game to games table', function (t) {
 })
 
 test('Add comment to comments table', function (t) {
-
   const expected = [{ comment: 'Goal!!', game_id: 2, id: 4 }]
-
   knex.migrate.rollback()
   .then(() => knex.migrate.latest())
   .then(() => knex.seed.run('comments'))
   .then(() => {
     return dbUtils.addOne('comments',
-    {
-      game_id: 2,
-      comment: 'Goal!!' 
-    })
+      {
+        game_id: 2,
+        comment: 'Goal!!'
+      })
   })
   .then(() => {
     return dbUtils.getOne('comments', { id: 4 })
@@ -176,7 +166,7 @@ test('Add comment to comments table', function (t) {
   })
 })
 
-test('Get all games from games table', (t) => {
+test('Get all games from games table', function (t) {
   const expected = {
     id: 1,
     user_id: 1,
@@ -188,7 +178,6 @@ test('Get all games from games table', (t) => {
     team_b_score: 5,
     sport_name: 'ninja'
   }
-
   knex.migrate.rollback()
   .then(() => knex.migrate.latest())
   .then(() => knex.seed.run('game'))
