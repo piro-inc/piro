@@ -148,3 +148,34 @@ test('Add game to games table', function (t) {
     t.end()
   })
 })
+
+
+test('Add comment to comments table', function (t) {
+
+  const expected = [{ comment: 'Goal!!', game_id: 2, id: 4 }]
+
+  knex.migrate.rollback()
+  .then(() => knex.migrate.latest())
+  .then(() => knex.seed.run('comments'))
+  .then(() => {
+    return dbUtils.addOne('comments',
+    {
+      game_id: 2,
+      comment: 'Goal!!' 
+    })
+  })
+  .then(() => {
+    return dbUtils.getOne('comments', { id: 4 })
+  })
+  .then((comment) => {
+    console.log(comment, 'successfully added a comment to the comments table')
+    t.deepEqual(comment, expected, 'We got a goal!!')
+    t.end()
+  })
+  .catch((err) => {
+    t.ok(0, err)
+    t.end()
+  })
+})
+
+
