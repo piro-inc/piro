@@ -2,7 +2,7 @@ import React from 'react'
 import Login from './Login'
 import Register from './Register'
 
-/*THIS IS A VERY VERY DUMB COMPONENT*/
+/* THIS IS A VERY VERY DUMB COMPONENT*/
 
 class Home extends React.Component {
   constructor (props) {

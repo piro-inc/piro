@@ -10,14 +10,14 @@ export class App extends React.Component {
     }
   }
 
-  //addData = () => {
-    //this.props.addData('dummy')
+  // addData = () => {
+    // this.props.addData('dummy')
 //  }
 
   render () {
     return (
       <div id='container'>
-        {this.props.children}
+     {this.props.children}
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-/*THIS IS A VERY VERY DUMB COMPONENT*/
+/* THIS IS A VERY VERY DUMB COMPONENT*/
 
 class Options extends React.Component {
   constructor (props) {

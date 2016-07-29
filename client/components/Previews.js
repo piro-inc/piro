@@ -13,7 +13,7 @@ class Previews extends React.Component {
   render () {
     return (
       <div>
-        <Navbar/>
+        <Navbar />
         <Preview />
         <Preview />
         <Preview />
