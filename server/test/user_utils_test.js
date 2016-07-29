@@ -31,3 +31,4 @@ test('getUser returns expected value', function(t) {
       t.end()
     })  
 })
+
