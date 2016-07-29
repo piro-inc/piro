@@ -4,3 +4,4 @@ public/bundle.js
 .DS_Store
 .log
 npm-debug.log
+server/dev.sqlite3
