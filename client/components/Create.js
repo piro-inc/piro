@@ -1,4 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { createGame } from '../redux/gamesActions'
+
 import Navbar from './Navbar'
 
 class Create extends React.Component {
@@ -27,4 +30,36 @@ class Create extends React.Component {
   }
 }
 
-export default Create
+const mapStateToProps = f => f
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    create: (
+      userId,
+      date,
+      location,
+      teamA,
+      teamB,
+      isComplete,
+      teamAScore,
+      teamBScore,
+      sportName
+    ) => {
+      dispatch(create(
+        userId,
+        date,
+        location,
+        teamA,
+        teamB,
+        isComplete,
+        teamAScore,
+        teamBScore,
+        sportName
+      ))
+    }
+  }
+}
+
+const CreateContainer = connect(mapStateToProps, mapDispatchToProps)(Create)
+
+export default CreateContainer
