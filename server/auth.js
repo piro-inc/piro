@@ -12,7 +12,7 @@ function setup () {
     db.getOne('users', { username })
       .then((user) => {
         user = user[0]
-        if (!user) return done(null, false)
+        if (!user) return done(null, { error: 'no user' })
         bcrypt.compare(password, user.password, (err, res) => {
           if (err) return console.error(err)
           return done(null, res && user)

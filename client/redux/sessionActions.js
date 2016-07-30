@@ -31,7 +31,7 @@ export const login = (username, password) => {
             type: GET_USER_SUCCESS
           })
         } else {
-          throw new Error('Incorrect username or password.')
+          throw new Error(user.error)
         }
       })
       .catch(err => {
