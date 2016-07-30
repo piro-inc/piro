@@ -20,7 +20,6 @@ test('Get a single comment searching by game id', function (t) {
       return commentUtils.getComments({game_id: 2})
     })
   .then((comment) => {
-    console.log(comment[0].comment)
     t.deepEqual(comment[0].comment, expected, 'got a single comment attached to game_id 2')
     t.end()
   })
@@ -66,7 +65,6 @@ test('Get all comments', function (t) {
       return commentUtils.getCommentsTable()
     })
   .then((comment) => {
-    console.log(comment)
     t.deepEqual(comment, expected, 'got entire comments table')
     t.end()
   })

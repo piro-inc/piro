@@ -37,7 +37,6 @@ test('Get a comment from comments table', function (t) {
       return dbUtils.getOne('comments', { id: 1 })
     })
   .then((comment) => {
-    console.log(comment)
     t.deepEqual(comment, expected)
     t.end()
   })
@@ -56,7 +55,6 @@ test('Get a game from games table', function (t) {
       return dbUtils.getOne('games', { id: 1 })
     })
   .then((game) => {
-    console.log(game[0].team_a_name)
     t.deepEqual(game[0].team_a_name, expected, 'got team from games table')
     t.end()
   })
@@ -82,7 +80,6 @@ test('Add user to users table', function (t) {
     return dbUtils.getOne('users', { id: 4 })
   })
   .then((user) => {
-    console.log(user, 'successfully added Rena to database')
     t.deepEqual(user, expected, 'we got Rena back in one piece')
     t.end()
   })
@@ -156,7 +153,6 @@ test('Add comment to comments table', function (t) {
     return dbUtils.getOne('comments', { id: 4 })
   })
   .then((comment) => {
-    console.log(comment, 'successfully added a comment to the comments table')
     t.deepEqual(comment, expected, 'We got a goal!!')
     t.end()
   })
@@ -194,7 +190,8 @@ test('Get all games from games table', function (t) {
     process.exit(0)
   })
   .catch((err) => {
-    t.ok(0, err)
+    t.npok(0
+      , err)
     t.end()
   })
 })

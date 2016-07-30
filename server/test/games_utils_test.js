@@ -20,7 +20,6 @@ test('Get a game searching by id', function (t) {
       return gamesUtils.getGame({id: 1})
     })
   .then((game) => {
-    console.log(game[0].team_a_name)
     t.deepEqual(game[0].team_a_name, expected, 'got team A from games table')
     t.end()
   })
@@ -39,7 +38,6 @@ test('Get a game searching by sport name', function (t) {
       return gamesUtils.getGame({sport_name: 'coding'})
     })
   .then((game) => {
-    console.log(game)
     t.deepEqual(game[0].location, expected, 'got EDA from games table')
     t.end()
   })
