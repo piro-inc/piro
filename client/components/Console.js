@@ -17,7 +17,7 @@ class Console extends React.Component {
 
         <h4 className='console-title'>Game [id] [Sport]</h4>
 
-        <h3 className='console-headers'>Timer</h3>
+        <h3 className='console-headers'>TIMER</h3>
         <div className='console-timer'>
 
           <div className='pause'>
