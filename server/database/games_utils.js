@@ -1,7 +1,7 @@
 const utils = require('./utils')
 
-function getGame (field, value) {
-  return utils.getOne('games', field, value)
+function getGame (params) {
+  return utils.getOne('games', params)
 }
 
 function addGame (obj) {

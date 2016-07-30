@@ -1,7 +1,7 @@
 const utils = require('./utils')
 
-function getComments (field, value) {
-  return utils.getOne('comments', field, value)
+function getComments (params) {
+  return utils.getOne('comments', params)
 }
 
 function getCommentsTable () {

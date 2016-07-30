@@ -1,7 +1,7 @@
 const utils = require('./utils')
 
-function getUser (field, value) {
-  return utils.getOne('users', field, value)
+function getUser (params) {
+  return utils.getOne('users', params)
 }
 
 function addUser (obj) {

@@ -17,7 +17,7 @@ test('Get a game searching by id', function (t) {
     .then(() => knex.migrate.latest())
     .then(() => knex.seed.run('games'))
     .then(() => {
-      return gamesUtils.getGame('id', 1)
+      return gamesUtils.getGame({id: 1})
     })
   .then((game) => {
     console.log(game[0].team_a_name)
@@ -31,15 +31,15 @@ test('Get a game searching by id', function (t) {
 })
 
 test('Get a game searching by sport name', function (t) {
-  const expected = 'EDA'
+  const expected = 'Vivian St'
   knex.migrate.rollback()
     .then(() => knex.migrate.latest())
     .then(() => knex.seed.run('games'))
     .then(() => {
-      return gamesUtils.getGame('sport_name', 'ninja')
+      return gamesUtils.getGame({sport_name: 'coding'})
     })
   .then((game) => {
-    console.log(game[0].location)
+    console.log(game)
     t.deepEqual(game[0].location, expected, 'got EDA from games table')
     t.end()
   })

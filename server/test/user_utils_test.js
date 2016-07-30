@@ -17,7 +17,7 @@ test('getUser returns expected value', function (t) {
     .then(() => knex.migrate.latest())
     .then(() => knex.seed.run('users'))
     .then(() => {
-      return userUtils.getUser('id', 2)
+      return userUtils.getUser({'id': 2})
     })
     .then((user) => {
       console.log(user)
