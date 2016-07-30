@@ -7,7 +7,7 @@ import Navbar from './Navbar'
 const Game = (props) => {
   return (
     <div id='game-wrapper'>
-
+git
       <div id='navbar-wrapper'>
         <Navbar />
       </div>
@@ -49,7 +49,7 @@ const Game = (props) => {
         <p className='comment-history'>Comment history</p>
         <p className='comment-history'>Comment history</p>
         <p className='comment-history'>Comment history</p>
-      q</div>
+      </div>
     </div>
   )
 }
