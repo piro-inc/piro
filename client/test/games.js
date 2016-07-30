@@ -9,15 +9,29 @@ test('games reducer', (t) => {
     game,
     type: gamesActions.GET_GAME_SUCCESS
   })
+
   t.deepEqual(store.getState().games.get('currentGame').toJS(), game)
   const games = [
     { team_a: 'hello', sport: 'soccer' },
     { team_a: 'hello', sport: 'hockey' }
   ]
+
   store.dispatch({
     games,
     type: gamesActions.GET_GAMES_SUCCESS
   })
   t.deepEqual(store.getState().games.get('games').toJS(), games)
+
+  store.dispatch({
+    game: games[0],
+    type: gamesActions.CREATE_GAME_SUCCESS
+  })
+  const newGames = [
+    { team_a: 'hello', sport: 'soccer' },
+    { team_a: 'hello', sport: 'hockey' },
+    { team_a: 'hello', sport: 'soccer' }
+  ]
+  
+  t.deepEqual(store.getState().games.get('games').toJS(), newGames)
   t.end()
 })

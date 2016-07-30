@@ -74,3 +74,61 @@ export const fetchGamesInfo = (id) => {
       })
   }
 }
+
+export const CREATE_GAME_SUCCESS = 'CREATE_GAME_SUCCESS'
+
+export const createGame = (userId, date, location, teamA, teamB, isComplete, teamAScore, teamBScore, sportName) => {
+  const options = {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify({
+      date,
+      location,
+      team_a: teamA,
+      team_b: teamB,
+      is_complete: isComplete,
+      team_a_score: teamAScore,
+      team_b_score: teamBScore,
+      sport_name: sportName
+    }),
+    credentials: 'same-origin'
+  }
+
+  return dispatch => {
+    fetch(`/api/games/${userId}`, options)
+      .then(res => {
+        return res.json()
+      })
+      .then(game => {
+        if (game.id) {
+          return fetch(`/api/games/${game.id}`)
+        } else {
+          throw new Error('Game not created correctly.')
+        }
+      })
+      .then(res => {
+        return res.json()
+      })
+      .then(game => {
+        console.log(game)
+        if (game.id) {
+          return dispatch({
+            game,
+            type: CREATE_GAME_SUCCESS
+          })
+        } else {
+          throw new Error('Game not created correctly.')
+        }
+      })
+      .catch(err => {
+        console.log(err)
+        return dispatch({
+          err,
+          type: GAMES_ERROR
+        })
+      })
+  }
+}
