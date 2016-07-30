@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const db = require('../database/utils')
 const authenticateUserId = require('../auth').authenticateUserId
 const gameUtils = require('../database/games_utils')
 

@@ -32,13 +32,13 @@ class Register extends React.Component {
   }
 
   register = (e) => {
-    if(this.state.password.length < 5 || this.state.password.length > 30) {
+    if (this.state.password.length < 5 || this.state.password.length > 30) {
       this.setState({ registerError: 'Password must be between 5 and 30 characters, sorry.' })
-    } else if(this.state.username.length < 5 || this.state.username.length > 20) {
+    } else if (this.state.username.length < 5 || this.state.username.length > 20) {
       this.setState({ registerError: 'Username must be between 5 and 20 characters, sorry.' })
-    } else if(!validator.validate(this.state.email)) {
+    } else if (!validator.validate(this.state.email)) {
       this.setState({ registerError: 'Email isn\'t valid, sorry.' })
-    } else if(this.state.password !== this.state.passwordConfirm) {
+    } else if (this.state.password !== this.state.passwordConfirm) {
       this.setState({ registerError: 'Passwords don\'t match, sorry.' })
     } else {
       this.props.register(this.state.username, this.state.email, this.state.password)
@@ -52,9 +52,9 @@ class Register extends React.Component {
         {this.state.registerError && <div>{this.state.registerError}</div>}
         <input type='text' onChange={this.userChange} placeholder='Enter username' id='username' />
         <input type='text' onChange={this.emailChange} placeholder='Email' id='username' className='email' />
-        <input type='password' onChange={this.pwChange}  placeholder='Enter password' id='password' className='password' />
-        <input type='password' onChange={this.pwcChange}  placeholder='Re-enter password' id='password' className='password' />
-        <button onClick={this.register}  className='submit button'>Register to PIRO</button>
+        <input type='password' onChange={this.pwChange} placeholder='Enter password' id='password' className='password' />
+        <input type='password' onChange={this.pwcChange} placeholder='Re-enter password' id='password' className='password' />
+        <button onClick={this.register} className='submit button'>Register to PIRO</button>
       </form>
     )
   }
