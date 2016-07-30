@@ -15,15 +15,29 @@ class Home extends React.Component {
   render () {
     return (
       <div id='home-wrapper'>
-        <div id='brand'>
+
+        <div id='logo-wrapper'>
+          <h1>Logo goes here</h1>
           <img id='logo' src='#' />
-          <p>Piro is awesome</p> {/* Description goes here.*/}
         </div>
 
         <div id='home-content'>
-          <Login />
-          <Register />
+
+          <div id='login'>
+            <Login / >
+            <button className='button'>Register to PIRO</button>
+          </div>
+
+          <div id='register'>
+            <Register />
+          </div>
+
+          <a href='#' className='enter-page'>
+            <h3>ENTER AS A GUEST</h3>
+          </a>
+
         </div>
+
       </div>
     )
   }
