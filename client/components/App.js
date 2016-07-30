@@ -6,13 +6,9 @@ export class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      // state goes here
+
     }
   }
-
-  // addData = () => {
-    // this.props.addData('dummy')
-//  }
 
   render () {
     return (

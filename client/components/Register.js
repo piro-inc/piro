@@ -11,11 +11,11 @@ class Register extends React.Component {
   render () {
     return (
       <form id='register-form' action='#'>
-        <h1>This is the register form</h1>
         <input type='text' placeholder='Enter username' id='username' />
-        <input type='text' placeholder='Enter password' className='password' />
-        <input type='text' placeholder='Re-enter password' className='password' />
-        <button type='submit'>Submit</button>
+        <input type='password' placeholder='Enter password' className='password' />
+        <input type='password' placeholder='Re-enter password' className='password' />
+        <input type='text' placeholder='Email' className='email' />
+        <button type='submit' className='submit button'>Register to PIRO</button>
       </form>
     )
   }
