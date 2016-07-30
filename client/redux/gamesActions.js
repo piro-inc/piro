@@ -1,6 +1,8 @@
 export const GET_GAME_SUCCESS = 'GET_GAME_SUCCESS'
 export const GAMES_ERROR = 'GAMES_ERROR'
 
+const fetch = fetch || (f => f)
+
 export const fetchGameInfo = (id) => {
   const options = {
     headers: {
@@ -17,7 +19,7 @@ export const fetchGameInfo = (id) => {
       })
       .then(game => {
         console.log(game)
-        if (user.id) {
+        if (game) {
           return dispatch({
             game,
             type: GET_GAME_SUCCESS
@@ -30,7 +32,7 @@ export const fetchGameInfo = (id) => {
         console.log(err)
         return dispatch({
           err,
-          type: GAME_ERROR
+          type: GAMES_ERROR
         })
       })
   }
