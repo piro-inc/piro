@@ -12,7 +12,7 @@ const Game = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    game: state.get('currentGame').toJS()
+    game: state.games.get('currentGame').toJS()
   }
 }
 

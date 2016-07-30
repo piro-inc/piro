@@ -19,7 +19,7 @@ const Previews = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    games: state.get('games').toJS()
+    games: state.games.get('games').toJS()
   }
 }
 
