@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { toJS } from 'immutable'
 
-//import { fetchGameInfo } from '../redux/gameActions'
+import { fetchGameInfo } from '../redux/gameActions'
 
 const Game = (props) => {
   return (
