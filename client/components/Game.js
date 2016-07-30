@@ -2,12 +2,21 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { fetchGameInfo } from '../redux/gamesActions'
 
-const Game = (props) => {
-  return (
-    <div>
-      <p>wtf is going on here?</p>
-    </div>
-  )
+class Game extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      // state goes here
+    }
+  }
+
+  render () {
+    return (
+      <div>
+        <p>wtf is going on here?</p>
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
