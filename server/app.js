@@ -22,9 +22,9 @@ app.use(express.static(path.join(__dirname, '../public')))
 app.use(passport.initialize())
 setupPassport()
 
-app.use('/', sessionRoutes)
-app.use('/users', userRoutes)
-app.use('/games', gameRoutes)
+app.use('/api/', sessionRoutes)
+app.use('/api/users', userRoutes)
+app.use('/api/games', gameRoutes)
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'))
