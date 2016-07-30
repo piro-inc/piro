@@ -7,7 +7,7 @@ import Navbar from './Navbar'
 const Game = (props) => {
   return (
     <div id='game-wrapper'>
-git
+
       <div id='navbar-wrapper'>
         <Navbar />
       </div>
