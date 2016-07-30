@@ -1,5 +1,8 @@
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS'
 export const SESSION_ERROR = 'SESSION_ERROR'
+import { browserHistory } from 'react-router'
+
+const fetch = fetch || (f => f)
 
 export const login = (username, password) => {
   const options = {
@@ -19,7 +22,7 @@ export const login = (username, password) => {
       })
       .then(user => {
         console.log(user)
-        if(user.id) {
+        if (user.id) {
           browserHistory.push('/games')
           return dispatch(getUserSuccess(user))
         } else {
@@ -27,7 +30,7 @@ export const login = (username, password) => {
         }
       })
       .catch(err => {
-        console.log(err);
+        console.log(err)
         return dispatch(sessionError(err))
       })
   }

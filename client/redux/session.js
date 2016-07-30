@@ -1,5 +1,4 @@
 import { fromJS } from 'immutable'
-import { browserHistory } from 'react-router'
 import * as sessionActions from './sessionActions'
 
 const initialState = fromJS({
