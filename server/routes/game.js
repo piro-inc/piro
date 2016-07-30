@@ -32,12 +32,12 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-  // get a user by id
+  // get a game by id
   const id = req.params.id
   db.getOne('games', { user_id: id })
     .then(game => {
       if (game) {
-        res.json(game)
+        res.json(game[0])
       } else {
         res.sendStatus(404)
       }

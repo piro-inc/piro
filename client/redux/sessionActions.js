@@ -2,6 +2,9 @@ import { browserHistory } from 'react-router'
 
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS'
 export const SESSION_ERROR = 'SESSION_ERROR'
+import { browserHistory } from 'react-router'
+
+const fetch = fetch || (f => f)
 
 const fetch = fetch || (f => f)
 
@@ -25,28 +28,20 @@ export const login = (username, password) => {
         console.log(user)
         if (user.id) {
           browserHistory.push('/games')
-          return dispatch(getUserSuccess(user))
+          return dispatch({
+            user,
+            type: GET_USER_SUCCESS
+          })
         } else {
           throw new Error('User not logged in correctly.')
         }
       })
       .catch(err => {
         console.log(err)
-        return dispatch(sessionError(err))
+        return dispatch({
+          err,
+          type: SESSION_ERROR
+        })
       })
-  }
-}
-
-export const getUserSuccess = (user) => {
-  return {
-    user,
-    type: GET_USER_SUCCESS
-  }
-}
-
-export const sessionError = (err) => {
-  return {
-    err,
-    type: SESSION_ERROR
   }
 }
