@@ -45,7 +45,7 @@ const mapDispatchToProps = (dispatch) => {
       teamBScore,
       sportName
     ) => {
-      dispatch(create(
+      dispatch(createGame(
         userId,
         date,
         location,
