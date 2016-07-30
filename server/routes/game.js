@@ -6,6 +6,7 @@ const authenticateUserId = require('../auth').authenticateUserId
 router.post('/:userid', authenticateUserId, (req, res, next) => {
   // create a new game
   const data = req.body
+  data.user_id = req.params.userid
   db.add('games', data, (err, resp) => {
     if (err) {
       console.error(err)
@@ -34,7 +35,7 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   // get a game by id
   const id = req.params.id
-  db.getOne('games', { user_id: id })
+  db.getOne('games', { id })
     .then(game => {
       if (game) {
         res.json(game[0])

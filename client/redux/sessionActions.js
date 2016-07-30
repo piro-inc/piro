@@ -61,7 +61,7 @@ export const register = (username, email, password) => {
       })
       .then(res => {
         console.log(res)
-        if(res.id) {
+        if (res.id) {
           return dispatch(login(username, password))
         } else {
           throw new Error('Not registered correctly.')
