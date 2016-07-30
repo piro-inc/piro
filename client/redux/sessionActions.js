@@ -3,8 +3,6 @@ import { browserHistory } from 'react-router'
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS'
 export const SESSION_ERROR = 'SESSION_ERROR'
 
-// const fetch = fetch || (f => f)
-
 export const login = (username, password) => {
   const options = {
     headers: {
@@ -64,8 +62,8 @@ export const register = (username, email, password) => {
         console.log(res)
         if (res.id) {
           return dispatch(login(username, password))
-        } else {
-          throw new Error('Not registered correctly.')
+        } else if (res.code === '23505') {
+          throw new Error('Username already exists, sorry.')
         }
       })
       .catch(err => {
@@ -75,5 +73,12 @@ export const register = (username, email, password) => {
           type: SESSION_ERROR
         })
       })
+  }
+}
+
+export const CLEAR_ERROR = 'CLEAR_ERROR'
+export const clearError = () => {
+  return {
+    type: CLEAR_ERROR
   }
 }
