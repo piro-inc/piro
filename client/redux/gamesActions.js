@@ -13,7 +13,7 @@ export const fetchGameInfo = (id) => {
   }
 
   return dispatch => {
-    fetch(`/games/${id}`, options)
+    fetch(`/api/games/${id}`, options)
       .then(res => {
         return res.json()
       })
@@ -26,6 +26,43 @@ export const fetchGameInfo = (id) => {
           })
         } else {
           throw new Error('Game not fetched correctly.')
+        }
+      })
+      .catch(err => {
+        console.log(err)
+        return dispatch({
+          err,
+          type: GAMES_ERROR
+        })
+      })
+  }
+}
+
+export const GET_GAMES_SUCCESS = 'GET_GAMES_SUCCESS'
+
+export const fetchGamesInfo = (id) => {
+  const options = {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    credentials: 'same-origin'
+  }
+
+  return dispatch => {
+    fetch('/api/games', options)
+      .then(res => {
+        return res.json()
+      })
+      .then(games => {
+        console.log(games)
+        if (games) {
+          return dispatch({
+            games,
+            type: GET_GAMES_SUCCESS
+          })
+        } else {
+          throw new Error('Games not fetched correctly.')
         }
       })
       .catch(err => {
