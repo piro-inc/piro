@@ -11,5 +11,9 @@ test('Session reducer', (t) => {
   })
 
   t.deepEqual(store.getState().session.get('error'), err, 'SESSION_ERROR updates store correctly')
+  store.dispatch({
+    type: sessionActions.CLEAR_ERROR
+  })
+  t.deepEqual(store.getState().session.get('error'), null, 'CLEAR_ERROR updates store correctly')
   t.end()
 })

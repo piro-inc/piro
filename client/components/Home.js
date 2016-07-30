@@ -1,6 +1,8 @@
 import React from 'react'
 import Login from './Login'
-// import Register from './Register'
+import Register from './Register'
+import { connect } from 'react-redux'
+import { clearError } from '../redux/sessionActions'
 
 /* THIS IS A VERY VERY DUMB COMPONENT*/
 
@@ -9,6 +11,14 @@ class Home extends React.Component {
     super(props)
     this.state = {
       // state goes here
+      showing: false
+    }
+  }
+
+  toggle = (showing) => {
+    return () => {
+      this.props.clearError()
+      this.setState({ showing })
     }
   }
 
@@ -21,13 +31,16 @@ class Home extends React.Component {
         <div id='home-content'>
 
           <div id='login'>
-            <Login />
-            <button className='button'>Register to PIRO</button>
+            {this.state.showing === 'login'
+            ? <Login />
+            : <button onClick={this.toggle('login')} className='button'>Login</button>}
           </div>
 
-          {/* <div id='register'>
-            <Register />
-          </div> */}
+          <div id='register'>
+            {this.state.showing === 'register'
+            ? <Register />
+            : <button onClick={this.toggle('register')} className='button'>Register to PIRO</button>}
+          </div>
 
           <a href='#' className='enter-page'>
             <h3>ENTER AS A GUEST</h3>
@@ -40,4 +53,16 @@ class Home extends React.Component {
   }
 }
 
-export default Home
+const mapStateToProps = f => f
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    clearError: () => {
+      dispatch(clearError())
+    }
+  }
+}
+
+const HomeContainer = connect(mapStateToProps, mapDispatchToProps)(Home)
+
+export default HomeContainer
