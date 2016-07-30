@@ -23,17 +23,20 @@ $piro-red: #c70000;
 
 #logo {
   width: 100%;
+  padding-bottom: 10%;
 }
 
 #home-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 10%;
 }
 
 #logo-wrapper {
   @include flex-center()
   padding-top: 15%;
+  margin-top: 10%;
 }
 
 #username {
