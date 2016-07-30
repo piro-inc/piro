@@ -12,7 +12,7 @@ class Navbar extends React.Component {
     return (
       <div id='navbar'>
         <div id='logo-nav-wrapper'>
-          <img id ='logo-nav' src='/images/logo-nav.svg' />
+          <img id='logo-nav' src='/images/logo-nav.svg' />
         </div>
 
         <div className='nav-links'>

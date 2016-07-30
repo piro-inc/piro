@@ -11,7 +11,8 @@ function setup () {
   const strategy = new LocalStrategy((username, password, done) => {
     db.getOne('users', { username })
       .then((user) => {
-        if (!user) return done(null, false)
+        user = user[0]
+        if (!user) return done(null, { error: 'no user' })
         bcrypt.compare(password, user.password, (err, res) => {
           if (err) return console.error(err)
           return done(null, res && user)

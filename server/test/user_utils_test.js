@@ -12,7 +12,7 @@ test('User test works', function (t) {
 })
 
 test('getUser returns expected value', function (t) {
-  const expected = [{ email: 'george@email.com', id: 2, password: 'something', username: 'George' }]
+  const expected = [{ email: 'george@email.com', id: 2, username: 'George' }]
   knex.migrate.rollback()
     .then(() => knex.migrate.latest())
     .then(() => knex.seed.run('users'))
@@ -20,6 +20,7 @@ test('getUser returns expected value', function (t) {
       return userUtils.getUser({id: 2})
     })
     .then((user) => {
+      delete user[0].password
       t.deepEqual(user, expected, 'got george\'s details')
       t.end()
     })
