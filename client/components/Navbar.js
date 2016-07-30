@@ -10,8 +10,17 @@ class Navbar extends React.Component {
 
   render () {
     return (
-      <div>
-        <h1>This be a menu</h1>
+      <div id='navbar'>
+        <div id='logo-nav-wrapper'>
+          <img id='logo-nav' src='/images/logo-nav.svg' />
+        </div>
+
+        <div className='nav-links'>
+          <a hef='#' className='nav-login'>login</a>
+          <p> | </p>
+          <a hef='#' className='nav-register'>register</a>
+        </div>
+
       </div>
     )
   }

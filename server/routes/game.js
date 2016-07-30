@@ -7,6 +7,7 @@ const gameUtils = require('../database/games_utils')
 router.post('/:userid', authenticateUserId, (req, res, next) => {
   // create a new game
   const data = req.body
+  data.user_id = req.params.userid
   db.add('games', data, (err, resp) => {
     if (err) {
       console.error(err)

@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { login } from '../redux/sessionActions'
 
 class Login extends React.Component {
   constructor (props) {
@@ -19,4 +21,16 @@ class Login extends React.Component {
   }
 }
 
-export default Login
+const mapStateToProps = f => f
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: (username, password) => {
+      dispatch(login(username, password))
+    }
+  }
+}
+
+const LoginContainer = connect(mapStateToProps, mapDispatchToProps)(Login)
+
+export default LoginContainer

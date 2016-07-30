@@ -1,0 +1,96 @@
+$piro-red: #c70000;
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+@mixin flex-center() {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@mixin input-box() {
+  margin-bottom: 5%;
+  height: 30px;
+  text-align: center;
+  background-color: #f7aca8;
+  color: $piro-red;
+  border: none;
+}
+
+@mixin input-box-focus() {
+  background-color: white;
+  color: black;
+}
+
+#logo {
+  width: 100%;
+  padding-bottom: 10%;
+}
+
+#home-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10%;
+}
+
+#logo-wrapper {
+  @include flex-center()
+  padding-top: 15%;
+  margin-top: 10%;
+}
+
+#username {
+  @include input-box();
+}
+
+#username:focus {
+  @include input-box-focus();
+}
+
+#password {
+  @include input-box();
+}
+
+#password:focus {
+  @include input-box-focus();
+}
+
+button {
+  background-color: white;
+  width: 140px;
+  border: none;
+  color: $piro-red;
+}
+
+.submit-button {
+  height: 25px;
+}
+
+#login-form {
+  @include flex-center()
+  padding-top: 20%;
+  padding-bottom: 5%;
+}
+
+#login {
+  @include flex-center()
+  padding-top: 20%;
+  padding-bottom: 30%;
+}
+
+#register-form {
+  @include flex-center()
+}
+
+
+body {
+  margin: 0;
+  font-family: "Open Sans";
+  background-color: $piro-red;
+  color: #ffffff;
+}
+
+.enter-page {
+  color: white;
+  text-decoration: none;
+}

@@ -11,15 +11,17 @@ const Previews = (props) => {
       <Navbar />
       <Preview />
       <Preview />
-      <Preview />
-      <Preview />
+      <div id='footer'>
+        <p>click anywhere on scoreboard for more detail</p>
+      </div>
     </div>
+
   )
 }
 
 const mapStateToProps = (state) => {
   return {
-    games: state.get('games').toJS()
+    games: state.games.get('games').toJS()
   }
 }
 
