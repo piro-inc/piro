@@ -31,7 +31,7 @@ test('games reducer', (t) => {
     { team_a: 'hello', sport: 'hockey' },
     { team_a: 'hello', sport: 'soccer' }
   ]
-  
+
   t.deepEqual(store.getState().games.get('games').toJS(), newGames)
   t.end()
 })
