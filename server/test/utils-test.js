@@ -94,8 +94,6 @@ test('Add game to games table', function (t) {
     {
       id: 4,
       user_id: 2,
-    // Date Time is January 1st 1970 in Unix Time (Google Unix Time!)
-      date_time: 1469707200000,
       location: 'Tommy Millions',
       team_a_name: 'The Average Team',
       team_b_name: 'The Pizza Team',
@@ -110,7 +108,6 @@ test('Add game to games table', function (t) {
   .then(() => {
     return dbUtils.addOne('games',
     { user_id: 2,
-      // Here, the date is in a timestamp format to make PostgreSQL happy
       date_time: 160729,
       location: 'Tommy Millions',
       team_a_name: 'The Average Team',
@@ -125,9 +122,7 @@ test('Add game to games table', function (t) {
     return dbUtils.getOne('games', { id: 4 })
   })
   .then((game) => {
-    // Parsing the PostgreSQL timestamp to be in the Unixtime timestamp function
-    // Turning Fri Jul 29 2016 00:00:00 GMT+1200 (NZST) into 1469707200000
-    game[0].date_time = Date.parse(game[0].date_time)
+    delete game[0].date_time
     t.deepEqual(game, expected, 'got a game back')
     t.end()
   })
