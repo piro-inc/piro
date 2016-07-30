@@ -13,7 +13,9 @@ class Console extends React.Component {
     return (
       <div id='console-wrapper'>
 
-        <Navbar />
+        <div id='navbar-wrapper'>
+          <Navbar />
+        </div>
 
         <h4 className='console-title'>Game [id] [Sport]</h4>
 
