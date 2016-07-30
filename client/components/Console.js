@@ -20,8 +20,7 @@ class Console extends React.Component {
         <h4 className='console-title'>Game [id] [Sport]</h4>
 
         <h3 className='console-headers'>TIMER</h3>
-        <div className='console-timer'>
-
+        <div className='console-timer-wrapper'>
           <div className='pause'>
             <button className='button' id='pause'>PAUSE</button>
           </div>
@@ -33,14 +32,12 @@ class Console extends React.Component {
           <div className='stop'>
             <button className='button' id='stop'>STOP</button>
           </div>
-
         </div>
 
         <h3 className='console-headers'>SCORE TEAMS</h3>
-        <div className='console-scores'>
+        <div className='console-scores-wrapper'>
 
           <div className='console-teamone'>
-
             <img src='#' className='team-logo' />
             <h1 className='console-score' id='team-one-score'>0</h1>
 
@@ -62,19 +59,19 @@ class Console extends React.Component {
             </div>
 
           </div>
-
         </div>
 
         <h3 className='console-headers'>ADD COMMENT</h3>
-        <div className='add-comment'>
+        <div className='add-comment-wrapper'>
           <input type='text' className='console-comment' id='add-comment'/>
           <button type='submit' className='submit button' id='submit-comment'>+ Submit</button>
         </div>
 
-        <h3 className='console-headers'>ADD COMMENT</h3>
-        <div className='edit-comment'>
+        <h3 className='console-headers'>EDIT COMMENT</h3>
+        <div className='edit-comment-wrapper'>
           <input type='text' className='console-comment' id='recent-comment' />
-          <button className='submit button' id='edit-comment'>Edit</button>
+          <button className='edit button' id='edit-comment'>Edit</button>
+          <button type='submit' className='submit button' id='submit-edit'>Change</button>
         </div>
       </div>
     )
