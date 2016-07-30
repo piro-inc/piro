@@ -40,7 +40,7 @@ test('Get a game and get all comments for that game', function (t) {
       return gamesUtils.getGameComments(3)
     })
   .then((comments) => {
-    console.log(comments[0].user_id)
+    console.log(comments)
     t.deepEqual(comments[0].comment, expected, 'We got a try!')
     t.end()
   })

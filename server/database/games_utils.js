@@ -1,5 +1,5 @@
 const utils = require('./utils')
-const commentsUtils = require('./comments_Utils')
+const commentsUtils = require('./comments_utils')
 
 function getGame (params) {
   return utils.getOne('games', params)
@@ -14,7 +14,19 @@ function getGamesTable () {
 }
 
 function getGameComments (game_id) {
-  return getGame({id: game_id})
+  let gameInfo = {}
+  return Promise.all([
+    getGame({id: game_id}),
+    commentsUtils.getComments({game_id})
+  ])
+    .then((infoArray) => {
+      gameInfo.game = Object.assign({}, infoArray[0])
+      gameInfo.comments = Object.assign({}, infoArray[1])
+      return gameInfo
+    })
+    .catch((err) => {
+      console.log('error', err)
+    })
 }
 
 module.exports = {
