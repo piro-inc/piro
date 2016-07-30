@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router'
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS'
 export const SESSION_ERROR = 'SESSION_ERROR'
 
-const fetch = fetch || (f => f)
+// const fetch = fetch || (f => f)
 
 export const login = (username, password) => {
   const options = {
@@ -17,8 +17,9 @@ export const login = (username, password) => {
   }
 
   return dispatch => {
-    fetch('/login', options)
+    fetch('/api/login', options)
       .then(res => {
+        console.log(res)
         return res.json()
       })
       .then(user => {
@@ -30,7 +31,7 @@ export const login = (username, password) => {
             type: GET_USER_SUCCESS
           })
         } else {
-          throw new Error('User not logged in correctly.')
+          throw new Error('Incorrect username or password.')
         }
       })
       .catch(err => {
@@ -61,7 +62,7 @@ export const register = (username, email, password) => {
       })
       .then(res => {
         console.log(res)
-        if(res.id) {
+        if (res.id) {
           return dispatch(login(username, password))
         } else {
           throw new Error('Not registered correctly.')

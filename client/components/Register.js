@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { register } from '../redux/sessionActions'
 
 class Register extends React.Component {
   constructor (props) {
@@ -21,4 +23,16 @@ class Register extends React.Component {
   }
 }
 
-export default Register
+const mapStateToProps = f => f
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    register: (username, email, password) => {
+      dispatch(register(username, email, password))
+    }
+  }
+}
+
+const RegisterContainer = connect(mapStateToProps, mapDispatchToProps)(Register)
+
+export default RegisterContainer

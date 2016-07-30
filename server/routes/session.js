@@ -5,13 +5,19 @@ const createToken = require('../auth').createToken
 
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', { session: false }, (err, user, info) => {
-    if (err) return res.redirect('/')
-    if (!user) return res.redirect('/')
-    else {
+    if (err) {
+      return res.json(err)
+    } else if (!user) {
+      return res.json({
+        error: 'Not authorized'
+      })
+    } else {
       req.login(user, (err) => {
         if (err) return next(err)
         delete user.password
-        res.cookie('jwt.token', createToken(user.id), { httpOnly: true, maxAge: 20 * 1000 })
+        const token = createToken(user.id)
+        console.log(token)
+        res.cookie('jwt.token', token, { httpOnly: true, maxAge: 1000 * 1000 })
         res.json(user)
       })
     }
