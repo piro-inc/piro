@@ -1,6 +1,6 @@
 import React from 'react'
 import Login from './Login'
-import Register from './Register'
+// import Register from './Register'
 
 /* THIS IS A VERY VERY DUMB COMPONENT*/
 
@@ -15,22 +15,19 @@ class Home extends React.Component {
   render () {
     return (
       <div id='home-wrapper'>
-
         <div id='logo-wrapper'>
-          <h1>Logo goes here</h1>
-          <img id='logo' src='#' />
+          <img id='logo' src='/images/logo-main.svg' />
         </div>
-
         <div id='home-content'>
 
           <div id='login'>
-            <Login / >
+            <Login />
             <button className='button'>Register to PIRO</button>
           </div>
 
-          <div id='register'>
+          {/* <div id='register'>
             <Register />
-          </div>
+          </div> */}
 
           <a href='#' className='enter-page'>
             <h3>ENTER AS A GUEST</h3>

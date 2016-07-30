@@ -11,9 +11,9 @@ class Login extends React.Component {
   render () {
     return (
       <form id='login-form' action='#'>
-        <input type='text' placeholder='Enter username' id='username' />
-        <input type='password' placeholder='Enter password' id='password' />
-        <button type='submit' className='submit button'>Log In</button>
+        <input type='text' placeholder='USERNAME' id='username' />
+        <input type='password' placeholder='PASSWORD' id='password' />
+        <button type='submit' className='submit-button'>Log In</button>
       </form>
     )
   }
