@@ -89,7 +89,7 @@ test('Add user to users table', function (t) {
   })
 })
 
-test('Add game to games table', function (t) {
+test('Add game to games table and get game from games table', function (t) {
   const expected = [
     {
       id: 4,
