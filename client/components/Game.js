@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
-import { fetchGameInfo } from '../redux/gameActions'
+import { fetchGameInfo } from '../redux/gamesActions'
 
 const Game = (props) => {
   return (
@@ -13,7 +12,7 @@ const Game = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    game: state.get('game').toJS()
+    game: state.get('currentGame').toJS()
   }
 }
 
