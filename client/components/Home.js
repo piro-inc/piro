@@ -1,6 +1,6 @@
 import React from 'react'
 import Login from './Login'
-import Register from './Register'
+// import Register from './Register'
 
 /* THIS IS A VERY VERY DUMB COMPONENT*/
 
