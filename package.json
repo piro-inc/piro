@@ -15,7 +15,7 @@
     "test:client": "cd client && babel-tape-runner test/*.js | tap-spec",
     "test:server": "cd server && tape test/*.js | tap-spec",
     "reset-db": "cd server && knex migrate:rollback && knex migrate:latest && knex seed:run",
-    "test": "npm run lint && npm run test:client && npm run test:server",
+    "test": "npm run lint && npm run test:client",
     "build": "cd client && webpack --progress --profile --colors",
     "build:watch": "cd client && webpack --progress --profile --colors --watch",
     "lint": "standard --fix",
