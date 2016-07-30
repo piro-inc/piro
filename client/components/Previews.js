@@ -1,26 +1,36 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { fetchGamesInfo } from '../redux/gamesActions'
+
 import Preview from './Preview'
 import Navbar from './Navbar'
 
-class Previews extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      // state goes here
-    }
-  }
+const Previews = (props) => {
+  return (
+    <div id='previews-wrapper'>
+      <Navbar />
+      <Preview />
+      <Preview />
+      <Preview />
+      <Preview />
+    </div>
+  )
+}
 
-  render () {
-    return (
-      <div>
-        <Navbar />
-        <Preview />
-        <Preview />
-        <Preview />
-        <Preview />
-      </div>
-    )
+const mapStateToProps = (state) => {
+  return {
+    games: state.get('games').toJS()
   }
 }
 
-export default Previews
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchGamesInfo: () => {
+      dispatch(fetchGamesInfo())
+    }
+  }
+}
+
+const PreviewsContainer = connect(mapStateToProps, mapDispatchToProps)(Previews)
+
+export default PreviewsContainer
