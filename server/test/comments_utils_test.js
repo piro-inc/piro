@@ -40,7 +40,7 @@ test('Get a single comment searching by game id', function (t) {
 //     })
 //   .then((comments) => {
 //     var commentsArray = comments.map(function(object) {
-//        
+//
 //       var commentStore = Object.assign(object.comment)
 //       return commentStore
 //     })

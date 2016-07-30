@@ -12,7 +12,7 @@ test('User test works', function (t) {
 })
 
 test('getUser returns expected value', function (t) {
-  const expected = [{ email: 'george@email.com', id: 2, password: 'something', username: 'George' } ]
+  const expected = [{ email: 'george@email.com', id: 2, password: 'something', username: 'George' }]
   knex.migrate.rollback()
     .then(() => knex.migrate.latest())
     .then(() => knex.seed.run('users'))
