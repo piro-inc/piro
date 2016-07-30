@@ -4,8 +4,8 @@ class Preview extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+    }
   }
-}
 
   render () {
     return (
@@ -26,7 +26,7 @@ class Preview extends React.Component {
         <div className='score-wrapper'>
 
           <a href='#'>
-            <img src='#' className='team-logo'/>
+            <img src='#' className='team-logo' />
           </a>
 
           <h1 className='preview-score'>Team one score</h1>
@@ -36,7 +36,7 @@ class Preview extends React.Component {
           <h1 className='preview-score'>Team two score</h1>
 
           <a href='#'>
-            <img src='#' className='team-logo'/>
+            <img src='#' className='team-logo' />
           </a>
 
         </div>
