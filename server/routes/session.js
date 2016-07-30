@@ -5,7 +5,6 @@ const createToken = require('../auth').createToken
 
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', { session: false }, (err, user, info) => {
-    console.log(user)
     if (user.error) {
       return res.json({
         error: 'Username does not exist.'

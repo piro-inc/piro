@@ -8,20 +8,19 @@ router.post('/:userid', authenticateUserId, (req, res, next) => {
   // create a new game
   const data = req.body
   data.user_id = req.params.userid
-  db.add('games', data, (err, resp) => {
-    if (err) {
-      console.error(err)
-      res.json(err)
-    } else {
-      res.json({ id: resp })
-    }
-  })
+  // gameUtils.addGame(data, (err, resp) => {
+  //   if (err) {
+  //     console.error(err)
+  //     res.json(err)
+  //   } else {
+  //     res.json({ id: resp })
+  //   }
+  // })
 })
 
 router.get('/', (req, res, next) => {
   gameUtils.getGamesTable()
     .then(games => {
-      console.log('hi')
       if (games) {
         res.json(games)
       } else {

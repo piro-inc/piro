@@ -1,6 +1,6 @@
 import React from 'react'
 import Login from './Login'
-// import Register from './Register'
+import Register from './Register'
 
 /* THIS IS A VERY VERY DUMB COMPONENT*/
 
@@ -25,9 +25,9 @@ class Home extends React.Component {
             <button className='button'>Register to PIRO</button>
           </div>
 
-          {/* <div id='register'>
+          <div id='register'>
             <Register />
-          </div> */}
+          </div>
 
           <a href='#' className='enter-page'>
             <h3>ENTER AS A GUEST</h3>

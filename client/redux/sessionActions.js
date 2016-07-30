@@ -64,8 +64,8 @@ export const register = (username, email, password) => {
         console.log(res)
         if (res.id) {
           return dispatch(login(username, password))
-        } else {
-          throw new Error('Not registered correctly.')
+        } else if(res.code === '23505'){
+          throw new Error('Username already exists, sorry.')
         }
       })
       .catch(err => {
