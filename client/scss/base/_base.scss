@@ -78,7 +78,7 @@ button {
   padding-bottom: 30%;
 }
 
-#register-form {
+#register, #register-form {
   @include flex-center()
 }
 

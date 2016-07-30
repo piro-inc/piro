@@ -13,6 +13,8 @@ const reducer = (state = initialState, action) => {
       return state.set('user', fromJS(action.user))
     case sessionActions.SESSION_ERROR:
       return state.set('error', fromJS(action.err))
+    case sessionActions.CLEAR_ERROR:
+      return state.set('error', null)
     default:
       return state
   }

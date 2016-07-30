@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { register } from '../redux/sessionActions'
 
-function errorExists(obj) {
+function errorExists (obj) {
   let res = false
   Object.keys(obj).forEach(key => {
     if (typeof obj[key] === 'object') {
@@ -78,7 +78,7 @@ class Register extends React.Component {
   }
 
   register = (e) => {
-    if(!errorExists(this.state)) {
+    if (!errorExists(this.state)) {
       this.props.register(this.state.username, this.state.email, this.state.password)
     }
   }

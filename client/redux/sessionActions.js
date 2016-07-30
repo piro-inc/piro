@@ -3,8 +3,6 @@ import { browserHistory } from 'react-router'
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS'
 export const SESSION_ERROR = 'SESSION_ERROR'
 
-// const fetch = fetch || (f => f)
-
 export const login = (username, password) => {
   const options = {
     headers: {
@@ -75,5 +73,12 @@ export const register = (username, email, password) => {
           type: SESSION_ERROR
         })
       })
+  }
+}
+
+export const CLEAR_ERROR = 'CLEAR_ERROR'
+export const clearError = () => {
+  return {
+    type: CLEAR_ERROR
   }
 }
