@@ -1,23 +1,24 @@
 const express = require('express')
 const router = express.Router()
-const db = require('../database/utils')
 const authenticateUserId = require('../auth').authenticateUserId
+const gameUtils = require('../database/games_utils')
 
 router.post('/:userid', authenticateUserId, (req, res, next) => {
   // create a new game
   const data = req.body
-  db.add('games', data, (err, resp) => {
-    if (err) {
-      console.error(err)
-      res.json(err)
-    } else {
-      res.json({ id: resp })
-    }
-  })
+  data.user_id = req.params.userid
+  // gameUtils.addGame(data, (err, resp) => {
+  //   if (err) {
+  //     console.error(err)
+  //     res.json(err)
+  //   } else {
+  //     res.json({ id: resp })
+  //   }
+  // })
 })
 
 router.get('/', (req, res, next) => {
-  db.getAll('games')
+  gameUtils.getGamesTable()
     .then(games => {
       if (games) {
         res.json(games)
@@ -34,7 +35,7 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   // get a game by id
   const id = req.params.id
-  db.getOne('games', { user_id: id })
+  gameUtils.getGame({ user_id: id })
     .then(game => {
       if (game) {
         res.json(game[0])

@@ -16,3 +16,12 @@ test('We can get blocked by the API', function (t) {
       t.end()
     })
 })
+
+test('Access login', function (t) {
+  request
+    .post('http://localhost:3000/api/login')
+    .end(function (err, res) {
+      if (err) { throw err }
+      console.log(res)
+    })
+})
