@@ -42,3 +42,37 @@ export const login = (username, password) => {
       })
   }
 }
+
+export const register = (username, email, password) => {
+  const options = {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify({ username, email, password }),
+    credentials: 'same-origin'
+  }
+
+  return dispatch => {
+    fetch('/api/users/', options)
+      .then(res => {
+        return res.json()
+      })
+      .then(res => {
+        console.log(res)
+        if(res.id) {
+          return dispatch(login(username, password))
+        } else {
+          throw new Error('Not registered correctly.')
+        }
+      })
+      .catch(err => {
+        console.log(err)
+        return dispatch({
+          err,
+          type: SESSION_ERROR
+        })
+      })
+  }
+}
