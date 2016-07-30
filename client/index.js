@@ -5,6 +5,7 @@ import configureStore from './redux/store'
 import routes from './components/routes'
 import io from 'socket.io-client'
 import './scss/main.scss'
+import 'whatwg-fetch'
 
 const socket = io()
 // store.dispatch(setSocket(socket))

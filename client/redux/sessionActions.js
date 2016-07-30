@@ -17,7 +17,7 @@ export const login = (username, password) => {
   }
 
   return dispatch => {
-    fetch('/api/login', options)
+    fetch('/api/login', options) // eslint-disable-line
       .then(res => {
         console.log(res)
         return res.json()
@@ -56,7 +56,7 @@ export const register = (username, email, password) => {
   }
 
   return dispatch => {
-    fetch('/api/users/', options)
+    fetch('/api/users/', options) // eslint-disable-line
       .then(res => {
         return res.json()
       })
