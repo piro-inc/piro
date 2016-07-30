@@ -2,14 +2,23 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { login } from '../redux/sessionActions'
 
-const Login = (props) => {
-  return (
-    <form id='login-form' action='#'>
-      <input type='text' placeholder='Enter username' id='username' />
-      <input type='password' placeholder='Enter password' id='password' />
-      <button type='submit' className='submit button'>Log In</button>
-    </form>
-  )
+class Login extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      // state goes here
+    }
+  }
+
+  render () {
+    return (
+      <form id='login-form' action='#'>
+        <input type='text' placeholder='Enter username' id='username' />
+        <input type='password' placeholder='Enter password' id='password' />
+        <button type='submit' className='submit button'>Log In</button>
+      </form>
+    )
+  }
 }
 
 const mapStateToProps = f => f
