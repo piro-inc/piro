@@ -1,18 +1,19 @@
-// const Knex = require('knex')
-// const knexConfig = require('../knexfile')
+const utils = require('./utils')
 
-// const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
+function getUser (params) {
+  return utils.getOne('users', params)
+}
 
-// function getUser (table, params) {
-//   return knex(table).where(params)
-// }
+function addUser (obj) {
+  return utils.addOne('users', obj)
+}
 
-// function addUser (table, params) {
-//   const newUser = Object.assign({}, email, password, username)
-//   return knex('users').returning('id').insert(newUser)
-// }
+function getUsersTable () {
+  return utils.getAll('users')
+}
 
-// module.exports = {
-//   getUser,
-//   addUser
-// }
+module.exports = {
+  getUser,
+  addUser,
+  getUsersTable
+}
