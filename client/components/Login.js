@@ -28,8 +28,8 @@ class Login extends React.Component {
     return (
       <div id='login-form'>
         {this.props.error && <div>{this.props.error.message}</div>}
-        <input type='text' onChange={this.userChange} placeholder='Enter username' id='username' />
-        <input type='password' onChange={this.pwChange} placeholder='Enter password' id='password' />
+        <input type='text' onChange={this.userChange} placeholder='Enter username' id='login-username' className='username' />
+        <input type='password' onChange={this.pwChange} placeholder='Enter password' id='login-password' className='password' />
         <button type='submit' onClick={this.login} className='submit button'>Log In</button>
       </div>
     )

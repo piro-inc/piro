@@ -88,13 +88,13 @@ class Register extends React.Component {
       <div id='register-form'>
         {this.props.error && <div>{this.props.error.message}</div>}
         {this.state.username.error && <div>{this.state.username.error}</div>}
-        <input type='text' onChange={this.userChange} placeholder='Enter username' id='username' />
+        <input type='text' onChange={this.userChange} placeholder='Enter username' id='register-username' className='username' />
         {this.state.email.error && <div>{this.state.email.error}</div>}
-        <input type='text' onChange={this.emailChange} placeholder='Email' id='username' className='email' />
+        <input type='text' onChange={this.emailChange} placeholder='Email' id='register-email' className='email' />
         {this.state.password.error && <div>{this.state.password.error}</div>}
-        <input type='password' onChange={this.pwChange} placeholder='Enter password' id='password' className='password' />
+        <input type='password' onChange={this.pwChange} placeholder='Enter password' id='register-password' className='password' />
         {this.state.passwordConfirm.error && <div>{this.state.passwordConfirm.error}</div>}
-        <input type='password' onChange={this.pwcChange} placeholder='Re-enter password' id='password' className='password' />
+        <input type='password' onChange={this.pwcChange} placeholder='Re-enter password' id='register-password-confirm' className='password' />
         <button onClick={this.register} className='submit button'>Register to PIRO</button>
       </div>
     )
