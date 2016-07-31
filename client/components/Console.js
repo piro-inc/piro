@@ -9,6 +9,10 @@ class Console extends React.Component {
     }
   }
 
+  componentDidMount () {
+    this.props.fetchGameInfo(this.props.params.id)
+  }
+
   render () {
     return (
       <div id='console-wrapper'>
@@ -17,7 +21,7 @@ class Console extends React.Component {
           <Navbar />
         </div>
 
-        <h4 className='console-title'>Game [id] [Sport]</h4>
+        <h4 className='console-title'>Game {} [Sport]</h4>
 
         <h3 className='console-headers'>TIMER</h3>
         <div className='console-timer-wrapper'>
