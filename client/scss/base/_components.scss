@@ -1,0 +1,17 @@
+@mixin inputField() {
+  width: 15em;
+  height: 2.5em;
+  background-color: $piroLightRed;
+  border: none;
+  color: $white;
+  padding-left: 1em;
+}
+
+@mixin homeButton() {
+  width: 15em;
+  height: 2.5em;
+  background-color: $white;
+  color: $piroRed;
+  border: none;
+}
+
