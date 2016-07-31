@@ -171,12 +171,14 @@ test('Get all games from games table', function (t) {
   }
   knex.migrate.rollback()
   .then(() => knex.migrate.latest())
-  .then(() => knex.seed.run('game'))
+  .then(() => knex.seed.run('games'))
   .then(() => {
     return dbUtils.getAll('games')
   })
   .then((games) => {
-    const res = games[0]
+    const res = games.find((game) => {
+      return game.location === 'EDA'
+    })
     delete res.date_time
     t.deepEqual(res, expected, 'got all games')
     t.end()
@@ -185,7 +187,7 @@ test('Get all games from games table', function (t) {
     process.exit(0)
   })
   .catch((err) => {
-    t.npok(0
+    t.ok(0
       , err)
     t.end()
   })

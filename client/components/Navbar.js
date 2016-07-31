@@ -29,12 +29,12 @@ class Navbar extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.users.get('user').toJS()
+    user: state.session.get('user').toJS()
   }
 }
 
-const mapDispatchToProps = f => f
+// const mapDispatchToProps = f => f
 
-const NavbarContainer = connect(mapStateToProps, mapDispatchToProps)(Navbar)
+const NavbarContainer = connect(mapStateToProps)(Navbar)
 
 export default NavbarContainer
