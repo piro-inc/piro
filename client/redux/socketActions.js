@@ -1,11 +1,9 @@
 import { readCookie } from '../utils'
 import { socket } from '../index'
 
-export const CHANGE_TEAM_SCORE = 'CHANGE_TEAM_SCORE'
-
 export const changeTeamScore = (team, newScore, gameId) => {
   return () => {
-    socket.emit('increment', {
+    socket.emit('changeTeamScore', {
       newScore,
       team,
       gameId,
@@ -13,8 +11,6 @@ export const changeTeamScore = (team, newScore, gameId) => {
     })
   }
 }
-
-export const STOP_GAME = 'STOP_GAME'
 
 export const stopGame = (gameId) => {
   return () => {
@@ -24,8 +20,6 @@ export const stopGame = (gameId) => {
     })
   }
 }
-
-export const ADD_COMMENT = 'ADD_COMMENT'
 
 export const addComment = (comment, gameId) => {
   return () => {

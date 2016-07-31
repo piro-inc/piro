@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs')
 const cache = require('memory-cache')
 const nJwt = require('njwt')
 const secureRandom = require('secure-random')
+const getGame = require('./database/games_utils').getGame
 require('dotenv').config()
 
 function setup () {
@@ -56,6 +57,10 @@ function createToken (id) {
   return jwt.compact()
 }
 
+function deleteToken (id) {
+  return cache.del(id)
+}
+
 function authenticateUserId (req, res, next) {
   const keyStore = cache.get(req.params.id)
   const signingKey = keyStore && Buffer.from(keyStore, 'base64')
@@ -75,8 +80,44 @@ function authenticateUserId (req, res, next) {
   }
 }
 
+function readCookie (name, cookies) {
+  const nameEQ = name + '='
+  const ca = cookies.split(';')
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i]
+    while (c.charAt(0) === ' ') c = c.substring(1, c.length)
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length)
+  }
+  return null
+}
+
+function authenticateSocket (id, gameId, socket, cb) {
+  getGame({ id: gameId })
+    .then(game => {
+      if (game[0].user_id === parseInt(id)) {
+        const keyStore = cache.get(id)
+        const signingKey = keyStore && Buffer.from(keyStore, 'base64')
+        const cookie = readCookie('jwt.token', socket.request.headers.cookie)
+        if (cookie) {
+          nJwt.verify(cookie, signingKey || new Buffer([]), (err, verifiedJwt) => {
+            cb(err)
+          })
+        } else {
+          cb(new Error('Could not find jwt token in cookies.'))
+        }
+      } else {
+        cb(new Error('Game does not belong to the user.'))
+      }
+    })
+    .catch(err => {
+      cb(err)
+    })
+}
+
 module.exports = {
   setup,
   createToken,
-  authenticateUserId
+  deleteToken,
+  authenticateUserId,
+  authenticateSocket
 }
