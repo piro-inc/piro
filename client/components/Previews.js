@@ -13,10 +13,21 @@ class Previews extends React.Component {
     }
   }
 
+  componentDidMount () {
+    this.props.fetchGamesInfo()
+  }
+ 
   render () {
     return (
       <div id='previews-wrapper'>
         <Navbar />
+        {this.props.games.length ?
+          <h3>{this.props.games.length}</h3>
+          {this.props.games.map((game) => {
+            return <Preview />
+          })}
+          :<h3>Has no games</h3>
+        }
         <Preview />
         <Preview />
         <div id='footer'>
