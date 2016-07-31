@@ -12,7 +12,13 @@ class Game extends React.Component {
     }
   }
 
+  componentDidMount () {
+    this.props.fetchGameInfo(this.props.params.id)
+  }
+
   render () {
+    console.log(this.props)
+    const game = this.props.game
     return (
       <div id='game-wrapper'>
 
@@ -21,26 +27,24 @@ class Game extends React.Component {
         </div>
 
         <div id='game-header'>
-          <h2 className='sport-region'>Sport region</h2>
-          <h3 className='division'>Division</h3>
-          <h3 className='game-date'>Date</h3>
-          <h3 className='start-time'>Time</h3>
-          <h3 className='match-location'>Match Location</h3>
+          <h2 className='sport-name'>{game.sport_name}</h2>
+          {/* <h3 className='division'>Division</h3>  No division in database yet*/}
+          <h3 className='date-time'>{game.date_time}</h3>
+          <h3 className='match-location'>{game.location}</h3>
         </div>
 
         <div className='score-wrapper'>
-
-          <a href='#'>
+          {/* <a href='#'>
             <img src='#' className='team-logo' />
           </a>
           <a href='#'>
             <img src='#' className='team-logo' />
-          </a>
-          <h2 className='team-one'>Team one</h2>
-          <h2 className='team-two'>Team two</h2>
+          </a> No logos in database yet*/}
+          <h2 className='team-one'>{game.team_a_name}</h2>
+          <h2 className='team-two'>{game.team_b_name}</h2>
 
-          <h1 className='game-score'>Team one score</h1>
-          <h1 className='game-score'>Team two score</h1>
+          <h1 className='game-score'>{game.team_a_score}</h1>
+          <h1 className='game-score'>{game.team_b_score}</h1>
 
         </div>
 
