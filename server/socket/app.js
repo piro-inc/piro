@@ -1,4 +1,5 @@
 const updateGame = require('../database/games_utils').updateGame
+const addComment = require('../database/comments_utils').addComment
 const authenticateSocket = require('../auth').authenticateSocket
 
 function socketServer (io) {
@@ -22,7 +23,6 @@ function socketServer (io) {
           }
           updateGame(searchParams, updateInfo)
             .then(arr => {
-              socket.emit('consoleUpdate', { id: arr[0] })
               io.emit('globalUpdate', { id: arr[0] })
             })
             .catch(err => {
@@ -40,6 +40,20 @@ function socketServer (io) {
 
     socket.on('addComment', (data) => {
       console.log(data)
+      // { comment: 'dsfsasd', gameId: '1', id: '1' }
+      const newData = {
+        game_id: data.gameId,
+        comment: data.comment
+      }
+
+      addComment(newData)
+        .then(obj => {
+          console.log(obj)
+          io.emit('globalUpdate', { id: parseInt(data.gameId) })
+        })
+        .catch(err => {
+          console.log(err)
+        })
     })
   })
 
