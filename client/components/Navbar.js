@@ -12,19 +12,20 @@ class Navbar extends React.Component {
 
   render () {
     const user = this.props.user
-    console.log('user HERE',user)
+    console.log('user HERE', user)
     return (
       <div id='navbar'>
         <div id='logo-nav-wrapper'>
           <img id='logo-nav' src='/images/logo-nav.svg' />
         </div>
 
-        {!user.username ?
-          <Link to='/' className='nav-links'>
+        {!user.username
+          ? <Link to='/' className='nav-links'>
             <p className='nav-login-register'>login / register</p>
-          </Link>:
-          <div className='nav-links'>
+          </Link>
+          : <div className='nav-links'>
             <p>{user.username}</p>
+            <Link to='/games/new' id='nav-menu' className='drop-down-menu'>+</Link>
           </div>
         }
 
