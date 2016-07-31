@@ -19,17 +19,18 @@ class Console extends React.Component {
 
   incrementScore = (team) => {
     return () => {
-      this.props.incrementTeamScore(team)
+      this.props.incrementTeamScore(team, this.props.params.id)
     }
   }
 
   decrementScore = (team) => {
     return () => {
-      this.props.decrementTeamScore(team)
+      this.props.decrementTeamScore(team, this.props.params.id)
     }
   }
 
   addComment = () => {
+    console.log(this.props.params.id)
     this.props.addComment(this.state.comment, this.props.params.id)
   }
 
@@ -161,8 +162,8 @@ const mapDispatchToProps = (dispatch) => {
     stopGame: (gameId) => {
       dispatch(stopGame(gameId))
     },
-    addComment: (gameId) => {
-      dispatch(addComment(gameId))
+    addComment: (comment, gameId) => {
+      dispatch(addComment(comment, gameId))
     },
     fetchGameInfo: (id) => {
       dispatch(fetchGameInfo(id))
