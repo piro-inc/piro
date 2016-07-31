@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const passport = require('passport')
 const createToken = require('../auth').createToken
+const deleteToken = require('../auth').deleteToken
 
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', { session: false }, (err, user, info) => {
@@ -29,7 +30,10 @@ router.post('/login', (req, res, next) => {
   })(req, res)
 })
 
-router.post('/logout', (req, res, next) => {
+router.get('/logout', (req, res, next) => {
+  deleteToken(req.cookies['user.id'])
+  res.clearCookie('jwt.token')
+  res.clearCookie('user.id')
   res.redirect('/')
 })
 

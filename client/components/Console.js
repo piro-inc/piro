@@ -9,12 +9,43 @@ class Console extends React.Component {
     super(props)
     this.state = {
       // state goes here
-      comment: ''
+      comment: '',
+      authenticated: false,
+      authError: false
     }
   }
 
   componentDidMount () {
     this.props.fetchGameInfo(this.props.params.id)
+    const options = {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'same-origin'
+    }
+
+    fetch(`/api/games/${this.props.params.id}`, options)
+      .then(res => {
+        return res.json()
+      })
+      .then(game => {
+        if (game && game.game.user_id) {
+          return fetch(`/api/users/${game.game.user_id}`, options)
+        }
+      })
+      .then(res => {
+        return res.json()
+      })
+      .then(user => {
+        if(user.id) {
+          this.setState({ authenticated: true, authError: false })
+        }
+      })
+      .catch(err => {
+        console.log(err)
+        this.setState({ authError: true })
+      })
   }
 
   incrementScore = (team) => {
@@ -57,7 +88,14 @@ class Console extends React.Component {
   render () {
     return (
       <div id='console-wrapper'>
-
+      {this.state.authError &&
+      <div>
+        Error authenticating. Try logging out and logging in if the problem persists.
+        <a href='/'> Home </a>
+      </div>
+      }
+      {this.state.authenticated &&
+      <div>
         <div id='navbar-wrapper'>
           <Navbar />
         </div>
@@ -156,6 +194,8 @@ class Console extends React.Component {
           <button className='edit button' id='edit-comment'>Edit</button>
           <button type='submit' className='submit button' id='submit-edit'>Change</button>
         </div>
+      </div>
+      }
       </div>
     )
   }

@@ -4,7 +4,6 @@ import { Provider } from 'react-redux'
 import configureStore from './redux/store'
 import routes from './components/routes'
 import io from 'socket.io-client'
-import * as socketActions from './redux/socketActions'
 import * as gamesActions from './redux/gamesActions'
 import './scss/main.scss'
 import 'whatwg-fetch'
@@ -12,20 +11,11 @@ import 'whatwg-fetch'
 export const socket = io()
 const store = configureStore()
 
-socket.on('increment', (data) => {
-  store.dispatch({
-    data,
-    type: socketActions.INCREMENT_TEAM_SCORE
-  })
-})
-
 socket.on('consoleUpdate', (data) => {
-  console.log('cu', data)
   store.dispatch(gamesActions.fetchGameInfo(data.id))
 })
 
 socket.on('globalUpdate', (data) => {
-  console.log('gu', data)
   store.dispatch(gamesActions.updateGameScore(data.id))
 })
 

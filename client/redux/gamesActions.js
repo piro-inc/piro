@@ -132,8 +132,6 @@ export const createGame = (userId, date, location, teamA, teamB, isComplete, tea
   }
 }
 
-export const UPDATE_GAME_SCORE = 'UPDATE_GAME_SCORE'
-
 export const updateGameScore = (id) => {
   return (dispatch, getState) => {
     console.log(id)
