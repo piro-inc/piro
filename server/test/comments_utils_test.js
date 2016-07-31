@@ -57,7 +57,7 @@ test('Get a single comment searching by game id', function (t) {
 // })
 
 test('Get all comments', function (t) {
-  const expected = [{ comment: 'Player 1 injured', game_id: 3}, { comment: 'Try!', game_id: 2}, { comment: 'Yellow card', game_id: 3}]
+  const expected = [{comment: 'Player 1 injured', game_id: 3}, {comment: 'Try!', game_id: 2}, {comment: 'Yellow card', game_id: 3}]
 
   knex.migrate.rollback()
     .then(() => knex.migrate.latest())
