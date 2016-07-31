@@ -5,6 +5,10 @@ function socketServer (io) {
     socket.on('message', (data) => {
       console.log(data)
     })
+
+    socket.on('increment', (data) => {
+      console.log(data)
+    })
   })
 
   return io

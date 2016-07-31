@@ -7,9 +7,15 @@ import io from 'socket.io-client'
 import './scss/main.scss'
 import 'whatwg-fetch'
 
-const socket = io()
-// store.dispatch(setSocket(socket))
+window.socket = io()
 const store = configureStore()
+
+socket.on('increment', (data) => {
+  store.dispatch({
+    data,
+    type: INCREMENT_TEAM_SCORE
+  })
+})
 
 const reactRoot = document.getElementById('app')
 
