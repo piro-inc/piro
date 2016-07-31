@@ -1,5 +1,5 @@
 var test = require('tape')
-var request = require('superagent')
+// var request = require('superagent')
 
 test('Login test segment', function (t) {
   t.deepEqual(1, 1)
