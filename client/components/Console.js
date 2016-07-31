@@ -63,7 +63,7 @@ class Console extends React.Component {
 
         <h3 className='console-headers'>ADD COMMENT</h3>
         <div className='add-comment-wrapper'>
-          <input type='text' className='console-comment' id='add-comment'/>
+          <input type='text' className='console-comment' id='add-comment' />
           <button type='submit' className='submit button' id='submit-comment'>+ Submit</button>
         </div>
 
