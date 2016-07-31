@@ -17,7 +17,6 @@ export const fetchGameInfo = (id) => {
         return res.json()
       })
       .then(game => {
-        console.log(game)
         if (game) {
           return dispatch({
             game,
@@ -54,7 +53,6 @@ export const fetchGamesInfo = (id) => {
         return res.json()
       })
       .then(games => {
-        console.log(games)
         if (games) {
           return dispatch({
             games,
@@ -129,6 +127,14 @@ export const createGame = (userId, date, location, teamA, teamB, isComplete, tea
           type: GAMES_ERROR
         })
       })
+  }
+}
+
+export const updateGameScore = (id) => {
+  return (dispatch, getState) => {
+    if (getState().games.toJS().currentGame.game.id === id) {
+      dispatch(fetchGameInfo(id))
+    }
   }
 }
 
