@@ -10,9 +10,11 @@ router.post('/', (req, res, next) => {
   // create a new user
   const data = req.body
   bcrypt.hash(data.password, 10, (err, hash) => {
-    if (err) return console.error(err)
+    if (err) {
+      return console.error(err)
+    }
     data.password = hash
-    userUtils.addUser('users', data)
+    userUtils.addUser(data)
       .then(id => {
         res.json({ id })
       })
@@ -26,7 +28,7 @@ router.post('/', (req, res, next) => {
 router.get('/:id', authenticateUserId, (req, res, next) => {
   // get a user by id
   const id = req.params.id
-  userUtils.addUser('users', { id })
+  userUtils.getUser({ id })
     .then(user => {
       user = user[0]
       if (user) {

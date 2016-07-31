@@ -29,3 +29,21 @@ test('Get a game searching by sport name', function (t) {
     t.end()
   })
 })
+
+test('Get a game and all comments for that game', function (t) {
+  const expected = 'Try!'
+  knex.migrate.rollback()
+    .then(() => knex.migrate.latest())
+    .then(() => knex.seed.run('games', 'comments'))
+    .then(() => {
+      return gamesUtils.getGameComments(2)
+    })
+  .then((gameInfo) => {
+    t.deepEqual(gameInfo.comments[0].comment, expected, 'We got a try!')
+    t.end()
+  })
+  .catch((err) => {
+    t.ok(0, err)
+    t.end()
+  })
+})

@@ -6,22 +6,41 @@ class Login extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      // state goes here
+      username: '',
+      password: ''
     }
   }
 
+  userChange = (e) => {
+    this.setState({ username: e.target.value })
+  }
+
+  pwChange = (e) => {
+    this.setState({ password: e.target.value })
+  }
+
+  login = () => {
+    this.props.login(this.state.username, this.state.password)
+  }
+
   render () {
+    console.log(this.props.error)
     return (
-      <form id='login-form' action='#'>
-        <input type='text' placeholder='Enter username' id='username' />
-        <input type='password' placeholder='Enter password' id='password' />
-        <button type='submit' className='submit button'>Log In</button>
-      </form>
+      <div id='login-form'>
+        {this.props.error && <div>{this.props.error.message}</div>}
+        <input type='text' onChange={this.userChange} placeholder='Enter username' id='login-username' className='username' />
+        <input type='password' onChange={this.pwChange} placeholder='Enter password' id='login-password' className='password' />
+        <button type='submit' onClick={this.login} className='submit button'>Log In</button>
+      </div>
     )
   }
 }
 
-const mapStateToProps = f => f
+const mapStateToProps = (state) => {
+  return {
+    error: state.session.get('error')
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {

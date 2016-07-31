@@ -3,8 +3,6 @@ import { browserHistory } from 'react-router'
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS'
 export const SESSION_ERROR = 'SESSION_ERROR'
 
-const fetch = fetch || (f => f)
-
 export const login = (username, password) => {
   const options = {
     headers: {
@@ -17,8 +15,9 @@ export const login = (username, password) => {
   }
 
   return dispatch => {
-    fetch('/login', options)
+    fetch('/api/login', options) // eslint-disable-line
       .then(res => {
+        console.log(res)
         return res.json()
       })
       .then(user => {
@@ -30,7 +29,7 @@ export const login = (username, password) => {
             type: GET_USER_SUCCESS
           })
         } else {
-          throw new Error('User not logged in correctly.')
+          throw new Error(user.error)
         }
       })
       .catch(err => {
@@ -55,7 +54,7 @@ export const register = (username, email, password) => {
   }
 
   return dispatch => {
-    fetch('/api/users/', options)
+    fetch('/api/users/', options) // eslint-disable-line
       .then(res => {
         return res.json()
       })
@@ -63,8 +62,8 @@ export const register = (username, email, password) => {
         console.log(res)
         if (res.id) {
           return dispatch(login(username, password))
-        } else {
-          throw new Error('Not registered correctly.')
+        } else if (res.code === '23505') {
+          throw new Error('Username already exists, sorry.')
         }
       })
       .catch(err => {
@@ -74,5 +73,12 @@ export const register = (username, email, password) => {
           type: SESSION_ERROR
         })
       })
+  }
+}
+
+export const CLEAR_ERROR = 'CLEAR_ERROR'
+export const clearError = () => {
+  return {
+    type: CLEAR_ERROR
   }
 }

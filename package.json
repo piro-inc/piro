@@ -36,6 +36,7 @@
     "immutable": "^3.8.1",
     "knex": "^0.11.9",
     "memory-cache": "^0.1.6",
+    "moment": "^2.14.1",
     "njwt": "^0.3.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
@@ -44,10 +45,12 @@
     "react-dom": "^15.2.1",
     "react-redux": "^4.4.5",
     "react-router": "^2.6.0",
+    "react-widgets": "^3.4.3",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
     "secure-random": "^1.1.1",
-    "socket.io": "^1.4.8"
+    "socket.io": "^1.4.8",
+    "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
@@ -58,6 +61,7 @@
     "babel-tape-runner": "^2.0.1",
     "css-loader": "^0.23.1",
     "enzyme": "^2.4.1",
+    "file-loader": "^0.9.0",
     "node-sass": "^3.8.0",
     "nodemon": "^1.10.0",
     "react-addons-test-utils": "^15.2.1",
@@ -67,6 +71,7 @@
     "superagent": "^2.1.0",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.0",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   }

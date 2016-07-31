@@ -1,8 +1,6 @@
 export const GET_GAME_SUCCESS = 'GET_GAME_SUCCESS'
 export const GAMES_ERROR = 'GAMES_ERROR'
 
-const fetch = fetch || (f => f)
-
 export const fetchGameInfo = (id) => {
   const options = {
     headers: {
@@ -13,7 +11,7 @@ export const fetchGameInfo = (id) => {
   }
 
   return dispatch => {
-    fetch(`/api/games/${id}`, options)
+    fetch(`/api/games/${id}`, options) // eslint-disable-line
       .then(res => {
         return res.json()
       })
@@ -50,7 +48,7 @@ export const fetchGamesInfo = (id) => {
   }
 
   return dispatch => {
-    fetch('/api/games', options)
+    fetch('/api/games', options) // eslint-disable-line
       .then(res => {
         return res.json()
       })
@@ -98,13 +96,13 @@ export const createGame = (userId, date, location, teamA, teamB, isComplete, tea
   }
 
   return dispatch => {
-    fetch(`/api/games/${userId}`, options)
+    fetch(`/api/games/${userId}`, options) // eslint-disable-line
       .then(res => {
         return res.json()
       })
       .then(game => {
         if (game.id) {
-          return fetch(`/api/games/${game.id}`)
+          return fetch(`/api/games/${game.id}`)  // eslint-disable-line
         } else {
           throw new Error('Game not created correctly.')
         }
@@ -130,5 +128,53 @@ export const createGame = (userId, date, location, teamA, teamB, isComplete, tea
           type: GAMES_ERROR
         })
       })
+  }
+}
+
+export const START_GAME = 'START_GAME'
+
+export const startGame = () => {
+  return {
+    type: START_GAME
+  }
+}
+
+export const INCREMENT_TEAM_A_SCORE = 'INCREMENT_TEAM_A_SCORE'
+
+export const incrementTeamAScore = () => {
+  return {
+    type: INCREMENT_TEAM_A_SCORE
+  }
+}
+
+export const INCREMENT_TEAM_B_SCORE = 'INCREMENT_TEAM_B_SCORE'
+
+export const incrementTeamBScore = () => {
+  return {
+    type: INCREMENT_TEAM_B_SCORE
+  }
+}
+
+export const DECREMENT_TEAM_A_SCORE = 'DECREMENT_TEAM_A_SCORE'
+
+export const decrementTeamAScore = () => {
+  return {
+    type: DECREMENT_TEAM_A_SCORE
+  }
+}
+
+export const DECREMENT_TEAM_B_SCORE = 'DECREMENT_TEAM_B_SCORE'
+
+export const decrementTeamBScore = () => {
+  return {
+    type: DECREMENT_TEAM_B_SCORE
+  }
+}
+
+export const STOP_GAME = 'STOP_GAME'
+
+export const stopGame = () => {
+  return {
+    type: STOP_GAME
   }
 }
