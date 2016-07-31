@@ -1,0 +1,37 @@
+#previews-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+#preview {
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; 
+}
+
+.team-names {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; 
+}
+
+.score-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.comments {
+    display: flex;
+    justify-content: center;
+}
+
+#footer {
+    display: flex;
+    justify-content: center;
+}
