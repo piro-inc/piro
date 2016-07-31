@@ -4,8 +4,7 @@ import * as gamesActions from './gamesActions'
 
 const initialState = fromJS({
   games: [],
-  currentGame: {},
-  socket: {}
+  currentGame: {}
 })
 
 /* reducer */
