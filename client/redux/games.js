@@ -1,9 +1,11 @@
 import { fromJS } from 'immutable'
 import * as gamesActions from './gamesActions'
+// import * as socketActions from './socketActions'
 
 const initialState = fromJS({
   games: [],
-  currentGame: {}
+  currentGame: {},
+  socket: {}
 })
 
 /* reducer */

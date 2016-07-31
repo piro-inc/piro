@@ -6,6 +6,7 @@ import { DropdownList, DateTimePicker } from 'react-widgets'
 import 'react-widgets/lib/scss/react-widgets.scss'
 import Moment from 'moment'
 import momentLocalizer from 'react-widgets/lib/localizers/moment'
+import { readCookie } from '../utils'
 
 momentLocalizer(Moment)
 
@@ -14,17 +15,6 @@ const sports = [
   'netball',
   'football'
 ]
-
-function readCookie (name) {
-  const nameEQ = name + '='
-  const ca = document.cookie.split(';')
-  for (let i = 0; i < ca.length; i++) {
-    let c = ca[i]
-    while (c.charAt(0) === ' ') c = c.substring(1, c.length)
-    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length)
-  }
-  return null
-}
 
 class Create extends React.Component {
   constructor (props) {

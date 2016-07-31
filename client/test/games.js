@@ -33,5 +33,6 @@ test('Games reducer', (t) => {
   ]
 
   t.deepEqual(store.getState().games.get('games').toJS(), newGames, 'CREATE_GAME_SUCCESS updates store correctly')
+
   t.end()
 })
