@@ -1,7 +1,6 @@
 import test from 'tape'
 import configureStore from '../redux/store'
 import * as gamesActions from '../redux/gamesActions'
-import * as socketActions from '../redux/socketActions'
 
 test('Games reducer', (t) => {
   const store = configureStore()

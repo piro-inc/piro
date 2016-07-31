@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable'
 import * as gamesActions from './gamesActions'
-import * as socketActions from './socketActions'
+// import * as socketActions from './socketActions'
 
 const initialState = fromJS({
   games: [],

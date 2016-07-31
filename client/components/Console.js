@@ -1,15 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {
-  startGame,
-  incrementTeamAScore,
-  incrementTeamBScore,
-  decrementTeamAScore,
-  decrementTeamBScore,
-  stopGame,
-  addComment
-} from '../redux/gamesActions'
-
+import { incrementTeamScore } from '../redux/socketActions'
+import { fetchGameInfo } from '../redux/gamesActions'
 import Navbar from './Navbar'
 
 class Console extends React.Component {
@@ -22,6 +14,12 @@ class Console extends React.Component {
 
   componentDidMount () {
     this.props.fetchGameInfo(this.props.params.id)
+  }
+
+  incrementScore = (team) => {
+    return () => {
+      this.props.incrementTeamScore(team)
+    }
   }
 
   render () {
@@ -57,7 +55,12 @@ class Console extends React.Component {
             <h1 className='console-score' id='team-one-score'>0</h1>
 
             <div className='scoring-buttons'>
-              <button className='button increment' id='increment-team-one'>+</button>
+              <button
+                className='button increment'
+                id='increment-team-one'
+                onClick={this.incrementScore('one')}>
+              +
+              </button>
               <button className='button decrement' id='decrement-team-two'>-</button>
             </div>
 
@@ -101,26 +104,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    startGame: () => {
-      dispatch(startGame())
+    incrementTeamScore: (team) => {
+      dispatch(incrementTeamScore(team))
     },
-    incrementTeamAScore: () => {
-      dispatch(incrementTeamAScore())
-    },
-    incrementTeamBScore: () => {
-      dispatch(incrementTeamBScore())
-    },
-    decrementTeamAScore: () => {
-      dispatch(decrementTeamAScore())
-    },
-    decrementTeamBScore: () => {
-      dispatch(decrementTeamBScore())
-    },
-    stopGame: () => {
-      dispatch(stopGame())
-    },
-    addComment: () => {
-      dispatch(addComment())
+    fetchGameInfo: (id) => {
+      dispatch(fetchGameInfo(id))
     }
   }
 }
