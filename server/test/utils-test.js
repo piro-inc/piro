@@ -183,6 +183,40 @@ test('Get all games from games table', function (t) {
     t.deepEqual(res, expected, 'got all games')
     t.end()
   })
+  .catch((err) => {
+    t.ok(0
+      , err)
+    t.end()
+  })
+})
+
+test('Update games info', (t) => {
+  const expected = {
+    id: 1,
+    user_id: 1,
+    location: 'EDA',
+    team_a_name: 'the fun team',
+    team_b_name: 'the other guys',
+    is_complete: false,
+    team_a_score: 1,
+    team_b_score: 5,
+    sport_name: 'rugby'
+  }
+
+  knex.migrate.rollback()
+  .then(() => knex.migrate.latest())
+  .then(() => knex.seed.run('games'))
+  .then(() => {
+    return dbUtils.update('games', { id: 1 }, { sport_name: 'rugby' })
+  })
+  .then((id) => {
+    return dbUtils.getOne('games', { id: id[0] })
+  })
+  .then(game => {
+    delete game[0].date_time
+    t.deepEqual(game[0], expected, 'updates game correctly')
+    t.end()
+  })
   .then(() => {
     process.exit(0)
   })

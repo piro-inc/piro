@@ -29,10 +29,6 @@ function getGameComments (gameId) {
     })
 }
 
-function updateGame (gameId, params) {
-
-}
-
 function getGamesInfo () {
   let gamesInfo = {}
   return getGamesTable()
@@ -52,10 +48,15 @@ function getGamesInfo () {
     })
 }
 
+function updateGame (searchParams, updateInfo) {
+  return utils.update('games', searchParams, updateInfo)
+}
+
 module.exports = {
   getGame,
   addGame,
   getGamesTable,
   getGameComments,
-  getGamesInfo
+  getGamesInfo,
+  updateGame
 }
