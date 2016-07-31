@@ -29,6 +29,10 @@ function getGameComments (gameId) {
     })
 }
 
+function updateGame (gameId, params) {
+
+}
+
 function getGamesInfo () {
   let gamesInfo = {}
   return getGamesTable()
