@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs')
 const cache = require('memory-cache')
 const nJwt = require('njwt')
 const secureRandom = require('secure-random')
+const getGame = require('./database/games_utils').getGame
 require('dotenv').config()
 
 function setup () {
@@ -90,17 +91,27 @@ function readCookie (name, cookies) {
   return null
 }
 
-function authenticateSocket (id, socket, cb) {
-  const keyStore = cache.get(id)
-  const signingKey = keyStore && Buffer.from(keyStore, 'base64')
-  const cookie = readCookie('jwt.token', socket.request.headers.cookie)
-  if (cookie) {
-    nJwt.verify(cookie, signingKey || new Buffer([]), (err, verifiedJwt) => {
+function authenticateSocket (id, gameId, socket, cb) {
+  getGame({ id: gameId })
+    .then(game => {
+      if (game[0].user_id === parseInt(id)) {
+        const keyStore = cache.get(id)
+        const signingKey = keyStore && Buffer.from(keyStore, 'base64')
+        const cookie = readCookie('jwt.token', socket.request.headers.cookie)
+        if (cookie) {
+          nJwt.verify(cookie, signingKey || new Buffer([]), (err, verifiedJwt) => {
+            cb(err)
+          })
+        } else {
+          cb(new Error('Could not find jwt token in cookies.'))
+        }
+      } else {
+        cb(new Error('Game does not belong to the user.'))
+      }
+    })
+    .catch(err => {
       cb(err)
     })
-  } else {
-    cb(new Error('Could not find jwt token in cookies.'))
-  }
 }
 
 module.exports = {

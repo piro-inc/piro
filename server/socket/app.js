@@ -11,8 +11,8 @@ function socketServer (io) {
 
     socket.on('changeTeamScore', (data) => {
       // { team: 'one', gameId: '1', id: null }
-      authenticateSocket(data.id, socket, err => {
-        if(!err) {
+      authenticateSocket(data.id, data.gameId, socket, err => {
+        if (!err) {
           const searchParams = { id: data.gameId }
           const updateInfo = {}
           if (data.team === 'one') {
@@ -28,6 +28,8 @@ function socketServer (io) {
             .catch(err => {
               console.log(err)
             })
+        } else {
+          console.log(err)
         }
       })
     })

@@ -33,7 +33,7 @@ export const login = (username, password) => {
       .catch(err => {
         console.log(err)
         return dispatch({
-          err,
+          err: err.message,
           type: SESSION_ERROR
         })
       })
@@ -66,7 +66,77 @@ export const register = (username, email, password) => {
       .catch(err => {
         console.log(err)
         return dispatch({
-          err,
+          err: err.message,
+          type: SESSION_ERROR
+        })
+      })
+  }
+}
+
+export const authenticateUser = (id) => {
+  const options = {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    credentials: 'same-origin'
+  }
+
+  return dispatch => {
+    fetch(`/api/users/${id}`, options) // eslint-disable-line
+      .then(res => {
+        if (res.status === 403) {
+          throw new Error('Cannot authenticate user.')
+        }
+        return res.json()
+      })
+      .then(user => {
+        if (user.id) {
+          return dispatch({
+            user,
+            type: GET_USER_SUCCESS
+          })
+        } else {
+          throw new Error('Could not get user.')
+        }
+      })
+      .catch(err => {
+        console.log(err)
+        return dispatch({
+          err: err.message,
+          type: SESSION_ERROR
+        })
+      })
+  }
+}
+
+export const authenticateGame = (id, gameId) => {
+  const options = {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    credentials: 'same-origin'
+  }
+
+  return dispatch => {
+    fetch(`/api/games/${gameId}`, options) // eslint-disable-line
+      .then(res => {
+        return res.json()
+      })
+      .then(obj => {
+        if (obj && obj.game.user_id) {
+          if (obj.game.user_id === parseInt(id)) {
+            return dispatch(authenticateUser(id))
+          } else {
+            throw new Error('Game does not belong to the user.')
+          }
+        }
+      })
+      .catch(err => {
+        console.log(err)
+        return dispatch({
+          err: err.message,
           type: SESSION_ERROR
         })
       })
