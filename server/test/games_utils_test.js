@@ -47,3 +47,21 @@ test('Get a game and all comments for that game', function (t) {
     t.end()
   })
 })
+
+test('Get all games and a comment for each game', function (t) {
+  const expected = 'Try!'
+  knex.migrate.rollback()
+    .then(() => knex.migrate.latest())
+    .then(() => knex.seed.run('games', 'comments'))
+    .then(() => {
+      return gamesUtils.getGamesInfo()
+    })
+  .then((gamesInfo) => {
+    t.deepEqual(gamesInfo[1].latestComment.comment, expected, 'We got a try!')
+    t.end()
+  })
+  .catch((err) => {
+    t.ok(0, err)
+    t.end()
+  })
+})
