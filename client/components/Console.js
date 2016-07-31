@@ -10,7 +10,6 @@ import {
   addComment
 } from '../redux/gamesActions'
 
-
 import Navbar from './Navbar'
 
 class Console extends React.Component {
