@@ -1,25 +1,30 @@
-@mixin flexCenterColumn() {
-  display: flex;
-  align-items: center;
-}
-
 #home-wrapper {
-
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 #logo-wrapper {
-  margin-top: 5em;
-  // align-item: center;
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
 #home-content {
-
+  display: flex;
+  flex-direction: column;
+  flex: 3;
 }
 
 #login {
   display: flex;
   justify-content: center;
+}
+
+#login-error {
+  color: $white;
 }
 
 #register {
