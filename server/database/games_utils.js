@@ -13,15 +13,15 @@ function getGamesTable () {
   return utils.getAll('games')
 }
 
-function getGameComments (game_id) {
+function getGameComments (gameId) {
   let gameInfo = {}
   return Promise.all([
-    getGame({id: game_id}),
-    commentsUtils.getComments({game_id})
+    getGame({id: gameId}),
+    commentsUtils.getComments({game_id: gameId})
   ])
     .then((infoArray) => {
-      gameInfo.game = Object.assign({}, infoArray[0])
-      gameInfo.comments = Object.assign({}, infoArray[1])
+      gameInfo.game = Object.assign({}, infoArray[0][0])
+      gameInfo.comments = infoArray[1].map(comment => comment.comment)
       return gameInfo
     })
     .catch((err) => {
@@ -35,8 +35,3 @@ module.exports = {
   getGamesTable,
   getGameComments
 }
-
-
-
-
-

@@ -1,5 +1,4 @@
 const gamesUtils = require('../database/games_utils')
-const commentsUtils = require('../database/comments_utils')
 
 const test = require('tape')
 
@@ -31,17 +30,16 @@ test('Get a game searching by sport name', function (t) {
   })
 })
 
-test('Get a game and get all comments for that game', function (t) {
+test('Get a game and all comments for that game', function (t) {
   const expected = 'Try!'
   knex.migrate.rollback()
     .then(() => knex.migrate.latest())
     .then(() => knex.seed.run('games', 'comments'))
     .then(() => {
-      return gamesUtils.getGameComments(3)
+      return gamesUtils.getGameComments(2)
     })
-  .then((comments) => {
-    console.log(comments)
-    t.deepEqual(comments[0].comment, expected, 'We got a try!')
+  .then((gameInfo) => {
+    t.deepEqual(gameInfo.comments[0], expected, 'We got a try!')
     t.end()
   })
   .catch((err) => {
