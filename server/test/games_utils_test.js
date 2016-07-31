@@ -39,7 +39,7 @@ test('Get a game and all comments for that game', function (t) {
       return gamesUtils.getGameComments(2)
     })
   .then((gameInfo) => {
-    t.deepEqual(gameInfo.comments[0], expected, 'We got a try!')
+    t.deepEqual(gameInfo.comments[0].comment, expected, 'We got a try!')
     t.end()
   })
   .catch((err) => {

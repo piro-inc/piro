@@ -21,7 +21,7 @@ function getGameComments (gameId) {
   ])
     .then((infoArray) => {
       gameInfo.game = Object.assign({}, infoArray[0][0])
-      gameInfo.comments = infoArray[1].map(comment => comment.comment)
+      gameInfo.comments = infoArray[1]
       return gameInfo
     })
     .catch((err) => {

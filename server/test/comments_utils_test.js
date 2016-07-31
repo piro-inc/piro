@@ -57,8 +57,7 @@ test('Get a single comment searching by game id', function (t) {
 // })
 
 test('Get all comments', function (t) {
-  const expected = [{comment: 'Player 1 injured', game_id: 3}, {comment: 'Try!', game_id: 2}, {comment: 'Yellow card', game_id: 3}]
-
+  const expected = {comment: 'Try!', game_id: 2}
   knex.migrate.rollback()
     .then(() => knex.migrate.latest())
     .then(() => knex.seed.run('comments'))
@@ -67,8 +66,7 @@ test('Get all comments', function (t) {
     })
   .then((comments) => {
     comments.map(comment => delete comment.id)
-    comments.sort()
-    t.deepEqual(comments, expected, 'got entire comments table')
+    t.deepLooseEqual(comments.find((comment) => comment.game_id === 2), expected, 'got entire comments table')
     t.end()
   })
   .catch((err) => {
