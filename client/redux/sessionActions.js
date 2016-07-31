@@ -17,11 +17,9 @@ export const login = (username, password) => {
   return dispatch => {
     fetch('/api/login', options) // eslint-disable-line
       .then(res => {
-        console.log(res)
         return res.json()
       })
       .then(user => {
-        console.log(user)
         if (user.id) {
           browserHistory.push('/games')
           return dispatch({
@@ -59,7 +57,6 @@ export const register = (username, email, password) => {
         return res.json()
       })
       .then(res => {
-        console.log(res)
         if (res.id) {
           return dispatch(login(username, password))
         } else if (res.code === '23505') {
