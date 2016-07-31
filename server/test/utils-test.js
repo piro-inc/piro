@@ -176,7 +176,7 @@ test('Get all games from games table', function (t) {
     return dbUtils.getAll('games')
   })
   .then((games) => {
-    const res= games.find((game) => {
+    const res = games.find((game) => {
       return game.location === 'EDA'
     })
     delete res.date_time
