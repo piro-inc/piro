@@ -1,0 +1,34 @@
+@mixin flex-centerColumn() {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+@mixin flex-centerRow() {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+@mixin flex-center() {
+  & > * {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+#game-wrapper {
+  @include flex-centerColumn();
+  background-color: $white;
+  height: 100vh;
+  width: 100%;
+    #game-header {
+      @include flex-centerRow();
+      @include flex-center();
+    }
+}
+
+.score-wrapper {
+  @include flex-centerRow();
+  @include flex-center();
+}

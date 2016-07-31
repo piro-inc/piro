@@ -33,24 +33,29 @@ class Game extends React.Component {
         </div>
 
         <div className='score-wrapper'>
-          {/* <a href='#'>
-            <img src='#' className='team-logo' />
-          </a>
-          <a href='#'>
-            <img src='#' className='team-logo' />
-          </a> No logos in database yet*/}
-          <h2 className='team-one'>{currentGame.game && currentGame.game.team_a_name}</h2>
-          <h2 className='team-two'>{currentGame.game && currentGame.game.team_b_name}</h2>
+          <div className='score-card'>
+            <a href='#'><img src='http://placehold.it/100x100.jpg' className='team-logo' /></a>
+            <h2 className='team-one'>{currentGame.game && currentGame.game.team_a_name}</h2>
+            <h1 className='game-score'>{currentGame.game && currentGame.game.team_a_score}</h1>
+          </div>
 
-          <h1 className='game-score'>{currentGame.game && currentGame.game.team_a_score}</h1>
-          <h1 className='game-score'>{currentGame.game && currentGame.game.team_b_score}</h1>
+          <div className='score-card'>
+            <a href='#'><img src='http://placehold.it/100x100.jpg' className='team-logo' /></a>
+            <h2 className='team-two'>{currentGame.game && currentGame.game.team_b_name}</h2>
+            <h1 className='game-score'>{currentGame.game && currentGame.game.team_b_score}</h1>
+          </div>
 
         </div>
 
         <div className='comments'>
-        {currentGame.comments && currentGame.comments.map(obj => {
-          return <div className='comment-history'>{obj.comment}</div>
-        })}
+        {/* currentGame.comments && currentGame.comments.map(obj => {
+          return <div className='comment-history'>{obj.comment}</div>*/}
+          <div className='comment-history'>
+            <p>Test</p>
+            <p>Nice</p>
+            <p>Cool</p>
+          </div>
+        {/* }})}*/}
         </div>
       </div>
     )

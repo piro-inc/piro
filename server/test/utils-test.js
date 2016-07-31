@@ -171,21 +171,47 @@ test('Get all games from games table', function (t) {
   }
   knex.migrate.rollback()
   .then(() => knex.migrate.latest())
-  .then(() => knex.seed.run('game'))
+  .then(() => knex.seed.run('games'))
   .then(() => {
     return dbUtils.getAll('games')
   })
   .then((games) => {
-    const res = games[0]
+    const res = games.find((game) => {
+      return game.location === 'EDA'
+    })
     delete res.date_time
     t.deepEqual(res, expected, 'got all games')
+    t.end()
+  })
+  .catch((err) => {
+    t.ok(0
+      , err)
+    t.end()
+  })
+})
+
+test('Update games info', (t) => {
+  const expected = 'Random'
+
+  knex.migrate.rollback()
+  .then(() => knex.migrate.latest())
+  .then(() => knex.seed.run('games'))
+  .then(() => {
+    return dbUtils.update('games', { id: 1 }, { sport_name: 'Random' })
+  })
+  .then((id) => {
+    return dbUtils.getOne('games', { id: id[0] })
+  })
+  .then(game => {
+    delete game[0].date_time
+    t.deepEqual(game[0].sport_name, expected, 'updates game correctly')
     t.end()
   })
   .then(() => {
     process.exit(0)
   })
   .catch((err) => {
-    t.npok(0
+    t.ok(0
       , err)
     t.end()
   })

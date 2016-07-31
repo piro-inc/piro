@@ -1,15 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {
-  startGame,
-  incrementTeamAScore,
-  incrementTeamBScore,
-  decrementTeamAScore,
-  decrementTeamBScore,
-  stopGame,
-  addComment
-} from '../redux/gamesActions'
-
+import { changeTeamScore, stopGame, addComment } from '../redux/socketActions'
+import { fetchGameInfo } from '../redux/gamesActions'
 import Navbar from './Navbar'
 
 class Console extends React.Component {
@@ -17,11 +9,49 @@ class Console extends React.Component {
     super(props)
     this.state = {
       // state goes here
+      comment: ''
     }
   }
 
   componentDidMount () {
     this.props.fetchGameInfo(this.props.params.id)
+  }
+
+  incrementScore = (team) => {
+    let newScore
+    if (team === 'one') {
+      newScore = this.props.game.game && this.props.game.game.team_a_score + 1
+    } else if (team === 'two') {
+      newScore = this.props.game.game && this.props.game.game.team_b_score + 1
+    }
+
+    return () => {
+      this.props.changeTeamScore(team, newScore, this.props.params.id)
+    }
+  }
+
+  decrementScore = (team) => {
+    let newScore
+    if (team === 'one') {
+      newScore = this.props.game.game && this.props.game.game.team_a_score - 1
+    } else if (team === 'two') {
+      newScore = this.props.game.game && this.props.game.game.team_b_score - 1
+    }
+    return () => {
+      this.props.changeTeamScore(team, newScore, this.props.params.id)
+    }
+  }
+
+  addComment = () => {
+    this.props.addComment(this.state.comment, this.props.params.id)
+  }
+
+  stopGame = () => {
+    this.props.stopGame(this.props.params.id)
+  }
+
+  changeComment = (e) => {
+    this.setState({ comment: e.target.value })
   }
 
   render () {
@@ -48,8 +78,9 @@ class Console extends React.Component {
             </div>
 
             <div className='stop'>
-              <button className='button' id='stop'>STOP</button>
+              <button className='button' id='stop' onClick={this.stopGame}>STOP</button>
             </div>
+
           </div>
 
           <h3 className='console-headers'>SCORE TEAMS</h3>
@@ -58,11 +89,11 @@ class Console extends React.Component {
 
             <div className='console-teamone'>
               <img src='#' className='team-logo' />
-              <h1 className='console-score' id='team-one-score'>0</h1>
+              <h1 className='console-score' id='team-one-score'>{this.props.game.game && this.props.game.game.team_a_score}</h1>
 
               <div className='scoring-buttons'>
-                <button className='button increment' id='increment-team-one'>+</button>
-                <button className='button decrement' id='decrement-team-two'>-</button>
+                <button className='button increment' id='increment-team-one' onClick={this.incrementScore('one')}>+</button>
+                <button className='button decrement' id='decrement-team-two' onClick={this.decrementScore('one')}>-</button>
               </div>
 
             </div>
@@ -70,25 +101,26 @@ class Console extends React.Component {
             <div className='console-teamtwo'>
 
               <img src='#' className='team-logo' />
-              <h1 className='console-score'>0</h1>
+              <h1 className='console-score'>{this.props.game.game && this.props.game.game.team_b_score}</h1>
 
               <div className='scoring-buttons'>
-                <button className='button increment' id='increment-team-two'>+</button>
-                <button className='button decrement' id='decrement-team-two'>-</button>
+                <button className='button increment' id='increment-team-two' onClick={this.incrementScore('two')}>+</button>
+                <button className='button decrement' id='decrement-team-two' onClick={this.decrementScore('two')}>-</button>
               </div>
 
             </div>
+
           </div>
 
           <h3 className='console-headers'>ADD COMMENT</h3>
 
           <div className='add-comment-wrapper'>
-            <input type='text' className='console-comment' id='add-comment' />
-            <button type='submit' className='submit button' id='submit-comment'>+ Submit</button>
+            <input onChange={this.changeComment} type='text' className='console-comment' id='add-comment' />
+            <button className='submit button' id='submit-comment' onClick={this.addComment}>+ Submit</button>
           </div>
 
           <h3 className='console-headers'>EDIT COMMENT</h3>
-
+          
           <div className='edit-comment-wrapper'>
             <input type='text' className='console-comment' id='recent-comment' />
             <button className='edit button' id='edit-comment'>Edit</button>
@@ -108,26 +140,17 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    startGame: () => {
-      dispatch(startGame())
+    changeTeamScore: (team, newScore, gameId) => {
+      dispatch(changeTeamScore(team, newScore, gameId))
     },
-    incrementTeamAScore: () => {
-      dispatch(incrementTeamAScore())
+    stopGame: (gameId) => {
+      dispatch(stopGame(gameId))
     },
-    incrementTeamBScore: () => {
-      dispatch(incrementTeamBScore())
+    addComment: (comment, gameId) => {
+      dispatch(addComment(comment, gameId))
     },
-    decrementTeamAScore: () => {
-      dispatch(decrementTeamAScore())
-    },
-    decrementTeamBScore: () => {
-      dispatch(decrementTeamBScore())
-    },
-    stopGame: () => {
-      dispatch(stopGame())
-    },
-    addComment: () => {
-      dispatch(addComment())
+    fetchGameInfo: (id) => {
+      dispatch(fetchGameInfo(id))
     }
   }
 }

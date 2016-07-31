@@ -132,58 +132,21 @@ export const createGame = (userId, date, location, teamA, teamB, isComplete, tea
   }
 }
 
+export const UPDATE_GAME_SCORE = 'UPDATE_GAME_SCORE'
+
+export const updateGameScore = (id) => {
+  return (dispatch, getState) => {
+    console.log(id)
+    if (getState().games.toJS().currentGame.game.id === id[0]) {
+      dispatch(fetchGameInfo(id))
+    }
+  }
+}
+
 export const START_GAME = 'START_GAME'
 
 export const startGame = () => {
   return {
     type: START_GAME
-  }
-}
-
-export const INCREMENT_TEAM_A_SCORE = 'INCREMENT_TEAM_A_SCORE'
-
-export const incrementTeamAScore = () => {
-  return {
-    type: INCREMENT_TEAM_A_SCORE
-  }
-}
-
-export const INCREMENT_TEAM_B_SCORE = 'INCREMENT_TEAM_B_SCORE'
-
-export const incrementTeamBScore = () => {
-  return {
-    type: INCREMENT_TEAM_B_SCORE
-  }
-}
-
-export const DECREMENT_TEAM_A_SCORE = 'DECREMENT_TEAM_A_SCORE'
-
-export const decrementTeamAScore = () => {
-  return {
-    type: DECREMENT_TEAM_A_SCORE
-  }
-}
-
-export const DECREMENT_TEAM_B_SCORE = 'DECREMENT_TEAM_B_SCORE'
-
-export const decrementTeamBScore = () => {
-  return {
-    type: DECREMENT_TEAM_B_SCORE
-  }
-}
-
-export const STOP_GAME = 'STOP_GAME'
-
-export const stopGame = () => {
-  return {
-    type: STOP_GAME
-  }
-}
-
-export const ADD_COMMENT = 'ADD_COMMENT'
-
-export const addComment = () => {
-  return {
-    type: ADD_COMMENT
   }
 }
