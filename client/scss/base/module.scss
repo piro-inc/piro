@@ -1,0 +1,22 @@
+@import 'base';
+@import 'color';
+@import 'fonts';
+@import 'components';
+
+body {
+  background-color: $piroRed;
+  font-family: $font-piro;
+}
+
+input {
+  @include inputField();
+  &:focus  {
+    color: $black;
+    background-color: $white;
+  }
+}
+
+button {
+  @include homeButton();
+}
+
