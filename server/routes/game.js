@@ -35,10 +35,10 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   // get a game by id
   const id = req.params.id
-  gameUtils.getGame({ user_id: id })
+  gameUtils.getGameComments(id)
     .then(game => {
       if (game) {
-        res.json(game[0])
+        res.json(game)
       } else {
         res.sendStatus(404)
       }

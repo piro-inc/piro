@@ -79,7 +79,7 @@ class Register extends React.Component {
 
   register = (e) => {
     if (!errorExists(this.state)) {
-      this.props.register(this.state.username, this.state.email, this.state.password)
+      this.props.register(this.state.username.value, this.state.email.value, this.state.password.value)
     }
   }
 
