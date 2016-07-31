@@ -19,9 +19,9 @@ function socketServer (io) {
         updateInfo.team_b_score = data.newScore
       }
       updateGame(searchParams, updateInfo)
-        .then(id => {
-          socket.emit('consoleUpdate', { id })
-          io.emit('globalUpdate', { id })
+        .then(arr => {
+          socket.emit('consoleUpdate', { id: arr[0] })
+          io.emit('globalUpdate', { id: arr[0] })
         })
         .catch(err => {
           console.log(err)

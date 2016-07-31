@@ -20,10 +20,12 @@ socket.on('increment', (data) => {
 })
 
 socket.on('consoleUpdate', (data) => {
+  console.log('cu', data)
   store.dispatch(gamesActions.fetchGameInfo(data.id))
 })
 
 socket.on('globalUpdate', (data) => {
+  console.log('gu', data)
   store.dispatch(gamesActions.updateGameScore(data.id))
 })
 
