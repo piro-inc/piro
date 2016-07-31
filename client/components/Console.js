@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { incrementTeamScore, decrementTeamScore, stopGame, addComment } from '../redux/socketActions'
+import { changeTeamScore, stopGame, addComment } from '../redux/socketActions'
 import { fetchGameInfo } from '../redux/gamesActions'
 import Navbar from './Navbar'
 
@@ -18,19 +18,31 @@ class Console extends React.Component {
   }
 
   incrementScore = (team) => {
+    let newScore
+    if (team === 'one') {
+      newScore = this.props.game.game && this.props.game.game.team_a_score + 1
+    } else if (team === 'two') {
+      newScore = this.props.game.game && this.props.game.game.team_b_score + 1
+    }
+
     return () => {
-      this.props.incrementTeamScore(team, this.props.params.id)
+      this.props.changeTeamScore(team, newScore, this.props.params.id)
     }
   }
 
   decrementScore = (team) => {
+    let newScore
+    if (team === 'one') {
+      newScore = this.props.game.game && this.props.game.game.team_a_score - 1
+    } else if (team === 'two') {
+      newScore = this.props.game.game && this.props.game.game.team_b_score - 1
+    }
     return () => {
-      this.props.decrementTeamScore(team, this.props.params.id)
+      this.props.changeTeamScore(team, newScore, this.props.params.id)
     }
   }
 
   addComment = () => {
-    console.log(this.props.params.id)
     this.props.addComment(this.state.comment, this.props.params.id)
   }
 
@@ -77,7 +89,9 @@ class Console extends React.Component {
 
           <div className='console-teamone'>
             <img src='#' className='team-logo' />
-            <h1 className='console-score' id='team-one-score'>0</h1>
+            <h1 className='console-score' id='team-one-score'>
+              {this.props.game.game && this.props.game.game.team_a_score}
+            </h1>
 
             <div className='scoring-buttons'>
               <button
@@ -99,7 +113,9 @@ class Console extends React.Component {
           <div className='console-teamtwo'>
 
             <img src='#' className='team-logo' />
-            <h1 className='console-score'>0</h1>
+            <h1 className='console-score'>
+              {this.props.game.game && this.props.game.game.team_b_score}
+            </h1>
 
             <div className='scoring-buttons'>
               <button
@@ -153,11 +169,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    incrementTeamScore: (team, gameId) => {
-      dispatch(incrementTeamScore(team, gameId))
-    },
-    decrementTeamScore: (team, gameId) => {
-      dispatch(decrementTeamScore(team, gameId))
+    changeTeamScore: (team, newScore, gameId) => {
+      dispatch(changeTeamScore(team, newScore, gameId))
     },
     stopGame: (gameId) => {
       dispatch(stopGame(gameId))
