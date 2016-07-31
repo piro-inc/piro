@@ -7,15 +7,6 @@
   text-align: center;
 }
 
-.console-timer-wrapper {
-  display: flex;
-  justify-content: space-around;
-  .button {
-      width: 5em;
-      height: 5em;
-      border-radius: 50%;
-  }
-}
 
 #navbar-wrapper {
   // flex: 5;
@@ -34,10 +25,6 @@
   width: 100%;
 }
 
-#content-wrapper {
-  // flex: 10;
-}
-
 .nav-links {
   display: flex;
   flex: 5;
@@ -45,11 +32,39 @@
   justify-content: flex-end;
   align-items: center;
   padding: 0 .5em;
-    a {
-      color: white;
-      text-decoration: none;
-    }
+  a {
+    color: white;
+    text-decoration: none;
+  }
 }
+
+.console-timer-wrapper {
+  display: flex;
+  justify-content: space-around;
+  .button {
+    width: 5em;
+    height: 5em;
+    border-radius: 50%;
+  }
+}
+
+.console-scores-wrapper {
+  display: flex;
+  justify-content: space-around;
+  .button {
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    margin: 0 1em;
+  }
+}
+
+
+
+#content-wrapper {
+  // flex: 10;
+}
+
 
 // #logo-wrapper {
 //   flex: 2;
