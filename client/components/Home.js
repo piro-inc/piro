@@ -30,16 +30,18 @@ class Home extends React.Component {
         </div>
         <div id='home-content'>
 
-          <div id='login'>
-            {this.state.showing === 'login'
-            ? <Login />
-            : <button onClick={this.toggle('login')} className='button'>Login</button>}
-          </div>
+        <div id='input-wrapper'>
+            <div id='login'>
+              {this.state.showing === 'login'
+              ? <Login />
+              : <button onClick={this.toggle('login')} className='button'>Login</button>}
+            </div>
 
-          <div id='register'>
-            {this.state.showing === 'register'
-            ? <Register />
-            : <button onClick={this.toggle('register')} className='button'>Register to PIRO</button>}
+            <div id='register'>
+              {this.state.showing === 'register'
+              ? <Register />
+              : <button onClick={this.toggle('register')} className='button'>Register to PIRO</button>}
+            </div>
           </div>
 
           <div className='enter-page'>
