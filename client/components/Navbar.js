@@ -16,9 +16,9 @@ class Navbar extends React.Component {
         </div>
 
         <div className='nav-links'>
-          <a hef='#' className='nav-login'>login</a>
+          <a href='#' className='nav-login'>login</a>
           <p> | </p>
-          <a hef='#' className='nav-register'>register</a>
+          <a href='#' className='nav-register'>register</a>
         </div>
 
       </div>
