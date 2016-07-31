@@ -5,6 +5,22 @@ function socketServer (io) {
     socket.on('message', (data) => {
       console.log(data)
     })
+
+    socket.on('increment', (data) => {
+      console.log(data)
+    })
+
+    socket.on('decrement', (data) => {
+      console.log(data)
+    })
+
+    socket.on('stopGame', (data) => {
+      console.log(data)
+    })
+
+    socket.on('addComment', (data) => {
+      console.log(data)
+    })
   })
 
   return io

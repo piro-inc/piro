@@ -52,7 +52,7 @@ function createToken (id) {
     scope: 'self'
   }
   const jwt = nJwt.create(claims, signingKey)
-  jwt.setExpiration(new Date().getTime() + (20 * 1000))
+  jwt.setExpiration(new Date().getTime() + (1000 * 1000))
   return jwt.compact()
 }
 

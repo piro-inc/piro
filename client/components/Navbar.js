@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 class Navbar extends React.Component {
   constructor (props) {
@@ -26,4 +27,14 @@ class Navbar extends React.Component {
   }
 }
 
-export default Navbar
+const mapStateToProps = (state) => {
+  return {
+    user: state.users.get('user').toJS()
+  }
+}
+
+const mapDispatchToProps = f => f
+
+const NavbarContainer = connect(mapStateToProps, mapDispatchToProps)(Navbar)
+
+export default NavbarContainer
