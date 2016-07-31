@@ -1,0 +1,122 @@
+#console-wrapper {
+  // height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: white;
+  text-align: center;
+}
+
+.console-timer-wrapper {
+  display: flex;
+  justify-content: space-around;
+  .button {
+      width: 5em;
+      height: 5em;
+      border-radius: 50%;
+  }
+}
+
+#navbar-wrapper {
+  // flex: 5;
+}
+
+#navbar {
+  display: flex;
+  flex-direction: row;
+}
+
+#logo-nav-wrapper {
+  flex: 2;
+}
+
+#logo-nav {
+  width: 100%;
+}
+
+#content-wrapper {
+  // flex: 10;
+}
+
+.nav-links {
+  display: flex;
+  flex: 5;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 .5em;
+    a {
+      color: white;
+      text-decoration: none;
+    }
+}
+
+// #logo-wrapper {
+//   flex: 2;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+//
+// #home-content {
+//   display: flex;
+//   flex-direction: column;
+//   flex: 3;
+// }
+//
+// #input-wrapper {
+//   flex: 3;
+// }
+//
+// #login {
+//   display: flex;
+//   justify-content: center;
+// }
+//
+// #login-error {
+//   color: $white;
+// }
+//
+// #register {
+//   display: flex;
+//   justify-content: center;
+// }
+//
+// #login-form {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//     input {
+//       margin: .2em;
+//     }
+//     button.submit.button {
+//       width: 8em;
+//     }
+// }
+//
+// #register-form {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//     input {
+//       margin: .2em;
+//     }
+//     button.submit.button {
+//       width: 10em;
+//     }
+// }
+//
+// .enter-page {
+//   display: flex;
+//   flex: 1;
+//   justify-content: center;
+//     a {
+//       color: $white;
+//       text-decoration: none;
+//     }
+// }
+//
+// button {
+//   margin: 1em;
+//   border-radius: 0.4em;
+// }
