@@ -1,6 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { manageGame } from '../redux/gamesActions'
+import {
+  startGame,
+  incrementTeamAScore,
+  incrementTeamBScore,
+  decrementTeamAScore,
+  decrementTeamBScore,
+  stopGame,
+  addComment
+} from '../redux/gamesActions'
+
 
 import Navbar from './Navbar'
 
@@ -83,14 +92,32 @@ class Console extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    
+    game: state.games.get('currentGame').toJS()
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    manageGame: () => {
-      dispatch(manageGame())
+    startGame: () => {
+      dispatch(startGame())
+    },
+    incrementTeamAScore: () => {
+      dispatch(incrementTeamAScore())
+    },
+    incrementTeamBScore: () => {
+      dispatch(incrementTeamBScore())
+    },
+    decrementTeamAScore: () => {
+      dispatch(decrementTeamAScore())
+    },
+    decrementTeamBScore: () => {
+      dispatch(decrementTeamBScore())
+    },
+    stopGame: () => {
+      dispatch(stopGame())
+    },
+    addComment: () => {
+      dispatch(addComment())
     }
   }
 }

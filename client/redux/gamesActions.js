@@ -178,3 +178,11 @@ export const stopGame = () => {
     type: STOP_GAME
   }
 }
+
+export const ADD_COMMENT = 'ADD_COMMENT'
+
+export const addComment = () => {
+  return {
+    type: ADD_COMMENT
+  }
+}
