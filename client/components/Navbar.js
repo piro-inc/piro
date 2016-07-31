@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 
 class Navbar extends React.Component {
   constructor (props) {
@@ -10,17 +11,23 @@ class Navbar extends React.Component {
   }
 
   render () {
+    const user = this.props.user
+    console.log('user HERE', user)
     return (
       <div id='navbar'>
         <div id='logo-nav-wrapper'>
           <img id='logo-nav' src='/images/logo-nav.svg' />
         </div>
 
-        <div className='nav-links'>
-          <a href='#' className='nav-login'>login</a>
-          <p> | </p>
-          <a href='#' className='nav-register'>register</a>
-        </div>
+        {!user.username
+          ? <Link to='/' className='nav-links'>
+            <p className='nav-login-register'>login / register</p>
+          </Link>
+          : <div className='nav-links'>
+            <p>{user.username}</p>
+            <Link to='/games/new' id='nav-menu' className='drop-down-menu'>+</Link>
+          </div>
+        }
 
       </div>
     )
