@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { changeTeamScore, stopGame, addComment } from '../redux/socketActions'
 import { fetchGameInfo } from '../redux/gamesActions'
 import { authenticateGame } from '../redux/sessionActions'
-import { readCookie } from '../utils'
+// import { readCookie } from '../utils'
 import Navbar from './Navbar'
 
 class Console extends React.Component {
@@ -17,7 +17,7 @@ class Console extends React.Component {
 
   componentDidMount () {
     this.props.fetchGameInfo(this.props.params.id)
-    this.props.authenticateGame(readCookie('user.id'), this.props.params.id)
+    // this.props.authenticateGame(readCookie('user.id'), this.props.params.id)
   }
 
   incrementScore = (team) => {
@@ -66,7 +66,7 @@ class Console extends React.Component {
           <a href='/'> Home </a>
         </div>
       }
-      {this.props.session.user.id &&
+      {/* this.props.session.user.id*/} {true &&
         <div>
           <div id='navbar-wrapper'>
             <Navbar />
