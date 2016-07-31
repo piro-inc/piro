@@ -36,6 +36,16 @@ function socketServer (io) {
 
     socket.on('stopGame', (data) => {
       console.log(data)
+      // { gameId: '1', id: null }
+      const searchParams = { id: data.gameId }
+      const updateInfo = { is_complete: true }
+      updateGame(searchParams, updateInfo)
+        .then(arr => {
+          io.emit('globalUpdate', { id: arr[0] })
+        })
+        .catch(err => {
+          console.log(err)
+        })
     })
 
     socket.on('addComment', (data) => {
