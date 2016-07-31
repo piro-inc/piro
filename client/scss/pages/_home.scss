@@ -1,0 +1,55 @@
+@mixin flexCenterColumn() {
+  display: flex;
+  align-items: center;
+}
+
+#home-wrapper {
+
+}
+
+#logo-wrapper {
+  margin-top: 5em;
+  // align-item: center;
+}
+
+
+#home-content {
+
+}
+
+#login {
+  display: flex;
+  justify-content: center;
+}
+
+#register {
+  display: flex;
+  justify-content: center;
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    input {
+      margin: .2em;
+    }
+}
+
+#register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    input {
+      margin: .2em;
+    }
+}
+
+.enter-page {
+  display: flex;
+  justify-content: center;
+  a {
+    color: $white;
+    text-decoration: none;
+  }
+}

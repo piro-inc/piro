@@ -42,10 +42,9 @@ class Home extends React.Component {
             : <button onClick={this.toggle('register')} className='button'>Register to PIRO</button>}
           </div>
 
-          <a href='#' className='enter-page'>
-            <h3>ENTER AS A GUEST</h3>
-          </a>
-
+          <div className='enter-page'>
+            <h3><a href='#'>ENTER AS A GUEST</a></h3>
+          </div>
         </div>
 
       </div>
