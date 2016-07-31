@@ -23,22 +23,6 @@
   }
 }
 
-/* move to navbar */
-#navbar {
-  display: flex;
-  flex-direction: row;
-}
-
-#logo-nav-wrapper {
-  width: 25%;
-}
-
-.nav-links {
-  display: flex;
-  flex-direction: row;
-}
-/* end */
-
 #navbar-wrapper {
   flex: 1;
 }
@@ -82,15 +66,3 @@
     padding: 0.5em 0.5em;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
