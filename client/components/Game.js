@@ -48,14 +48,14 @@ class Game extends React.Component {
         </div>
 
         <div className='comments'>
-        {/*currentGame.comments && currentGame.comments.map(obj => {
+        {/* currentGame.comments && currentGame.comments.map(obj => {
           return <div className='comment-history'>{obj.comment}</div>*/}
           <div className='comment-history'>
             <p>Test</p>
             <p>Nice</p>
             <p>Cool</p>
           </div>
-        {/*}})}*/}
+        {/* }})}*/}
         </div>
       </div>
     )
@@ -63,9 +63,9 @@ class Game extends React.Component {
 }
 
 const mapStateToProps = (state) => {
- return {
-   game: state.games.get('currentGame').toJS()
- }
+  return {
+    game: state.games.get('currentGame').toJS()
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {

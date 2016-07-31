@@ -30,7 +30,7 @@ class Home extends React.Component {
         </div>
         <div id='home-content'>
 
-        <div id='input-wrapper'>
+          <div id='input-wrapper'>
             <div id='login'>
               {this.state.showing === 'login'
               ? <Login />
