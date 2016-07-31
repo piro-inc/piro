@@ -18,6 +18,12 @@ class Game extends React.Component {
 
   render () {
     const currentGame = this.props.game
+    let date
+    if (currentGame.game) {
+      const newDate = new Date(currentGame.game.date_time)
+      date = newDate.toUTCString()
+      date = date.replace(/GMT/, '')
+    }
     return (
       <div id='game-wrapper'>
 
@@ -28,44 +34,42 @@ class Game extends React.Component {
         <div id='game-header'>
           <h2 className='sport-name'>{currentGame.game && currentGame.game.sport_name}</h2>
           {/* <h3 className='division'>Division</h3>  No division in database yet*/}
-          <h3 className='date-time'>{currentGame.game && currentGame.game.date_time}</h3>
+          <h3 className='date-time'>{date}</h3>
           <h3 className='match-location'>{currentGame.game && currentGame.game.location}</h3>
         </div>
 
-        <div className='score-wrapper'>
-          <div className='score-card'>
-            <a href='#'><img src='http://placehold.it/100x100.jpg' className='team-logo' /></a>
+        <div className='game-score-wrapper'>
+          <div className='game-score-card'>
+            <a href='#'><img src='http://placehold.it/60x60.jpg' className='team-logo' /></a>
             <h2 className='team-one'>{currentGame.game && currentGame.game.team_a_name}</h2>
             <h1 className='game-score'>{currentGame.game && currentGame.game.team_a_score}</h1>
           </div>
 
-          <div className='score-card'>
-            <a href='#'><img src='http://placehold.it/100x100.jpg' className='team-logo' /></a>
+          <div className='game-score-card'>
+            <a href='#'><img src='http://placehold.it/60x60.jpg' className='team-logo' /></a>
             <h2 className='team-two'>{currentGame.game && currentGame.game.team_b_name}</h2>
             <h1 className='game-score'>{currentGame.game && currentGame.game.team_b_score}</h1>
           </div>
 
         </div>
 
-        <div className='comments'>
-        {/*currentGame.comments && currentGame.comments.map(obj => {
+        {/* currentGame.comments && currentGame.comments.map(obj => {
           return <div className='comment-history'>{obj.comment}</div>*/}
-          <div className='comment-history'>
-            <p>Test</p>
-            <p>Nice</p>
-            <p>Cool</p>
-          </div>
-        {/*}})}*/}
+        <div className='comment-history'>
+          <p className='latest comment'>Test</p>
+          <p className='comment'>Nice</p>
+          <p className='comment'>Cool</p>
         </div>
+        {/* }})}*/}
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
- return {
-   game: state.games.get('currentGame').toJS()
- }
+  return {
+    game: state.games.get('currentGame').toJS()
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
