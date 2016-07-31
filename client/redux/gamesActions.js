@@ -113,7 +113,7 @@ export const createGame = (userId, date, location, teamA, teamB, isComplete, tea
       })
       .then(obj => {
         if (obj.game.id) {
-          browserHistory.push(`/games/${obj.game.id}`)
+          browserHistory.push(`/console/${obj.game.id}`)
           return dispatch({
             game: obj.game,
             type: CREATE_GAME_SUCCESS

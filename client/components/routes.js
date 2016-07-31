@@ -14,7 +14,7 @@ export default (
       <Route path='/games' component={Previews} />
       <Route path='/games/new' component={Create} />
       <Route path='/games/:id' component={Game} />
-      <Route path='/console' component={Console} />
+      <Route path='/console/:id' component={Console} />
     </Route>
   </Router>
 )
