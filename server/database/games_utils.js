@@ -48,10 +48,15 @@ function getGamesInfo () {
     })
 }
 
+function updateGame (searchParams, updateInfo) {
+  return utils.update('games', searchParams, updateInfo)
+}
+
 module.exports = {
   getGame,
   addGame,
   getGamesTable,
   getGameComments,
-  getGamesInfo
+  getGamesInfo,
+  updateGame
 }

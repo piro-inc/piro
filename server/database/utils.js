@@ -15,8 +15,13 @@ function getAll (table) {
   return knex(table)
 }
 
+function update (table, searchParams, updateInfo) {
+  return knex(table).where(searchParams).update(updateInfo, 'id')
+}
+
 module.exports = {
   getOne,
   addOne,
-  getAll
+  getAll,
+  update
 }

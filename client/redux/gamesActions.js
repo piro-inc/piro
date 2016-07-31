@@ -132,6 +132,17 @@ export const createGame = (userId, date, location, teamA, teamB, isComplete, tea
   }
 }
 
+export const UPDATE_GAME_SCORE = 'UPDATE_GAME_SCORE'
+
+export const updateGameScore = (id) => {
+  return (dispatch, getState) => {
+    console.log(id)
+    if (getState().games.toJS().currentGame.game.id === id[0]) {
+      dispatch(fetchGameInfo(id))
+    }
+  }
+}
+
 export const START_GAME = 'START_GAME'
 
 export const startGame = () => {
