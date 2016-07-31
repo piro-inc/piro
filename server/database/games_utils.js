@@ -34,19 +34,18 @@ function getGamesInfo () {
   return getGamesTable()
     .then((games) => {
       gamesInfo = games
-      return Promise.all( games.map((game) => {
+      return Promise.all(games.map((game) => {
         return commentsUtils.getLatestComment(game.id)
       }))
     })
     .then((comments) => {
       gamesInfo.map((game) => {
         game.latestComment = comments.find((comment) => {
-          return (comment && comment.game_id == game.id)
+          return (comment && comment.game_id === game.id)
         })
       })
       return gamesInfo
     })
-
 }
 
 module.exports = {

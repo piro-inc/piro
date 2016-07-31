@@ -75,7 +75,7 @@ test('Get all comments', function (t) {
   })
 })
 
-test('Get latest comment', function(t) {
+test('Get latest comment', function (t) {
   const expected = 'Yellow card'
   knex.migrate.rollback()
     .then(() => knex.migrate.latest())

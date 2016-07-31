@@ -12,7 +12,7 @@ function addComment (obj) {
   return utils.addOne('comments', obj)
 }
 
-function getLatestComment(gameId) {
+function getLatestComment (gameId) {
   return utils.getOne('comments', {game_id: gameId})
     .then((comments) => {
       return comments[comments.length - 1]

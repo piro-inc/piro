@@ -57,7 +57,6 @@ test('Get all games and a comment for each game', function (t) {
       return gamesUtils.getGamesInfo()
     })
   .then((gamesInfo) => {
-    console.log('gamesInfo',gamesInfo)
     t.deepEqual(gamesInfo[1].latestComment.comment, expected, 'We got a try!')
     t.end()
   })
