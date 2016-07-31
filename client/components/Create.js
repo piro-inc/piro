@@ -15,18 +15,28 @@ const sports = [
   'football'
 ]
 
+function readCookie(name) {
+	const nameEQ = name + "="
+	const ca = document.cookie.split(';')
+	for(let i=0;i < ca.length;i++) {
+		let c = ca[i]
+		while (c.charAt(0)==' ') c = c.substring(1,c.length)
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length)
+	}
+	return null
+}
+
 class Create extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       // state goes here
       sport: sports[0],
-      date: new Date()
+      date: new Date(),
+      teamOne: '',
+      teamTwo: '',
+      location: ''
     }
-  }
-
-  createGame = () => {
-    // this.props.createGame
   }
 
   changeSport = (sport) => {
@@ -35,6 +45,33 @@ class Create extends React.Component {
 
   changeDate = (date) => {
     this.setState({ date })
+  }
+
+  changeTeamOne = (e) => {
+    this.setState({ teamOne: e.target.value })
+  }
+
+  changeTeamTwo = (e) => {
+    this.setState({ teamTwo: e.target.value })
+  }
+
+  changeLocation = (e) => {
+    this.setState({ location: e.target.value })
+  }
+
+  createGame = () => {
+    const userId = readCookie('user.id')
+    this.props.createGame(
+      userId,
+      this.state.date,
+      this.state.location,
+      this.state.teamOne,
+      this.state.teamTwo,
+      false,
+      0,
+      0,
+      this.state.sport
+    )
   }
 
   render () {
@@ -46,9 +83,9 @@ class Create extends React.Component {
             data={sports}
             value={this.state.sport}
             onChange={this.changeSport} />
-          <input type='text' placeholder='TEAM 1' id='team-one' className='team-name' />
-          <input type='text' placeholder='TEAM 2' id='team-two' className='team-name' />
-          <input type='text' placeholder='LOCATION' id='game-location' className='location' />
+          <input type='text' onChange={this.changeTeamOne} placeholder='TEAM 1' id='team-one' className='team-name' />
+          <input type='text' onChange={this.changeTeamTwo} placeholder='TEAM 2' id='team-two' className='team-name' />
+          <input type='text' onChange={this.changeLocation} placeholder='LOCATION' id='game-location' className='location' />
           <DateTimePicker
             defaultValue={new Date()}
             onChange={this.changeDate} />

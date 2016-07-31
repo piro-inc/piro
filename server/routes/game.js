@@ -3,18 +3,20 @@ const router = express.Router()
 const authenticateUserId = require('../auth').authenticateUserId
 const gameUtils = require('../database/games_utils')
 
-router.post('/:userid', authenticateUserId, (req, res, next) => {
+router.post('/:id', authenticateUserId, (req, res, next) => {
   // create a new game
   const data = req.body
-  data.user_id = req.params.userid
-  // gameUtils.addGame(data, (err, resp) => {
-  //   if (err) {
-  //     console.error(err)
-  //     res.json(err)
-  //   } else {
-  //     res.json({ id: resp })
-  //   }
-  // })
+  data.user_id = req.params.id
+  console.log(data)
+  gameUtils.addGame(data)
+    .then(id => {
+      console.log(id)
+      res.json({ id })
+    })
+    .catch(err => {
+      console.log(err)
+      res.json(err)
+    })
 })
 
 router.get('/', (req, res, next) => {

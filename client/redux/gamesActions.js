@@ -1,5 +1,6 @@
 export const GET_GAME_SUCCESS = 'GET_GAME_SUCCESS'
 export const GAMES_ERROR = 'GAMES_ERROR'
+import { browserHistory } from 'react-router'
 
 export const fetchGameInfo = (id) => {
   const options = {
@@ -83,10 +84,10 @@ export const createGame = (userId, date, location, teamA, teamB, isComplete, tea
     },
     method: 'POST',
     body: JSON.stringify({
-      date,
+      date_time: date,
       location,
-      team_a: teamA,
-      team_b: teamB,
+      team_a_name: teamA,
+      team_b_name: teamB,
       is_complete: isComplete,
       team_a_score: teamAScore,
       team_b_score: teamBScore,
@@ -110,11 +111,11 @@ export const createGame = (userId, date, location, teamA, teamB, isComplete, tea
       .then(res => {
         return res.json()
       })
-      .then(game => {
-        console.log(game)
-        if (game.id) {
+      .then(obj => {
+        if (obj.game.id) {
+          browserHistory.push(`/games/${obj.game.id}`)
           return dispatch({
-            game,
+            game: obj.game,
             type: CREATE_GAME_SUCCESS
           })
         } else {
