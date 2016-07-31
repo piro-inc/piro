@@ -74,3 +74,21 @@ test('Get all comments', function (t) {
     t.end()
   })
 })
+
+test('Get latest comment', function(t) {
+  const expected = 'Yellow card'
+  knex.migrate.rollback()
+    .then(() => knex.migrate.latest())
+    .then(() => knex.seed.run('comments'))
+    .then(() => {
+      return commentUtils.getLatestComment(3)
+    })
+    .then((comment) => {
+      t.equal(comment.comment, expected, 'got the comment with the highest id')
+      t.end()
+    })
+  .catch((err) => {
+    t.ok(0, err)
+    t.end()
+  })
+})

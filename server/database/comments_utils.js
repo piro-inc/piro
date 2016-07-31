@@ -12,8 +12,18 @@ function addComment (obj) {
   return utils.addOne('comments', obj)
 }
 
+function getLatestComment(gameId) {
+  return utils.getOne('comments', {game_id: gameId})
+    .then((comments) => {
+      return comments[comments.length - 1]
+    })
+}
+
+// get latest
+
 module.exports = {
   getComments,
   getCommentsTable,
-  addComment
+  addComment,
+  getLatestComment
 }

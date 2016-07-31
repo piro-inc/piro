@@ -29,6 +29,17 @@ function getGameComments (gameId) {
     })
 }
 
+function getGamesInfo () {
+  let gamesInfo = {}
+  return getGamesTable()
+    .then((games) => {
+      return games.map((game) => {
+        game.comment = commentsUtils.getLatestComment(game.id)
+      })
+    })
+
+}
+
 module.exports = {
   getGame,
   addGame,
