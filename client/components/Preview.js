@@ -14,7 +14,7 @@ class Preview extends React.Component {
       <div id='preview'>
 
         <div className='preview-header'>
-          <h4 className='sport'>{game.sport}</h4>
+          <h4 className='sport'>{game.sport_name}</h4>
           <h3 className='division'>Division</h3>
           <h4 className='location'>{game.location}</h4>
         </div>
