@@ -21,11 +21,7 @@ module.exports = {
 
   staging: {
     client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user: 'username',
-      password: 'password'
-    },
+    connection: HEROKU_POSTGRESQL_COLOR_URL,
     pool: {
       min: 2,
       max: 10
