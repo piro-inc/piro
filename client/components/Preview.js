@@ -11,12 +11,12 @@ class Preview extends React.Component {
   render () {
     const game = this.props.game
     return (
-      <Link to={`/games/${game.id}`} id='preview'>
-        <div className='preview-header'>
+      <div id='preview'>
+        <Link to={`/games/${game.id}`} className='preview-header'>
           <h4 className='sport'>{game.sport_name}</h4>
-          <h3 className='division'>Division</h3>
+          <h3 className='division'>division</h3>
           <h4 className='location'>{game.location}</h4>
-        </div>
+        </Link>
 
         <div className='team-names'>
           <h3 className='team-one'>{game.team_a_name}</h3>
@@ -37,7 +37,7 @@ class Preview extends React.Component {
             : <p className='preview-comment'>No game comment</p>
           }
         </div>
-      </Link>
+      </div>
     )
   }
 }
