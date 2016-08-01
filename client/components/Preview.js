@@ -14,7 +14,7 @@ class Preview extends React.Component {
       <div id='preview'>
         <Link to={`/games/${game.id}`} className='preview-header'>
           <h4 className='sport'>{game.sport_name}</h4>
-          <h3 className='division'>Division</h3>
+          <h3 className='division'>division</h3>
           <h4 className='location'>{game.location}</h4>
         </Link>
 
