@@ -1,26 +1,13 @@
 import React from 'react'
-import Login from './Login'
-import Register from './Register'
+import GuestView from './GuestView'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
-import { clearError } from '../redux/sessionActions'
-
-/* THIS IS A VERY VERY DUMB COMPONENT*/
+import { clearError, authenticateUser } from '../redux/sessionActions'
+import { readCookie } from '../utils'
 
 class Home extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      // state goes here
-      showing: false
-    }
-  }
 
-  toggle = (showing) => {
-    return () => {
-      this.props.clearError()
-      this.setState({ showing })
-    }
+  componentDidMount () {
+    this.props.authenticateUser(readCookie('user.id'))
   }
 
   render () {
@@ -29,38 +16,36 @@ class Home extends React.Component {
         <div id='logo-wrapper'>
           <img id='logo' src='/images/logo-main.svg' />
         </div>
-        <div id='home-content'>
-
+        {this.props.user.id
+        ? <div id='home-content'>
           <div id='input-wrapper'>
-            <div id='login'>
-              {this.state.showing === 'login'
-              ? <Login />
-              : <button onClick={this.toggle('login')} className='button'>Login</button>}
+            <div id='welcome'>
+              <a>
+                Welcome, {this.props.user.username}!
+              </a>
             </div>
-
-            <div id='register'>
-              {this.state.showing === 'register'
-              ? <Register />
-              : <button onClick={this.toggle('register')} className='button'>Register to PIRO</button>}
-            </div>
-          </div>
-
-          <div className='enter-page'>
-            <h3><Link to='/games'>ENTER AS A GUEST</Link></h3>
           </div>
         </div>
-
+        : <GuestView clearError={this.props.clearError} />
+        }
       </div>
     )
   }
 }
 
-const mapStateToProps = f => f
+const mapStateToProps = (state) => {
+  return {
+    user: state.session.get('user').toJS()
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
     clearError: () => {
       dispatch(clearError())
+    },
+    authenticateUser: (id) => {
+      dispatch(authenticateUser(id))
     }
   }
 }

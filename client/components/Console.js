@@ -47,6 +47,7 @@ class Console extends React.Component {
 
   addComment = () => {
     this.props.addComment(this.state.comment, this.props.params.id)
+    this.setState({ comment: '' })
   }
 
   stopGame = () => {
@@ -58,6 +59,11 @@ class Console extends React.Component {
   }
 
   render () {
+    const currentGame = this.props.game
+    let orderedComments
+    if (currentGame.comments) {
+      orderedComments = currentGame.comments.slice().reverse()
+    }
     return (
       <div id='console-wrapper'>
       {this.props.session.error &&
@@ -75,7 +81,7 @@ class Console extends React.Component {
 
           <div id='content-wrapper'>
 
-            <h4 className='console-title'>Game {} [Sport]</h4>
+            <h4 className='console-title'>{this.props.game.game.sport_name}</h4>
 
             <div className='console-timer-wrapper'>
 
@@ -98,7 +104,7 @@ class Console extends React.Component {
               <div className='console-teamone'>
 
                 <img src='http://placehold.it/50X50' className='team-logo' />
-                <h3 className='team-one-name'>Team one</h3>
+                <h3 className='team-one-name'>{this.props.game.game.team_a_name}</h3>
                 <h1 className='console-score' id='team-one-score'>{this.props.game.game && this.props.game.game.team_a_score}</h1>
 
                 <div className='scoring-buttons'>
@@ -112,7 +118,7 @@ class Console extends React.Component {
               <div className='console-teamtwo'>
 
                 <img src='http://placehold.it/50X50' className='team-logo' />
-                <h3 className='team-two-name'>Team two</h3>
+                <h3 className='team-two-name'>{this.props.game.game.team_b_name}</h3>
                 <h1 className='console-score' id='team-two-score'>{this.props.game.game && this.props.game.game.team_b_score}</h1>
 
                 <div className='scoring-buttons'>
@@ -126,16 +132,16 @@ class Console extends React.Component {
 
             <div className='add-comment-wrapper'>
               <h3 className='console-headers'>ADD COMMENT</h3>
-              <input onChange={this.changeComment} type='text' className='console-comment' id='add-comment' />
+              <input onChange={this.changeComment} value={this.state.comment} type='text' className='console-comment' id='add-comment' />
               <button className='submit button' id='submit-comment' onClick={this.addComment}>+ SUBMIT</button>
             </div>
-
-            <div className='edit-comment-wrapper'>
-              <h3 className='console-headers'>LATEST COMMENT</h3>
-              <input type='text' className='console-comment' id='recent-comment' />
-              <button className='edit button' id='edit-comment'>Edit</button>
-              {/* <button type='submit' className='submit button' id='submit-edit'>Change</button>*/}
-            </div>
+            {orderedComments && orderedComments.map((obj, key) => {
+              return (
+                <p key={key} className='comment'>
+                  {obj.comment}
+                </p>
+              )
+            })}
           </div>
         </div>
       }
