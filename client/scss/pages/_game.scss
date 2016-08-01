@@ -40,21 +40,29 @@
     }
 }
 
+.game-team-names {
+  display: flex;
+  border-bottom: solid 1px $backgroundGrey;
+    h2 {
+      flex: 1;
+      text-align: center;
+      margin: .5em 0 0 0;
+      padding-bottom: .5em;
+    }
+}
+
 .game-score-wrapper {
   @include flexCenterRow();
   // @include flexCenter();
+  display: flex;
+  align-items: center;
   flex: 3;
-  .game-score-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex: 6;
-  }
   .game-score {
+    flex: 6;
     font-size: 4em;
     font-weight: 700;
     margin: 0.5em 0;
+    text-align: center;
   }
 }
 
