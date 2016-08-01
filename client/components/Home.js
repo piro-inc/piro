@@ -20,9 +20,9 @@ class Home extends React.Component {
         ? <div id='home-content'>
           <div id='input-wrapper'>
             <div id='welcome'>
-              <a>
+              <h3>
                 Welcome, {this.props.user.username}!
-              </a>
+              </h3>
             </div>
             <div id='login'>
               <button className='loggedinButton'>

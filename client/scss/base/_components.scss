@@ -1,9 +1,9 @@
 @mixin inputField() {
   width: 15em;
   height: 2.5em;
-  background-color: $piroLightRed;
+  background-color: $white;
   border: none;
-  color: $white;
+  color: $black;
   padding-left: 1em;
 }
 
@@ -13,4 +13,25 @@
   background-color: $white;
   color: $piroRed;
   border: none;
+}
+
+@mixin placeholder() {
+  color: $placeholderGrey;
+  letter-spacing: .5px;
+}
+
+::-webkit-input-placeholder {
+  @include placeholder()
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  @include placeholder()
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  @include placeholder()
+}
+
+:-ms-input-placeholder {
+  @include placeholder()
 }
