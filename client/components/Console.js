@@ -75,7 +75,7 @@ class Console extends React.Component {
 
           <div id='content-wrapper'>
 
-            <h4 className='console-title'>Game {} [Sport]</h4>
+            <h4 className='console-title'>{this.props.game.game.sport_name}</h4>
 
             <div className='console-timer-wrapper'>
 
@@ -98,7 +98,7 @@ class Console extends React.Component {
               <div className='console-teamone'>
 
                 <img src='http://placehold.it/50X50' className='team-logo' />
-                <h3 className='team-one-name'>Team one</h3>
+                <h3 className='team-one-name'>{this.props.game.game.team_a_name}</h3>
                 <h1 className='console-score' id='team-one-score'>{this.props.game.game && this.props.game.game.team_a_score}</h1>
 
                 <div className='scoring-buttons'>
@@ -112,7 +112,7 @@ class Console extends React.Component {
               <div className='console-teamtwo'>
 
                 <img src='http://placehold.it/50X50' className='team-logo' />
-                <h3 className='team-two-name'>Team two</h3>
+                <h3 className='team-two-name'>{this.props.game.game.team_b_name}</h3>
                 <h1 className='console-score' id='team-two-score'>{this.props.game.game && this.props.game.game.team_b_score}</h1>
 
                 <div className='scoring-buttons'>
