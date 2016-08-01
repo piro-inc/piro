@@ -1,37 +1,49 @@
 #previews-wrapper {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+
+#preview-all-games {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
 }
 
 #preview {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .preview-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around; 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border: 1px solid $backgroundGrey; 
 }
 
 .team-names {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around; 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; 
+  border: 1px solid $backgroundGrey;
 }
 
 .score-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border: 1px solid $backgroundGrey;
+
 }
 
 .comments {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  border: 1px solid $backgroundGrey;
+  background: $backgroundGrey;
 }
 
 #footer {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
