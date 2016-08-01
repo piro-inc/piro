@@ -4,3 +4,4 @@ node_modules
 .log
 npm-debug.log
 server/dev.sqlite3
+public/bundle.js
