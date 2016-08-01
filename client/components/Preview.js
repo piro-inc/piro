@@ -8,14 +8,23 @@ class Preview extends React.Component {
     }
   }
 
+
+
   render () {
     const game = this.props.game
+    const userID = this.props.userID
+    console.log('userID :', userID)
+    console.log('Game Owner :', game.user_id)
     return (
       <div id='preview'>
         <Link to={`/games/${game.id}`} className='preview-header'>
           <h4 className='sport'>{game.sport_name}</h4>
           <h3 className='division'>division</h3>
           <h4 className='location'>{game.location}</h4>
+
+          <Link to={`/console/${game.id}`} className='consoleLink'>
+            <p>Manage</p>
+          </Link>
         </Link>
 
         <div className='team-names'>

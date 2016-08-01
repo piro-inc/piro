@@ -26,7 +26,7 @@ class Previews extends React.Component {
         <Navbar />
         <div id='preview-all-games'>
           {this.props.games.length &&
-            games.map((game, key) => { return <Preview key={key} game={game} /> })
+            games.map((game, key) => { return <Preview key={key} game={game} userID={userID} /> })
           }
         </div>
         <div id='footer'>
