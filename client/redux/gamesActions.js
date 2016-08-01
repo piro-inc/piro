@@ -38,7 +38,7 @@ export const fetchGameInfo = (id) => {
 
 export const GET_GAMES_SUCCESS = 'GET_GAMES_SUCCESS'
 
-export const fetchGamesInfo = (id) => {
+export const fetchGamesInfo = () => {
   const options = {
     headers: {
       Accept: 'application/json',
@@ -132,7 +132,9 @@ export const createGame = (userId, date, location, teamA, teamB, isComplete, tea
 
 export const updateGameScore = (id) => {
   return (dispatch, getState) => {
-    if (getState().games.toJS().currentGame.game.id === id) {
+    dispatch(fetchGamesInfo())
+    const current = getState().games.toJS().currentGame.game
+    if (current && (current.id === id)) {
       dispatch(fetchGameInfo(id))
     }
   }
