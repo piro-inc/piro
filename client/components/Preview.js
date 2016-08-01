@@ -24,21 +24,11 @@ class Preview extends React.Component {
         </div>
 
         <div className='score-wrapper'>
-
-          <a href='#'>
-            <img src='#' className='team-logo' />
-          </a>
-
+          <img src='#' className='team-logo' />
           <h1 className='preview-score'>{game.team_a_score}</h1>
-
           <h1 className='period'>v</h1>
-
           <h1 className='preview-score'>{game.team_b_score}</h1>
-
-          <a href='#'>
-            <img src='#' className='team-logo' />
-          </a>
-
+          <img src='#' className='team-logo' />
         </div>
 
         <div className='comments'>
