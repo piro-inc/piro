@@ -43,8 +43,8 @@ class Preview extends React.Component {
         </div>
 
         <div className='comments'>
-          {game.comment
-            ? <p className='preview-comment'>{game.comment}</p>
+          {game.latestComment && game.latestComment.comment
+            ? <p className='preview-comment'>{game.latestComment.comment}</p>
             : <p className='preview-comment'>No game comment</p>
           }
         </div>
