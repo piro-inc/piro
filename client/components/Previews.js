@@ -28,7 +28,7 @@ class Previews extends React.Component {
           }
         </div>
         <div id='footer'>
-          <p>click anywhere on scoreboard for more detail</p>
+          <p>Click scoreboard heading for game detail</p>
         </div>
       </div>
     )
