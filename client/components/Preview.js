@@ -11,7 +11,7 @@ class Preview extends React.Component {
   render () {
     const game = this.props.game
     return (
-      <Link to= {`/games/${game.id}`} id='preview'>
+      <Link to={`/games/${game.id}`} id='preview'>
         <div className='preview-header'>
           <h4 className='sport'>{game.sport_name}</h4>
           <h3 className='division'>Division</h3>
