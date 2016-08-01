@@ -1,0 +1,106 @@
+#console-wrapper {
+  // height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: $piroRed;
+  align-items: center;
+  h3, h4 {
+    color: $black;
+    margin: .5em 0;
+  }
+  button {
+    color: $white;
+  }
+}
+
+.console-timer-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 0;
+  .button {
+    margin: 0;
+    width: 5em;
+    height: 5em;
+    border-radius: 50%;
+    background-color: $piroLightRed;
+    }
+    .pause, .stop {
+      align-self: flex-start;
+    }
+    #start {
+      background-color: $staticGrey;
+      width: 7em;
+      height: 7em;
+    }
+    #stop {
+      background-color: $piroRed;
+    }
+  }
+
+.console-scores-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: $staticGrey;
+  margin-top: 1em;
+  .button {
+    width: 3.5em;
+    height: 3.5em;
+    border-radius: 50%;
+    margin: 0 1em;
+    background-color: $startGreen;
+  }
+  .decrement{
+    background-color: $piroRed;
+  }
+}
+
+.console-teamone, .console-teamtwo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .team-one-name, .team-two-name {
+    margin-bottom: .2em;
+  }
+  .console-score {
+    margin: 0 .2em .2em .2em;
+    font-size: 4em;
+    font-weight: 700;
+    width: 99%;
+    text-align: center;
+    background-color: $backgroundGrey;
+  }
+}
+
+#content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-comment-wrapper, .edit-comment-wrapper {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    input {
+      width: 100%;
+      padding: 0;
+      background-color: $inactiveGrey;
+      border-style: solid 1px $backgroundGrey;
+    }
+    h3 {
+      align-self: flex-start;
+      margin-top: .5em;
+    }
+    button {
+      align-self: flex-end;
+      width: 7em;
+      background-color: $startGreen;
+      margin: .5em 0 0 0;
+      border-radius: 5px;
+    }
+}
