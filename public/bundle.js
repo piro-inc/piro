@@ -107,17 +107,6 @@
 	  _routes2.default
 	), reactRoot);
 
-	socket.on('message', function (data) {
-	  switch (data.type) {
-	    case 'one':
-	      console.log(data);
-	      socket.emit('message', data);
-	      break;
-	    default:
-	      console.warn('Invalid type: ', data.type);
-	  }
-	});
-
 /***/ },
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
@@ -33569,7 +33558,7 @@
 
 	var GET_GAMES_SUCCESS = exports.GET_GAMES_SUCCESS = 'GET_GAMES_SUCCESS';
 
-	var fetchGamesInfo = exports.fetchGamesInfo = function fetchGamesInfo(id) {
+	var fetchGamesInfo = exports.fetchGamesInfo = function fetchGamesInfo() {
 	  var options = {
 	    headers: {
 	      Accept: 'application/json',
@@ -33657,7 +33646,9 @@
 
 	var updateGameScore = exports.updateGameScore = function updateGameScore(id) {
 	  return function (dispatch, getState) {
-	    if (getState().games.toJS().currentGame.game.id === id) {
+	    dispatch(fetchGamesInfo());
+	    var current = getState().games.toJS().currentGame.game;
+	    if (current && current.id === id) {
 	      dispatch(fetchGameInfo(id));
 	    }
 	  };
