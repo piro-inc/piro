@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
+import { readCookie } from '../utils'
+import { authenticateUser } from '../redux/sessionActions'
 
 class Navbar extends React.Component {
   constructor (props) {
@@ -10,9 +12,12 @@ class Navbar extends React.Component {
     }
   }
 
+  componentDidMount () {
+    this.props.authenticateUser(readCookie('user.id'))
+  }
+
   render () {
     const user = this.props.user
-    console.log('user HERE', user)
     return (
       <div id='navbar'>
         <div id='logo-nav-wrapper'>
@@ -41,8 +46,14 @@ const mapStateToProps = (state) => {
   }
 }
 
-// const mapDispatchToProps = f => f
+const mapDispatchToProps = (dispatch) => {
+  return {
+    authenticateUser: (id) => {
+      dispatch(authenticateUser(id))
+    }
+  }
+}
 
-const NavbarContainer = connect(mapStateToProps)(Navbar)
+const NavbarContainer = connect(mapStateToProps, mapDispatchToProps)(Navbar)
 
 export default NavbarContainer

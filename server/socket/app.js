@@ -35,7 +35,6 @@ function socketServer (io) {
     })
 
     socket.on('stopGame', (data) => {
-      console.log(data)
       // { gameId: '1', id: null }
       const searchParams = { id: data.gameId }
       const updateInfo = { is_complete: true }
@@ -49,7 +48,6 @@ function socketServer (io) {
     })
 
     socket.on('addComment', (data) => {
-      console.log(data)
       // { comment: 'dsfsasd', gameId: '1', id: '1' }
       const newData = {
         game_id: data.gameId,
