@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { changeTeamScore, stopGame, addComment } from '../redux/socketActions'
 import { fetchGameInfo } from '../redux/gamesActions'
 import { authenticateGame } from '../redux/sessionActions'
-// import { readCookie } from '../utils'
+import { readCookie } from '../utils'
 import Navbar from './Navbar'
 
 class Console extends React.Component {
