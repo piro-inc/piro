@@ -19,6 +19,8 @@ class Previews extends React.Component {
 
   render () {
     const games = this.props.games
+    const userID = this.props.user.id
+    console.log(userID)
     return (
       <div id='previews-wrapper'>
         <Navbar />
@@ -37,7 +39,8 @@ class Previews extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    games: state.games.get('games').toJS()
+    games: state.games.get('games').toJS(),
+    user: state.session.get('user').toJS()
   }
 }
 
