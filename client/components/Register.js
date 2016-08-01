@@ -92,13 +92,13 @@ class Register extends React.Component {
         <TextInput type='password' onBlur={this.pwChange} placeholder='Enter password' error={this.state.password.error} />
         <TextInput type='password' onBlur={this.pwcChange} placeholder='Re-enter password' error={this.state.password.error} />
         <div className='error-container'> 
-          {this.props.error && <div>{this.props.error.message}</div>}
+          {this.props.error && <div>{this.props.error}</div>}
           {this.state.username.error && <div>{this.state.username.error}</div>}
           {this.state.email.error && <div>{this.state.email.error}</div>}
           {this.state.password.error && <div>{this.state.password.error}</div>}
           {this.state.passwordConfirm.error && <div>{this.state.passwordConfirm.error}</div>}
         </div>
-        <button onClick={this.register} className='submit button'>Register to PIRO</button>
+        <button onClick={this.register} className='submit button'>Register</button>
       </div>
     )
   }

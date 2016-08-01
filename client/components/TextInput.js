@@ -3,7 +3,7 @@ import React from 'react'
 class TextInput extends React.Component {
   render () {
     let classNames = this.props.className;
-    console.log(this)
+
     if (this.props.error) {
       classNames += " error"
     }
