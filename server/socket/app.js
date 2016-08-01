@@ -4,12 +4,6 @@ const authenticateSocket = require('../auth').authenticateSocket
 
 function socketServer (io) {
   io.on('connection', (socket) => {
-    socket.emit('message', { data: 'yo', type: 'one' })
-
-    socket.on('message', (data) => {
-      console.log(data)
-    })
-
     socket.on('changeTeamScore', (data) => {
       // { team: 'one', gameId: '1', id: null }
       authenticateSocket(data.id, data.gameId, socket, err => {
@@ -56,7 +50,6 @@ function socketServer (io) {
 
       addComment(newData)
         .then(obj => {
-          console.log(obj)
           io.emit('globalUpdate', { id: parseInt(data.gameId) })
         })
         .catch(err => {

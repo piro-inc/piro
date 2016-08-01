@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 
 module.exports = {
   entry: [
@@ -44,6 +45,11 @@ module.exports = {
   devServer: {
     contentBase: '../public'
   },
-  plugins: [
+  plugins: (process.env.NODE_ENV === 'production') && [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: true
+      }
+    })
   ]
 }
