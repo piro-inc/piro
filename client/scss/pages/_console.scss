@@ -3,11 +3,17 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  color: $white;
-  text-align: center;
+  color: $piroRed;
+  align-items: center;
+  h3, h4 {
+    color: $black;
+    margin-bottom: .5em;
+  }
 }
+button {
+  color: $white;
 
-
+}
 #navbar-wrapper {
   // flex: 5;
 }
@@ -40,99 +46,79 @@
 }
 
 .console-timer-wrapper {
+  width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-around;
+  margin-bottom: 1em;
   .button {
     width: 5em;
     height: 5em;
     border-radius: 50%;
+    background-color: $piroLightRed;
+    }
+    #start {
+      background-color: $staticGrey;
+      width: 7em;
+      height: 7em;
+
+    }
   }
-}
 
 .console-scores-wrapper {
+  width: 100%;
   display: flex;
   justify-content: space-around;
+  color: $staticGrey;
   .button {
-    width: 2.5em;
-    height: 2.5em;
+    width: 3em;
+    height: 3em;
     border-radius: 50%;
     margin: 0 1em;
+    background-color: $piroLightRed;
+  }
+  .decrement{
+    background-color: $startGreen;
   }
 }
 
+.console-teamone, .console-teamtwo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .team-one-name, .team-two-name {
+    margin-bottom: .2em;
+  }
+  .console-score {
+    margin: .2em auto;
+  }
 
-
-#content-wrapper {
-  // flex: 10;
 }
 
+#content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-// #logo-wrapper {
-//   flex: 2;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
-//
-// #home-content {
-//   display: flex;
-//   flex-direction: column;
-//   flex: 3;
-// }
-//
-// #input-wrapper {
-//   flex: 3;
-// }
-//
-// #login {
-//   display: flex;
-//   justify-content: center;
-// }
-//
-// #login-error {
-//   color: $white;
-// }
-//
-// #register {
-//   display: flex;
-//   justify-content: center;
-// }
-//
-// #login-form {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//     input {
-//       margin: .2em;
-//     }
-//     button.submit.button {
-//       width: 8em;
-//     }
-// }
-//
-// #register-form {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//     input {
-//       margin: .2em;
-//     }
-//     button.submit.button {
-//       width: 10em;
-//     }
-// }
-//
-// .enter-page {
-//   display: flex;
-//   flex: 1;
-//   justify-content: center;
-//     a {
-//       color: $white;
-//       text-decoration: none;
-//     }
-// }
-//
-// button {
-//   margin: 1em;
-//   border-radius: 0.4em;
-// }
+.add-comment-wrapper, .edit-comment-wrapper {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    input {
+      width: 100%;
+      padding: 0;
+    }
+    h3 {
+      align-self: flex-start;
+    }
+    button {
+      align-self: flex-end;
+      width: 5em;
+      background-color: $startGreen;
+      margin-top: .5em;
+      border-radius: 5px;
+
+    }
+}

@@ -17,7 +17,7 @@ class Console extends React.Component {
 
   componentDidMount () {
     this.props.fetchGameInfo(this.props.params.id)
-    this.props.authenticateGame(readCookie('user.id'), this.props.params.id)
+    // this.props.authenticateGame(readCookie('user.id'), this.props.params.id)
   }
 
   incrementScore = (team) => {
@@ -66,7 +66,7 @@ class Console extends React.Component {
           <a href='/'> Home </a>
         </div>
       }
-      {this.props.session.user.id &&
+      {/*this.props.session.user.id*/ true &&
         <div>
           <div id='navbar-wrapper'>
             <Navbar />
@@ -76,7 +76,7 @@ class Console extends React.Component {
 
             <h4 className='console-title'>Game {} [Sport]</h4>
 
-            <h3 className='console-headers'>TIMER</h3>
+            {/*<h3 className='console-headers'>TIMER</h3>*/}
 
             <div className='console-timer-wrapper'>
 
@@ -94,49 +94,52 @@ class Console extends React.Component {
 
             </div>
 
-            <h3 className='console-headers'>SCORE TEAMS</h3>
+            {/*<h3 className='console-headers'>SCORE TEAMS</h3>*/}
 
             <div className='console-scores-wrapper'>
 
               <div className='console-teamone'>
 
-                <img src='#' className='team-logo' />
+                <img src='http://placehold.it/50X50' className='team-logo' />
+                <h3 className='team-one-name'>Team one</h3>
                 <h1 className='console-score' id='team-one-score'>{this.props.game.game && this.props.game.game.team_a_score}</h1>
 
                 <div className='scoring-buttons'>
-                  <button className='button increment' id='increment-team-one' onClick={this.incrementScore('one')}>+</button>
                   <button className='button decrement' id='decrement-team-one' onClick={this.decrementScore('one')}>-</button>
+                  <button className='button increment' id='increment-team-one' onClick={this.incrementScore('one')}>+</button>
+
                 </div>
 
               </div>
 
               <div className='console-teamtwo'>
 
-                <img src='#' className='team-logo' />
+                <img src='http://placehold.it/50X50' className='team-logo' />
+                <h3 className='team-two-name'>Team two</h3>
                 <h1 className='console-score' id='team-two-score'>{this.props.game.game && this.props.game.game.team_b_score}</h1>
 
                 <div className='scoring-buttons'>
-                  <button className='button increment' id='increment-team-two' onClick={this.incrementScore('two')}>+</button>
                   <button className='button decrement' id='decrement-team-two' onClick={this.decrementScore('two')}>-</button>
+                  <button className='button increment' id='increment-team-two' onClick={this.incrementScore('two')}>+</button>
                 </div>
 
               </div>
 
             </div>
 
-            <h3 className='console-headers'>ADD COMMENT</h3>
 
             <div className='add-comment-wrapper'>
+            <h3 className='console-headers'>ADD COMMENT</h3>
               <input onChange={this.changeComment} type='text' className='console-comment' id='add-comment' />
               <button className='submit button' id='submit-comment' onClick={this.addComment}>+ Submit</button>
             </div>
 
 
-            <h3 className='console-headers'>EDIT COMMENT</h3>
             <div className='edit-comment-wrapper'>
+            <h3 className='console-headers'>LATEST COMMENT</h3>
               <input type='text' className='console-comment' id='recent-comment' />
               <button className='edit button' id='edit-comment'>Edit</button>
-              <button type='submit' className='submit button' id='submit-edit'>Change</button>
+              {/*<button type='submit' className='submit button' id='submit-edit'>Change</button>*/}
             </div>
           </div>
         </div>
