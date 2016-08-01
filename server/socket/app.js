@@ -4,7 +4,6 @@ const authenticateSocket = require('../auth').authenticateSocket
 
 function socketServer (io) {
   io.on('connection', (socket) => {
-    
     socket.on('changeTeamScore', (data) => {
       // { team: 'one', gameId: '1', id: null }
       authenticateSocket(data.id, data.gameId, socket, err => {
