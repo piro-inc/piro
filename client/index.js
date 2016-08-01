@@ -7,6 +7,7 @@ import io from 'socket.io-client'
 import * as gamesActions from './redux/gamesActions'
 import './scss/main.scss'
 import 'whatwg-fetch'
+import 'react-mdl/extra/material.js'
 
 export const socket = io()
 const store = configureStore()

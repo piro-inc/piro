@@ -24,7 +24,6 @@ class Login extends React.Component {
   }
 
   render () {
-    console.log(this.props.error)
     return (
       <div id='login-form'>
         {this.props.error && <div id='login-error'>{this.props.error.message}</div>}
