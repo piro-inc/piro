@@ -33,8 +33,13 @@
   flex-direction: row;
   justify-content: space-around;
   border: 1px solid $backgroundGrey;
-
-}
+    h1 {
+      font-size: 4em;
+    }
+    .period {
+      font-size: 1em;
+    }
+  }
 
 .comments {
   display: flex;
@@ -46,4 +51,8 @@
 #footer {
   display: flex;
   justify-content: center;
+}
+
+.team-logo {
+  display: none;
 }
