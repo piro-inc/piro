@@ -8,7 +8,7 @@ import * as gamesActions from './redux/gamesActions'
 import './scss/main.scss'
 import 'whatwg-fetch'
 import 'react-mdl/extra/material.js'
-import 'react-mdl/extra/material.css'
+
 export const socket = io()
 const store = configureStore()
 
