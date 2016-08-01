@@ -40,6 +40,10 @@
     }
 }
 
+#game-header {
+  margin: 0 0 1em 0;
+}
+
 .game-team-names {
   display: flex;
   border-bottom: solid 1px $backgroundGrey;
@@ -95,4 +99,14 @@
   margin: .5em 0 0 0;
   padding-bottom: .5em;
   border-bottom: solid 1px $backgroundGrey;
+}
+
+#console-link {
+  display: flex;
+  justify-content: center;
+    button {
+      color: $white;
+      background-color: $startGreen;
+      border-radius: 5px;
+    }
 }

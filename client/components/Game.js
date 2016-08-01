@@ -61,6 +61,10 @@ class Game extends React.Component {
 
         </div>
 
+        <div id="console-link">
+          <button>Manage game in console</button>
+        </div>
+
         <div className='comment-history'>
           {orderedComments && orderedComments.map((obj, key) => {
             return (
