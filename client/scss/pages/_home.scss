@@ -7,6 +7,10 @@
   background-position: center center;
 }
 
+#welcome {
+  color: $white;
+}
+
 #logo-wrapper {
   flex: 2;
   display: flex;
@@ -27,12 +31,7 @@
   flex: 4;
 }
 
-#login {
-  display: flex;
-  justify-content: center;
-}
-
-#register {
+#login, #register, #welcome {
   display: flex;
   justify-content: center;
 }
