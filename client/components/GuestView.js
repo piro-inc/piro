@@ -21,20 +21,31 @@ class GuestView extends React.Component {
   }
 
   render () {
+    /*} */
+    /*<button onClick={this.toggle('register')} className='button'>Register to PIRO</button> */
     return (
       <div id='home-content'>
         <div id='input-wrapper'>
           <div id='login'>
             {this.state.showing === 'login'
             ? <Login />
-            : <button onClick={this.toggle('login')} className='button'>Login</button>}
+            : '' 
+            }
           </div>
 
           <div id='register'>
             {this.state.showing === 'register'
             ? <Register />
-            : <button onClick={this.toggle('register')} className='button'>Register to PIRO</button>}
+            : ''   
+          }
           </div>
+          {this.state.showing === 'login' 
+          ? <a onClick={this.toggle('register')} >Register to PIRO</a>
+          : this.state.showing === 'register' 
+            ? <a onClick={this.toggle('login')}>Login</a> 
+            : (<div className='button-wrapper'><button onClick={this.toggle('login')} className='button'>Login</button>
+            <button onClick={this.toggle('register')} className='button'>Register to PIRO</button></div>)
+          }
         </div>
         <div className='enter-page'>
           <h3><Link to='/games'>ENTER AS A GUEST</Link></h3>
