@@ -75,7 +75,7 @@ class Console extends React.Component {
 
           <div id='content-wrapper'>
 
-            <h4 className='console-title'>Game {} [Sport]</h4>
+            <h4 className='console-title'>{this.props.game.game.sport_name}</h4>
 
             <div className='console-timer-wrapper'>
 
