@@ -9,12 +9,13 @@ const userRoutes = require('./routes/user')
 const sessionRoutes = require('./routes/session')
 const gameRoutes = require('./routes/game')
 const passport = require('passport')
+const compression = require('compression')
 
 // Passport Setup
 const setupPassport = require('./auth').setup
 
 // Hooking up Express middleware
-
+app.use(compression())
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
