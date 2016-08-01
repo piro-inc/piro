@@ -87,7 +87,7 @@ class Register extends React.Component {
   render () {
     return (
       <div id='register-form'>
-        <div className='error-container'> 
+        <div className='error-container'>
           {this.props.error && <div>{this.props.error}</div>}
           {this.state.username.error && <div>{this.state.username.error}</div>}
           {this.state.email.error && <div>{this.state.email.error}</div>}
@@ -121,6 +121,3 @@ const mapDispatchToProps = (dispatch) => {
 const RegisterContainer = connect(mapStateToProps, mapDispatchToProps)(Register)
 
 export default RegisterContainer
-
-
-
