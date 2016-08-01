@@ -1,11 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 import { readCookie } from '../utils'
-import { authenticateUser } from '../redux/sessionActions'
+import { authenticateUser, logout } from '../redux/sessionActions'
 import { IconButton, Menu, MenuItem } from 'react-mdl'
-import { browserHistory } from 'react-router'
-import { logout } from '../redux/sessionActions'
 
 class Navbar extends React.Component {
   constructor (props) {
@@ -42,8 +40,8 @@ class Navbar extends React.Component {
           </div>
         }
         <div style={{position: 'relative'}}>
-          <IconButton name="+" id="demo-menu-lower-right" />
-          <Menu target="demo-menu-lower-right" align="right">
+          <IconButton name='+' id='demo-menu-lower-right' />
+          <Menu target='demo-menu-lower-right' align='right'>
             <MenuItem onClick={() => browserHistory.push('/')}>Home</MenuItem>
             <MenuItem onClick={this.logout}>Logout</MenuItem>
           </Menu>

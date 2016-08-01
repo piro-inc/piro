@@ -42,7 +42,7 @@ export const login = (username, password) => {
 
 export const logout = () => {
   return dispatch => {
-    fetch('/api/logout', { credentials: 'same-origin' })
+    fetch('/api/logout', { credentials: 'same-origin' }) // eslint-disable-line
       .then(() => {
         browserHistory.push('/')
         return dispatch({
