@@ -20,7 +20,7 @@ router.post('/:id', authenticateUserId, (req, res, next) => {
 })
 
 router.get('/', (req, res, next) => {
-  gameUtils.getGamesTable()
+  gameUtils.getGamesInfo()
     .then(games => {
       if (games) {
         res.json(games)

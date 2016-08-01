@@ -8,19 +8,20 @@ class Preview extends React.Component {
   }
 
   render () {
+    const game = this.props.game
     return (
 
       <div id='preview'>
 
         <div className='preview-header'>
-          <h4 className='sport'>Sport name</h4>
+          <h4 className='sport'>{game.sport_name}</h4>
           <h3 className='division'>Division</h3>
-          <h4 className='location'>Location</h4>
+          <h4 className='location'>{game.location}</h4>
         </div>
 
         <div className='team-names'>
-          <h3 className='team-one'>Team one</h3>
-          <h3 className='team-two'>Team two</h3>
+          <h3 className='team-one'>{game.team_a_name}</h3>
+          <h3 className='team-two'>{game.team_b_name}</h3>
         </div>
 
         <div className='score-wrapper'>
@@ -29,11 +30,11 @@ class Preview extends React.Component {
             <img src='#' className='team-logo' />
           </a>
 
-          <h1 className='preview-score'>Team one score</h1>
+          <h1 className='preview-score'>{game.team_a_score}</h1>
 
           <h1 className='period'></h1>
 
-          <h1 className='preview-score'>Team two score</h1>
+          <h1 className='preview-score'>{game.team_b_score}</h1>
 
           <a href='#'>
             <img src='#' className='team-logo' />
@@ -42,7 +43,10 @@ class Preview extends React.Component {
         </div>
 
         <div className='comments'>
-          <p className='preview-comment'>Latest comment</p>
+          {game.latestComment && game.latestComment.comment
+            ? <p className='preview-comment'>{game.latestComment.comment}</p>
+            : <p className='preview-comment'>No game comment</p>
+          }
         </div>
 
       </div>
