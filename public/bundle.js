@@ -28624,10 +28624,10 @@
 	  };
 	}
 
-	var CompiledPatternsCache = {};
+	var CompiledPatternsCache = Object.create(null);
 
 	function compilePattern(pattern) {
-	  if (!(pattern in CompiledPatternsCache)) CompiledPatternsCache[pattern] = _compilePattern(pattern);
+	  if (!CompiledPatternsCache[pattern]) CompiledPatternsCache[pattern] = _compilePattern(pattern);
 
 	  return CompiledPatternsCache[pattern];
 	}
@@ -30811,6 +30811,7 @@
 	}
 
 	//export default useRoutes
+
 	module.exports = exports['default'];
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
@@ -59174,8 +59175,7 @@
 	            _react2.default.createElement(
 	              'h4',
 	              { className: 'console-title' },
-	              'Game ',
-	              ' [Sport]'
+	              this.props.game.game.sport_name
 	            ),
 	            _react2.default.createElement(
 	              'div',
@@ -59218,7 +59218,7 @@
 	                _react2.default.createElement(
 	                  'h3',
 	                  { className: 'team-one-name' },
-	                  'Team one'
+	                  this.props.game.game.team_a_name
 	                ),
 	                _react2.default.createElement(
 	                  'h1',
@@ -59247,7 +59247,7 @@
 	                _react2.default.createElement(
 	                  'h3',
 	                  { className: 'team-two-name' },
-	                  'Team two'
+	                  this.props.game.game.team_b_name
 	                ),
 	                _react2.default.createElement(
 	                  'h1',
