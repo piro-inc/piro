@@ -44,6 +44,11 @@ module.exports = {
   devServer: {
     contentBase: '../public'
   },
-  plugins: [
+  plugins: process.env.NODE_ENV === 'production' && [
+    webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: true
+      }
+    })
   ]
 }
