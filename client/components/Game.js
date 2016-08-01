@@ -24,6 +24,10 @@ class Game extends React.Component {
       date = newDate.toUTCString()
       date = date.replace(/GMT/, '')
     }
+    let orderedComments
+    if (currentGame.comments) {
+      orderedComments = currentGame.comments.slice().reverse()
+    }
     return (
       <div id='game-wrapper'>
 
@@ -54,7 +58,7 @@ class Game extends React.Component {
         </div>
 
         <div className='comment-history'>
-          {currentGame.comments && currentGame.comments.reverse().map((obj, key) => {
+          {orderedComments && orderedComments.map((obj, key) => {
             return (
               <p key={key} className='comment'>
                 {obj.comment}
