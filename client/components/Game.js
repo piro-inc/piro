@@ -56,9 +56,9 @@ class Game extends React.Component {
         <div className='comment-history'>
           {currentGame.comments && currentGame.comments.reverse().map((obj, key) => {
             return (
-                <p key={key} className='comment'>
-                  {obj.comment}
-                </p>
+              <p key={key} className='comment'>
+                {obj.comment}
+              </p>
             )
           })}
         </div>
