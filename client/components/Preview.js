@@ -21,10 +21,10 @@ class Preview extends React.Component {
           <h4 className='sport'>{game.sport_name}</h4>
           <h3 className='division'>division</h3>
           <h4 className='location'>{game.location}</h4>
-
+          {(userID === game.user_id) ?
           <Link to={`/console/${game.id}`} className='consoleLink'>
             <p>Manage</p>
-          </Link>
+          </Link>:null}
         </Link>
 
         <div className='team-names'>
