@@ -34715,6 +34715,10 @@
 	        date = newDate.toUTCString();
 	        date = date.replace(/GMT/, '');
 	      }
+	      var orderedComments = void 0;
+	      if (currentGame.comments) {
+	        orderedComments = currentGame.comments.slice().reverse();
+	      }
 	      return _react2.default.createElement(
 	        'div',
 	        { id: 'game-wrapper' },
@@ -34787,7 +34791,7 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'comment-history' },
-	          currentGame.comments && currentGame.comments.reverse().map(function (obj, key) {
+	          orderedComments && orderedComments.map(function (obj, key) {
 	            return _react2.default.createElement(
 	              'p',
 	              { key: key, className: 'comment' },
@@ -59217,6 +59221,7 @@
 
 	    _this.addComment = function () {
 	      _this.props.addComment(_this.state.comment, _this.props.params.id);
+	      _this.setState({ comment: '' });
 	    };
 
 	    _this.stopGame = function () {
@@ -59243,6 +59248,11 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var currentGame = this.props.game;
+	      var orderedComments = void 0;
+	      if (currentGame.comments) {
+	        orderedComments = currentGame.comments.slice().reverse();
+	      }
 	      return _react2.default.createElement(
 	        'div',
 	        { id: 'console-wrapper' },
@@ -59373,28 +59383,20 @@
 	                { className: 'console-headers' },
 	                'ADD COMMENT'
 	              ),
-	              _react2.default.createElement('input', { onChange: this.changeComment, type: 'text', className: 'console-comment', id: 'add-comment' }),
+	              _react2.default.createElement('input', { onChange: this.changeComment, value: this.state.comment, type: 'text', className: 'console-comment', id: 'add-comment' }),
 	              _react2.default.createElement(
 	                'button',
 	                { className: 'submit button', id: 'submit-comment', onClick: this.addComment },
 	                '+ SUBMIT'
 	              )
 	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'edit-comment-wrapper' },
-	              _react2.default.createElement(
-	                'h3',
-	                { className: 'console-headers' },
-	                'LATEST COMMENT'
-	              ),
-	              _react2.default.createElement('input', { type: 'text', className: 'console-comment', id: 'recent-comment' }),
-	              _react2.default.createElement(
-	                'button',
-	                { className: 'edit button', id: 'edit-comment' },
-	                'Edit'
-	              )
-	            )
+	            orderedComments && orderedComments.map(function (obj, key) {
+	              return _react2.default.createElement(
+	                'p',
+	                { key: key, className: 'comment' },
+	                obj.comment
+	              );
+	            })
 	          )
 	        )
 	      );
