@@ -21,7 +21,7 @@ class Home extends React.Component {
           <div id='input-wrapper'>
             <div id='welcome'>
               <a>
-                Welcome, {this.props.user.username}!
+                Welcome, <strong>{this.props.user.username}</strong>!
               </a>
             </div>
             <div id='login'>

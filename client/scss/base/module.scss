@@ -23,6 +23,10 @@ button {
   @include homeButton();
 }
 
+a {
+  color: $white;
+}
+
 h1 { @include fontHeadings ($h1-font-size) }
 
 h2 { @include fontHeadings ($h2-font-size) }
