@@ -7,12 +7,14 @@
   align-items: center;
   h3, h4 {
     color: $black;
-    margin-bottom: .5em;
+    margin: .5em 0;
   }
+}
+h4 {
+  margin-top: .5em;
 }
 button {
   color: $white;
-
 }
 
 .console-timer-wrapper {
@@ -20,35 +22,42 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin-bottom: 1em;
+  margin-bottom: 0;
   .button {
+    margin: 0;
     width: 5em;
     height: 5em;
     border-radius: 50%;
     background-color: $piroLightRed;
     }
+    .pause, .stop {
+      align-self: flex-start;
+    }
     #start {
       background-color: $staticGrey;
       width: 7em;
       height: 7em;
-
+    }
+    #stop {
+      background-color: $piroRed;
     }
   }
 
 .console-scores-wrapper {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   color: $staticGrey;
+  margin-top: 1em;
   .button {
-    width: 3em;
-    height: 3em;
+    width: 3.5em;
+    height: 3.5em;
     border-radius: 50%;
     margin: 0 1em;
-    background-color: $piroLightRed;
+    background-color: $startGreen;
   }
   .decrement{
-    background-color: $startGreen;
+    background-color: $piroRed;
   }
 }
 
@@ -60,9 +69,13 @@ button {
     margin-bottom: .2em;
   }
   .console-score {
-    margin: .2em auto;
+    margin: 0 .2em .2em .2em;
+    font-size: 4em;
+    font-weight: 700;
+    width: 99%;
+    text-align: center;
+    background-color: $backgroundGrey;
   }
-
 }
 
 #content-wrapper {
@@ -79,16 +92,18 @@ button {
     input {
       width: 100%;
       padding: 0;
+      background-color: $inactiveGrey;
+      border-style: solid 1px $backgroundGrey;
     }
     h3 {
       align-self: flex-start;
+      margin-top: .5em;
     }
     button {
       align-self: flex-end;
-      width: 5em;
+      width: 7em;
       background-color: $startGreen;
-      margin-top: .5em;
+      margin: .5em 0 0 0;
       border-radius: 5px;
-
     }
 }
