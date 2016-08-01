@@ -86,15 +86,15 @@ class Register extends React.Component {
   render () {
     return (
       <div id='register-form'>
+        <input type='text' onBlur={this.userChange} placeholder='Enter username' id='register-username' className='username' />
+        <input type='text' onBlur={this.emailChange} placeholder='Email' id='register-email' className='email' />
+        <input type='password' onBlur={this.pwChange} placeholder='Enter password' id='register-password' className='password' />
+        <input type='password' onBlur={this.pwcChange} placeholder='Re-enter password' id='register-password-confirm' className='password' />
         {this.props.error && <div>{this.props.error.message}</div>}
         {this.state.username.error && <div>{this.state.username.error}</div>}
-        <input type='text' onChange={this.userChange} placeholder='Enter username' id='register-username' className='username' />
         {this.state.email.error && <div>{this.state.email.error}</div>}
-        <input type='text' onChange={this.emailChange} placeholder='Email' id='register-email' className='email' />
         {this.state.password.error && <div>{this.state.password.error}</div>}
-        <input type='password' onChange={this.pwChange} placeholder='Enter password' id='register-password' className='password' />
         {this.state.passwordConfirm.error && <div>{this.state.passwordConfirm.error}</div>}
-        <input type='password' onChange={this.pwcChange} placeholder='Re-enter password' id='register-password-confirm' className='password' />
         <button onClick={this.register} className='submit button'>Register to PIRO</button>
       </div>
     )
