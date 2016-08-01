@@ -53,14 +53,20 @@ class Game extends React.Component {
 
         </div>
 
-        {/* currentGame.comments && currentGame.comments.map(obj => {
-          return <div className='comment-history'>{obj.comment}</div>*/}
-        <div className='comment-history'>
+        {currentGame.comments && currentGame.comments.reverse().map(obj => {
+          return (
+            <div className='comment-history'>
+              <p className='comment'>
+                {obj.comment}
+              </p>
+            </div>
+          )
+        })}
+        {/* <div className='comment-history'>
           <p className='latest comment'>Test</p>
           <p className='comment'>Nice</p>
           <p className='comment'>Cool</p>
-        </div>
-        {/* }})}*/}
+        </div> */}
       </div>
     )
   }

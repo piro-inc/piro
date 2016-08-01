@@ -11,10 +11,6 @@ import 'whatwg-fetch'
 export const socket = io()
 const store = configureStore()
 
-socket.on('consoleUpdate', (data) => {
-  store.dispatch(gamesActions.fetchGameInfo(data.id))
-})
-
 socket.on('globalUpdate', (data) => {
   store.dispatch(gamesActions.updateGameScore(data.id))
 })

@@ -21,10 +21,11 @@ class Navbar extends React.Component {
 
         {!user.username
           ? <Link to='/' className='nav-links'>
-            <p className='nav-login-register'>login / register</p>
+            <p className='nav-login-register'>login</p>
+            <p className='nav-login-register'>register</p>
           </Link>
           : <div className='nav-links'>
-            <p>{user.username}</p>
+            <p className='nav-login-register'>{user.username}</p>
             <Link to='/games/new' id='nav-menu' className='drop-down-menu'>+</Link>
           </div>
         }
