@@ -66,20 +66,27 @@ class Create extends React.Component {
 
   render () {
     return (
-      <div>
+      <div id='create-wrapper'>
         <Navbar />
         <div id='create-form'>
+          <h2>CREATE GAME</h2>
           <DropdownList
             data={sports}
             value={this.state.sport}
-            onChange={this.changeSport} />
+            onChange={this.changeSport}
+            className='dropdown' />
           <input type='text' onChange={this.changeTeamOne} placeholder='TEAM 1' id='team-one' className='team-name' />
           <input type='text' onChange={this.changeTeamTwo} placeholder='TEAM 2' id='team-two' className='team-name' />
           <input type='text' onChange={this.changeLocation} placeholder='LOCATION' id='game-location' className='location' />
           <DateTimePicker
             defaultValue={new Date()}
-            onChange={this.changeDate} />
-          <button onClick={this.createGame}>CREATE</button>
+            onChange={this.changeDate}
+            className='datePicker' />
+          <div className='round-button'>
+            <div className='round-button-circle'>
+              <button onClick={this.createGame} className='create-button'>CREATE</button>
+            </div>
+          </div>
         </div>
       </div>
     )
