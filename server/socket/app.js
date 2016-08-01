@@ -50,7 +50,6 @@ function socketServer (io) {
 
       addComment(newData)
         .then(obj => {
-          console.log(obj)
           io.emit('globalUpdate', { id: parseInt(data.gameId) })
         })
         .catch(err => {
