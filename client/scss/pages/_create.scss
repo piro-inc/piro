@@ -11,13 +11,17 @@
     text-align: center;
     color: $piroRed
   }
+  input.team-name, input.location {
+    border-radius: .25em;
+    border: 1px solid #b2b2b2;
+  }
 }
 
 button.create-button {
   color: $white;
   background-color: $startGreen;
-  border-radius: .25em;
   width: 6em;
+
 }
 
 .round-button {
