@@ -11,12 +11,7 @@ exports.seed = function (knex, Promise) {
           location: 'EDA',
           team_a_name: 'the fun team',
           team_b_name: 'the other guys',
-          is_complete: false,
-          team_a_score: 1,
-          team_b_score: 5,
-          sport_name: 'ninja',
-          time_elapsed: '00:00:00',
-          is_running: false
+          sport_name: 'ninja'
         }),
         knex('games').insert({
           user_id: 1,
