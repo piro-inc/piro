@@ -1,7 +1,26 @@
 #create-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   margin: 0 auto;
   width: 75%;
   & > * {
     margin: 10px;
   }
+  h2 {
+    text-align: center;
+    color: $piroRed
+  }
+}
+
+button.create-button {
+  color: $white;
+  background-color: $startGreen;
+  border-radius: .25em;
+  width: 6em;
+}
+
+.round-button {
+  display: flex;
+  justify-content: center;
 }
