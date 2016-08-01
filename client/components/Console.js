@@ -124,19 +124,17 @@ class Console extends React.Component {
 
             </div>
 
-
             <div className='add-comment-wrapper'>
-            <h3 className='console-headers'>ADD COMMENT</h3>
+              <h3 className='console-headers'>ADD COMMENT</h3>
               <input onChange={this.changeComment} type='text' className='console-comment' id='add-comment' />
               <button className='submit button' id='submit-comment' onClick={this.addComment}>+ SUBMIT</button>
             </div>
 
-
             <div className='edit-comment-wrapper'>
-            <h3 className='console-headers'>LATEST COMMENT</h3>
+              <h3 className='console-headers'>LATEST COMMENT</h3>
               <input type='text' className='console-comment' id='recent-comment' />
               <button className='edit button' id='edit-comment'>Edit</button>
-              {/*<button type='submit' className='submit button' id='submit-edit'>Change</button>*/}
+              {/* <button type='submit' className='submit button' id='submit-edit'>Change</button>*/}
             </div>
           </div>
         </div>
