@@ -6,28 +6,38 @@
 #preview-all-games {
   display: flex;
   flex-direction: column;
+  align-items: center;
   overflow: scroll;
 }
 
 #preview {
+  width: 90%;
+  margin: 1em 0 0 0;
   display: flex;
   flex-direction: column;
-  text-decoration: none;
   color: $black;
+  text-decoration: none;
+  box-shadow: 1px 1px 5px #999999;
 }
 
 .preview-header {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  border: 1px solid $backgroundGrey; 
+  background-color: $backgroundGrey;
+  border: 1px solid $backgroundGrey;
+  color: $black;
+  text-decoration: none;
 }
 
 .team-names {
   display: flex;
   flex-direction: row;
-  justify-content: space-around; 
+  justify-content: space-around;
   border: 1px solid $backgroundGrey;
+    h3 {
+      margin: .5em 0;
+    }
 }
 
 .score-wrapper {
@@ -37,9 +47,12 @@
   border: 1px solid $backgroundGrey;
     h1 {
       font-size: 4em;
+      font-weight: 700;
+      margin: .1em 0;
     }
     .period {
-      font-size: 1em;
+      font-size: 1.5em;
+      align-self: center;
     }
   }
 
@@ -47,7 +60,7 @@
   display: flex;
   justify-content: center;
   border: 1px solid $backgroundGrey;
-  background: $backgroundGrey;
+  background: $inactiveGrey;
 }
 
 #footer {
