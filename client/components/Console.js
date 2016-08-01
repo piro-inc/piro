@@ -17,7 +17,7 @@ class Console extends React.Component {
 
   componentDidMount () {
     this.props.fetchGameInfo(this.props.params.id)
-    // this.props.authenticateGame(readCookie('user.id'), this.props.params.id)
+    this.props.authenticateGame(readCookie('user.id'), this.props.params.id)
   }
 
   incrementScore = (team) => {
@@ -67,7 +67,7 @@ class Console extends React.Component {
         </div>
       }
 
-      {/* this.props.session.user.id*/} {true &&
+      {this.props.session.user.id &&
         <div>
           <div id='navbar-wrapper'>
             <Navbar />
@@ -76,8 +76,6 @@ class Console extends React.Component {
           <div id='content-wrapper'>
 
             <h4 className='console-title'>Game {} [Sport]</h4>
-
-            {/*<h3 className='console-headers'>TIMER</h3>*/}
 
             <div className='console-timer-wrapper'>
 
@@ -94,8 +92,6 @@ class Console extends React.Component {
               </div>
 
             </div>
-
-            {/*<h3 className='console-headers'>SCORE TEAMS</h3>*/}
 
             <div className='console-scores-wrapper'>
 
