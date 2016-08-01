@@ -39,13 +39,15 @@ class GuestView extends React.Component {
             : ''
           }
           </div>
-          {this.state.showing === 'login'
-          ? <a onClick={this.toggle('register')} >Register</a>
-          : this.state.showing === 'register'
-            ? <a onClick={this.toggle('login')}>Login</a>
-            : (<div className='button-wrapper'><button onClick={this.toggle('login')} className='button'>Login</button>
-              <button onClick={this.toggle('register')} className='button'>Register</button></div>)
-          }
+          <div className='toggle'>
+            {this.state.showing === 'login'
+            ? <a onClick={this.toggle('register')} >Register</a>
+            : this.state.showing === 'register'
+              ? <a onClick={this.toggle('login')}>Login</a>
+              : (<div className='button-wrapper'><button onClick={this.toggle('login')} className='button'>Login</button>
+                <button onClick={this.toggle('register')} className='button'>Register</button></div>)
+            }
+            </div>
         </div>
         <div className='enter-page'>
           <h3><Link to='/games'>ENTER AS A GUEST</Link></h3>
