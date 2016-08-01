@@ -32,7 +32,7 @@ class Preview extends React.Component {
 
           <h1 className='preview-score'>{game.team_a_score}</h1>
 
-          <h1 className='period'></h1>
+          <h1 className='period'>v</h1>
 
           <h1 className='preview-score'>{game.team_b_score}</h1>
 

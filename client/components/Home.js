@@ -2,6 +2,7 @@ import React from 'react'
 import Login from './Login'
 import Register from './Register'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 import { clearError } from '../redux/sessionActions'
 
 /* THIS IS A VERY VERY DUMB COMPONENT*/
@@ -45,7 +46,7 @@ class Home extends React.Component {
           </div>
 
           <div className='enter-page'>
-            <h3><a href='#'>ENTER AS A GUEST</a></h3>
+            <h3><Link to='/games'>ENTER AS A GUEST</Link></h3>
           </div>
         </div>
 

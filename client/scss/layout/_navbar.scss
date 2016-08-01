@@ -8,13 +8,13 @@
 #logo-nav-wrapper {
   display: flex;
   align-items: center;
-  flex: 1;
+  flex: 2;
 }
 
 .nav-links {
   justify-content: flex-end;
   align-items: center;
-  flex: 1;
+  flex: 5;
   display: flex;
   flex-direction: row;
   text-decoration: none;
@@ -26,7 +26,7 @@
 }
 
 #logo-nav {
-  // width: 30%;
+  width: 100%;
   height: 3em;
 }
 
