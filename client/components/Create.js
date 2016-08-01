@@ -11,9 +11,11 @@ import { readCookie } from '../utils'
 momentLocalizer(Moment)
 
 const sports = [
-  'rugby',
+  'basketball',
+  'football',
   'netball',
-  'football'
+  'rugby league',
+  'rugby union'
 ]
 
 class Create extends React.Component {
