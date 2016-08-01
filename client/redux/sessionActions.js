@@ -40,6 +40,22 @@ export const login = (username, password) => {
   }
 }
 
+export const logout = () => {
+  return dispatch => {
+    fetch('/api/logout', { credentials: 'same-origin' })
+      .then(() => {
+        browserHistory.push('/')
+        return dispatch({
+          user: {},
+          type: GET_USER_SUCCESS
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+}
+
 export const register = (username, email, password) => {
   const options = {
     headers: {

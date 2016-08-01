@@ -51,6 +51,7 @@
     "pg": "^6.0.3",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
+    "react-mdl": "^1.6.1",
     "react-redux": "^4.4.5",
     "react-router": "^2.6.0",
     "react-widgets": "^3.4.3",
@@ -73,7 +74,7 @@
     "standard": "^7.1.2",
     "superagent": "^2.1.0",
     "tap-spec": "^4.1.1",
-    "tape": "^4.6.0",    
+    "tape": "^4.6.0",
     "webpack-dev-server": "^1.14.1"
   }
 }
