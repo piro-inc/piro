@@ -73,3 +73,13 @@
   border-radius: 0.4em;
   width: 10em;
 }
+
+.loggedinButton {
+  border-radius: 0.4em;
+  margin-top: 1em;
+  width: 10em;
+    a {
+      color: $piroRed;
+      text-decoration: none;
+    }
+}

@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 import { readCookie } from '../utils'
-import { authenticateUser } from '../redux/sessionActions'
+import { authenticateUser, logout } from '../redux/sessionActions'
+import { IconButton, Menu, MenuItem } from 'react-mdl'
 
 class Navbar extends React.Component {
   constructor (props) {
@@ -14,6 +15,10 @@ class Navbar extends React.Component {
 
   componentDidMount () {
     this.props.authenticateUser(readCookie('user.id'))
+  }
+
+  logout = () => {
+    this.props.logout()
   }
 
   render () {
@@ -34,7 +39,13 @@ class Navbar extends React.Component {
             <Link to='/games/new' id='nav-menu' className='drop-down-menu'>+</Link>
           </div>
         }
-
+        <div style={{position: 'relative'}}>
+          <IconButton name='+' id='demo-menu-lower-right' />
+          <Menu target='demo-menu-lower-right' align='right'>
+            <MenuItem onClick={() => browserHistory.push('/')}>Home</MenuItem>
+            <MenuItem onClick={this.logout}>Logout</MenuItem>
+          </Menu>
+        </div>
       </div>
     )
   }
@@ -50,6 +61,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     authenticateUser: (id) => {
       dispatch(authenticateUser(id))
+    },
+    logout: () => {
+      dispatch(logout())
     }
   }
 }

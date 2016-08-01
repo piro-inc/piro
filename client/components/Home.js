@@ -24,6 +24,11 @@ class Home extends React.Component {
                 Welcome, {this.props.user.username}!
               </a>
             </div>
+            <div id='login'>
+              <button className='loggedinButton'>
+                <a href='/games'>Home</a>
+              </button>
+            </div>
           </div>
         </div>
         : <GuestView clearError={this.props.clearError} />
