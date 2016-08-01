@@ -23,7 +23,7 @@ class Previews extends React.Component {
       <div id='previews-wrapper'>
         <Navbar />
         {this.props.games.length ?
-          games.map((game, key) => {return <Preview key={key} props={game}/>})
+          games.map((game, key) => {return <Preview key={key} game={game}/>})
           :null
         }
         <div id='footer'>
