@@ -33816,19 +33816,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Login = __webpack_require__(267);
+	var _GuestView = __webpack_require__(529);
 
-	var _Login2 = _interopRequireDefault(_Login);
-
-	var _Register = __webpack_require__(268);
-
-	var _Register2 = _interopRequireDefault(_Register);
+	var _GuestView2 = _interopRequireDefault(_GuestView);
 
 	var _reactRedux = __webpack_require__(173);
 
-	var _reactRouter = __webpack_require__(201);
-
 	var _sessionActions = __webpack_require__(200);
+
+	var _utils = __webpack_require__(272);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33838,31 +33834,21 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	/* THIS IS A VERY VERY DUMB COMPONENT*/
-
 	var Home = function (_React$Component) {
 	  _inherits(Home, _React$Component);
 
-	  function Home(props) {
+	  function Home() {
 	    _classCallCheck(this, Home);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Home).call(this, props));
-
-	    _this.toggle = function (showing) {
-	      return function () {
-	        _this.props.clearError();
-	        _this.setState({ showing: showing });
-	      };
-	    };
-
-	    _this.state = {
-	      // state goes here
-	      showing: false
-	    };
-	    return _this;
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Home).apply(this, arguments));
 	  }
 
 	  _createClass(Home, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.props.authenticateUser((0, _utils.readCookie)('user.id'));
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -33873,7 +33859,7 @@
 	          { id: 'logo-wrapper' },
 	          _react2.default.createElement('img', { id: 'logo', src: '/images/logo-main.svg' })
 	        ),
-	        _react2.default.createElement(
+	        this.props.user.id ? _react2.default.createElement(
 	          'div',
 	          { id: 'home-content' },
 	          _react2.default.createElement(
@@ -33881,37 +33867,17 @@
 	            { id: 'input-wrapper' },
 	            _react2.default.createElement(
 	              'div',
-	              { id: 'login' },
-	              this.state.showing === 'login' ? _react2.default.createElement(_Login2.default, null) : _react2.default.createElement(
-	                'button',
-	                { onClick: this.toggle('login'), className: 'button' },
-	                'Login'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { id: 'register' },
-	              this.state.showing === 'register' ? _react2.default.createElement(_Register2.default, null) : _react2.default.createElement(
-	                'button',
-	                { onClick: this.toggle('register'), className: 'button' },
-	                'Register to PIRO'
-	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'enter-page' },
-	            _react2.default.createElement(
-	              'h3',
-	              null,
+	              { id: 'welcome' },
 	              _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: '/games' },
-	                'ENTER AS A GUEST'
+	                'a',
+	                null,
+	                'Welcome, ',
+	                this.props.user.username,
+	                '!'
 	              )
 	            )
 	          )
-	        )
+	        ) : _react2.default.createElement(_GuestView2.default, { clearError: this.props.clearError })
 	      );
 	    }
 	  }]);
@@ -33919,14 +33885,19 @@
 	  return Home;
 	}(_react2.default.Component);
 
-	var mapStateToProps = function mapStateToProps(f) {
-	  return f;
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    user: state.session.get('user').toJS()
+	  };
 	};
 
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 	  return {
 	    clearError: function clearError() {
 	      dispatch((0, _sessionActions.clearError)());
+	    },
+	    authenticateUser: function authenticateUser(id) {
+	      dispatch((0, _sessionActions.authenticateUser)(id));
 	    }
 	  };
 	};
@@ -66857,7 +66828,7 @@
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic,300italic,300);", ""]);
 
 	// module
-	exports.push([module.id, "progress, sub, sup {\n  vertical-align: baseline; }\n\nbutton, hr, input {\n  overflow: visible; }\n\nhtml {\n  font-family: sans-serif;\n  line-height: 1.15;\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%; }\n\nbody {\n  margin: 0; }\n\nfigcaption, menu, article, aside, details, figure, footer, header, main, nav, section, summary {\n  display: block; }\n\naudio, canvas, progress, video {\n  display: inline-block; }\n\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n[hidden], template {\n  display: none; }\n\na {\n  background-color: transparent;\n  -webkit-text-decoration-skip: objects; }\n\na:active, a:hover {\n  outline-width: 0; }\n\nabbr[title] {\n  border-bottom: none;\n  text-decoration: underline;\n  text-decoration: underline dotted; }\n\nb, strong {\n  font-weight: bolder; }\n\ndfn {\n  font-style: italic; }\n\nh1 {\n  font-size: 2em;\n  margin: .67em 0; }\n\nmark {\n  background-color: #ff0;\n  color: #000; }\n\nsmall {\n  font-size: 80%; }\n\nsub, sup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative; }\n\nsub {\n  bottom: -.25em; }\n\nsup {\n  top: -.5em; }\n\nimg {\n  border-style: none; }\n\nsvg:not(:root) {\n  overflow: hidden; }\n\ncode, kbd, pre, samp {\n  font-family: monospace,monospace;\n  font-size: 1em; }\n\nfigure {\n  margin: 1em 40px; }\n\nhr {\n  box-sizing: content-box;\n  height: 0; }\n\nbutton, input, optgroup, select, textarea {\n  font: inherit;\n  margin: 0; }\n\noptgroup {\n  font-weight: 700; }\n\nbutton, select {\n  text-transform: none; }\n\n[type=submit], [type=reset], button, html [type=button] {\n  -webkit-appearance: button; }\n\n[type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner, button::-moz-focus-inner {\n  border-style: none;\n  padding: 0; }\n\n[type=button]:-moz-focusring, [type=reset]:-moz-focusring, [type=submit]:-moz-focusring, button:-moz-focusring {\n  outline: ButtonText dotted 1px; }\n\nfieldset {\n  border: 1px solid silver;\n  margin: 0 2px;\n  padding: .35em .625em .75em; }\n\nlegend {\n  box-sizing: border-box;\n  color: inherit;\n  display: table;\n  max-width: 100%;\n  padding: 0;\n  white-space: normal; }\n\ntextarea {\n  overflow: auto; }\n\n[type=checkbox], [type=radio] {\n  box-sizing: border-box;\n  padding: 0; }\n\n[type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button {\n  height: auto; }\n\n[type=search] {\n  -webkit-appearance: textfield;\n  outline-offset: -2px; }\n\n[type=search]::-webkit-search-cancel-button, [type=search]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\n::-webkit-input-placeholder {\n  color: inherit;\n  opacity: .54; }\n\n::-webkit-file-upload-button {\n  -webkit-appearance: button;\n  font: inherit; }\n\n/*# sourceMappingURL=normalize.min.css.map */\n/* font family */\n/* heading font size */\nbody {\n  background-color: #ffffff;\n  font-family: \"Open Sans\", sans-serif;\n  font-size: 100%;\n  font-weight: 400; }\n\nh1, h2, h3, h4, h5, h6 {\n  font-weight: 500; }\n\ninput {\n  width: 15em;\n  height: 2.5em;\n  background-color: #ef7575;\n  border: none;\n  color: #ffffff;\n  padding-left: 1em; }\n  input:focus {\n    color: #000000;\n    background-color: #ffffff; }\n\nbutton {\n  width: 15em;\n  height: 2.5em;\n  background-color: #ffffff;\n  color: #c70000;\n  border: none; }\n\n#console-wrapper {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n  color: #c70000;\n  align-items: center; }\n  #console-wrapper h3, #console-wrapper h4 {\n    color: #000000;\n    margin: .5em 0; }\n  #console-wrapper button {\n    color: #ffffff; }\n\n.console-timer-wrapper {\n  width: 100%;\n  display: flex;\n  align-items: center;\n  justify-content: space-around;\n  margin-bottom: 0; }\n  .console-timer-wrapper .button {\n    margin: 0;\n    width: 5em;\n    height: 5em;\n    border-radius: 50%;\n    background-color: #ef7575; }\n  .console-timer-wrapper .pause, .console-timer-wrapper .stop {\n    align-self: flex-start; }\n  .console-timer-wrapper #start {\n    background-color: #999999;\n    width: 7em;\n    height: 7em; }\n  .console-timer-wrapper #stop {\n    background-color: #c70000; }\n\n.console-scores-wrapper {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  color: #999999;\n  margin-top: 1em; }\n  .console-scores-wrapper .button {\n    width: 3.5em;\n    height: 3.5em;\n    border-radius: 50%;\n    margin: 0 1em;\n    background-color: #378c59; }\n  .console-scores-wrapper .decrement {\n    background-color: #c70000; }\n\n.console-teamone, .console-teamtwo {\n  display: flex;\n  flex-direction: column;\n  align-items: center; }\n  .console-teamone .team-one-name, .console-teamone .team-two-name, .console-teamtwo .team-one-name, .console-teamtwo .team-two-name {\n    margin-bottom: .2em; }\n  .console-teamone .console-score, .console-teamtwo .console-score {\n    margin: 0 .2em .2em .2em;\n    font-size: 4em;\n    font-weight: 700;\n    width: 99%;\n    text-align: center;\n    background-color: #dddddd; }\n\n#content-wrapper {\n  display: flex;\n  flex-direction: column;\n  align-items: center; }\n\n.add-comment-wrapper, .edit-comment-wrapper {\n  width: 85%;\n  display: flex;\n  flex-direction: column;\n  align-items: center; }\n  .add-comment-wrapper input, .edit-comment-wrapper input {\n    width: 100%;\n    padding: 0;\n    background-color: #ebeaea;\n    border-style: solid 1px #dddddd; }\n  .add-comment-wrapper h3, .edit-comment-wrapper h3 {\n    align-self: flex-start;\n    margin-top: .5em; }\n  .add-comment-wrapper button, .edit-comment-wrapper button {\n    align-self: flex-end;\n    width: 7em;\n    background-color: #378c59;\n    margin: .5em 0 0 0;\n    border-radius: 5px; }\n\n#create-form {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  margin: 0 auto;\n  width: 75%; }\n  #create-form > * {\n    margin: 10px; }\n  #create-form h2 {\n    text-align: center;\n    color: #c70000; }\n\nbutton.create-button {\n  color: #ffffff;\n  background-color: #378c59;\n  border-radius: .25em;\n  width: 6em; }\n\n.round-button {\n  display: flex;\n  justify-content: center; }\n\n#navbar-wrapper {\n  flex: 1; }\n\n#game-wrapper {\n  display: flex;\n  flex-direction: column;\n  align-content: center;\n  background-color: #ffffff;\n  height: 100vh;\n  width: 100%; }\n  #game-wrapper #game-header {\n    display: flex;\n    flex-direction: column;\n    align-content: center;\n    flex: 2; }\n    #game-wrapper #game-header > * {\n      flex: 1;\n      text-align: center; }\n    #game-wrapper #game-header > * {\n      margin: 0.5em 0; }\n\n.game-score-wrapper {\n  display: flex;\n  flex-direction: row;\n  align-content: center;\n  flex: 3; }\n  .game-score-wrapper > * {\n    flex: 1;\n    text-align: center; }\n  .game-score-wrapper .game-score {\n    font-size: 4em;\n    margin: 0.5em 0; }\n\n.comment-history {\n  display: flex;\n  flex-direction: column;\n  align-content: center;\n  background-color: #dddddd;\n  flex: 3;\n  overflow: scroll; }\n  .comment-history .comment {\n    text-align: center;\n    margin: 0.5em 0; }\n  .comment-history .latest {\n    background-color: #dbeae1;\n    font-size: 1.5em;\n    font-style: italic;\n    padding: 0.5em 0.5em; }\n\n#home-wrapper {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n  background: url(\"/images/home-background-image.png\") no-repeat 100%;\n  background-position: center center; }\n\n#logo-wrapper {\n  flex: 2;\n  display: flex;\n  justify-content: center;\n  align-items: flex-end; }\n\n#home-content {\n  display: flex;\n  flex-direction: column;\n  flex: 5; }\n\n#input-wrapper {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  flex: 4; }\n\n#login {\n  display: flex;\n  justify-content: center; }\n\n#register {\n  display: flex;\n  justify-content: center; }\n\n#login-form {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  color: #ffffff; }\n  #login-form input {\n    margin: .2em; }\n\n#register-form {\n  display: flex;\n  flex: 2;\n  flex-direction: column;\n  align-items: center;\n  color: #ffffff; }\n  #register-form input {\n    margin: .2em; }\n\n.enter-page {\n  display: flex;\n  flex: 1;\n  justify-content: center;\n  align-items: flex-start; }\n  .enter-page a {\n    color: #ffffff;\n    text-decoration: none; }\n\n.button {\n  margin: 0.5em;\n  border-radius: 0.4em;\n  width: 10em; }\n\n#previews-wrapper {\n  display: flex;\n  flex-direction: column; }\n\n#preview-all-games {\n  display: flex;\n  flex-direction: column;\n  overflow: scroll; }\n\n#preview {\n  display: flex;\n  flex-direction: column;\n  text-decoration: none;\n  color: #000000; }\n\n.preview-header {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  border: 1px solid #dddddd; }\n\n.team-names {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  border: 1px solid #dddddd; }\n\n.score-wrapper {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  border: 1px solid #dddddd; }\n  .score-wrapper h1 {\n    font-size: 4em; }\n  .score-wrapper .period {\n    font-size: 1em; }\n\n.comments {\n  display: flex;\n  justify-content: center;\n  border: 1px solid #dddddd;\n  background: #dddddd; }\n\n#footer {\n  display: flex;\n  justify-content: center; }\n\n.team-logo {\n  display: none; }\n\n#navbar {\n  background-color: #c70000;\n  display: flex;\n  flex-direction: row;\n  height: 4em; }\n\n#logo-nav-wrapper {\n  display: flex;\n  align-items: center;\n  flex: 2; }\n\n.nav-links {\n  justify-content: flex-end;\n  align-items: center;\n  flex: 5;\n  display: flex;\n  flex-direction: row;\n  text-decoration: none; }\n\n.nav-login-register {\n  margin-right: 1em;\n  color: #ffffff; }\n\n#logo-nav {\n  width: 100%;\n  height: 3em; }\n\n.drop-down-menu {\n  color: #ffffff;\n  text-decoration: none;\n  margin-right: 1em; }\n", ""]);
+	exports.push([module.id, "progress, sub, sup {\n  vertical-align: baseline; }\n\nbutton, hr, input {\n  overflow: visible; }\n\nhtml {\n  font-family: sans-serif;\n  line-height: 1.15;\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%; }\n\nbody {\n  margin: 0; }\n\nfigcaption, menu, article, aside, details, figure, footer, header, main, nav, section, summary {\n  display: block; }\n\naudio, canvas, progress, video {\n  display: inline-block; }\n\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n[hidden], template {\n  display: none; }\n\na {\n  background-color: transparent;\n  -webkit-text-decoration-skip: objects; }\n\na:active, a:hover {\n  outline-width: 0; }\n\nabbr[title] {\n  border-bottom: none;\n  text-decoration: underline;\n  text-decoration: underline dotted; }\n\nb, strong {\n  font-weight: bolder; }\n\ndfn {\n  font-style: italic; }\n\nh1 {\n  font-size: 2em;\n  margin: .67em 0; }\n\nmark {\n  background-color: #ff0;\n  color: #000; }\n\nsmall {\n  font-size: 80%; }\n\nsub, sup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative; }\n\nsub {\n  bottom: -.25em; }\n\nsup {\n  top: -.5em; }\n\nimg {\n  border-style: none; }\n\nsvg:not(:root) {\n  overflow: hidden; }\n\ncode, kbd, pre, samp {\n  font-family: monospace,monospace;\n  font-size: 1em; }\n\nfigure {\n  margin: 1em 40px; }\n\nhr {\n  box-sizing: content-box;\n  height: 0; }\n\nbutton, input, optgroup, select, textarea {\n  font: inherit;\n  margin: 0; }\n\noptgroup {\n  font-weight: 700; }\n\nbutton, select {\n  text-transform: none; }\n\n[type=submit], [type=reset], button, html [type=button] {\n  -webkit-appearance: button; }\n\n[type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner, button::-moz-focus-inner {\n  border-style: none;\n  padding: 0; }\n\n[type=button]:-moz-focusring, [type=reset]:-moz-focusring, [type=submit]:-moz-focusring, button:-moz-focusring {\n  outline: ButtonText dotted 1px; }\n\nfieldset {\n  border: 1px solid silver;\n  margin: 0 2px;\n  padding: .35em .625em .75em; }\n\nlegend {\n  box-sizing: border-box;\n  color: inherit;\n  display: table;\n  max-width: 100%;\n  padding: 0;\n  white-space: normal; }\n\ntextarea {\n  overflow: auto; }\n\n[type=checkbox], [type=radio] {\n  box-sizing: border-box;\n  padding: 0; }\n\n[type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button {\n  height: auto; }\n\n[type=search] {\n  -webkit-appearance: textfield;\n  outline-offset: -2px; }\n\n[type=search]::-webkit-search-cancel-button, [type=search]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\n::-webkit-input-placeholder {\n  color: inherit;\n  opacity: .54; }\n\n::-webkit-file-upload-button {\n  -webkit-appearance: button;\n  font: inherit; }\n\n/*# sourceMappingURL=normalize.min.css.map */\n/* font family */\n/* heading font size */\nbody {\n  background-color: #ffffff;\n  font-family: \"Open Sans\", sans-serif;\n  font-size: 100%;\n  font-weight: 400; }\n\nh1, h2, h3, h4, h5, h6 {\n  font-weight: 500; }\n\ninput {\n  width: 15em;\n  height: 2.5em;\n  background-color: #ef7575;\n  border: none;\n  color: #ffffff;\n  padding-left: 1em; }\n  input:focus {\n    color: #000000;\n    background-color: #ffffff; }\n\nbutton {\n  width: 15em;\n  height: 2.5em;\n  background-color: #ffffff;\n  color: #c70000;\n  border: none; }\n\n#console-wrapper {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n  color: #c70000;\n  align-items: center; }\n  #console-wrapper h3, #console-wrapper h4 {\n    color: #000000;\n    margin: .5em 0; }\n  #console-wrapper button {\n    color: #ffffff; }\n\n.console-timer-wrapper {\n  width: 100%;\n  display: flex;\n  align-items: center;\n  justify-content: space-around;\n  margin-bottom: 0; }\n  .console-timer-wrapper .button {\n    margin: 0;\n    width: 5em;\n    height: 5em;\n    border-radius: 50%;\n    background-color: #ef7575; }\n  .console-timer-wrapper .pause, .console-timer-wrapper .stop {\n    align-self: flex-start; }\n  .console-timer-wrapper #start {\n    background-color: #999999;\n    width: 7em;\n    height: 7em; }\n  .console-timer-wrapper #stop {\n    background-color: #c70000; }\n\n.console-scores-wrapper {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  color: #999999;\n  margin-top: 1em; }\n  .console-scores-wrapper .button {\n    width: 3.5em;\n    height: 3.5em;\n    border-radius: 50%;\n    margin: 0 1em;\n    background-color: #378c59; }\n  .console-scores-wrapper .decrement {\n    background-color: #c70000; }\n\n.console-teamone, .console-teamtwo {\n  display: flex;\n  flex-direction: column;\n  align-items: center; }\n  .console-teamone .team-one-name, .console-teamone .team-two-name, .console-teamtwo .team-one-name, .console-teamtwo .team-two-name {\n    margin-bottom: .2em; }\n  .console-teamone .console-score, .console-teamtwo .console-score {\n    margin: 0 .2em .2em .2em;\n    font-size: 4em;\n    font-weight: 700;\n    width: 99%;\n    text-align: center;\n    background-color: #dddddd; }\n\n#content-wrapper {\n  display: flex;\n  flex-direction: column;\n  align-items: center; }\n\n.add-comment-wrapper, .edit-comment-wrapper {\n  width: 85%;\n  display: flex;\n  flex-direction: column;\n  align-items: center; }\n  .add-comment-wrapper input, .edit-comment-wrapper input {\n    width: 100%;\n    padding: 0;\n    background-color: #ebeaea;\n    border-style: solid 1px #dddddd; }\n  .add-comment-wrapper h3, .edit-comment-wrapper h3 {\n    align-self: flex-start;\n    margin-top: .5em; }\n  .add-comment-wrapper button, .edit-comment-wrapper button {\n    align-self: flex-end;\n    width: 7em;\n    background-color: #378c59;\n    margin: .5em 0 0 0;\n    border-radius: 5px; }\n\n#create-form {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  margin: 0 auto;\n  width: 75%; }\n  #create-form > * {\n    margin: 10px; }\n  #create-form h2 {\n    text-align: center;\n    color: #c70000; }\n\nbutton.create-button {\n  color: #ffffff;\n  background-color: #378c59;\n  border-radius: .25em;\n  width: 6em; }\n\n.round-button {\n  display: flex;\n  justify-content: center; }\n\n#navbar-wrapper {\n  flex: 1; }\n\n#game-wrapper {\n  display: flex;\n  flex-direction: column;\n  align-content: center;\n  background-color: #ffffff;\n  height: 100vh;\n  width: 100%; }\n  #game-wrapper #game-header {\n    display: flex;\n    flex-direction: column;\n    align-content: center;\n    flex: 2; }\n    #game-wrapper #game-header > * {\n      flex: 1;\n      text-align: center; }\n    #game-wrapper #game-header > * {\n      margin: 0.5em 0; }\n\n.game-score-wrapper {\n  display: flex;\n  flex-direction: row;\n  align-content: center;\n  flex: 3; }\n  .game-score-wrapper > * {\n    flex: 1;\n    text-align: center; }\n  .game-score-wrapper .game-score {\n    font-size: 4em;\n    margin: 0.5em 0; }\n\n.comment-history {\n  display: flex;\n  flex-direction: column;\n  align-content: center;\n  background-color: #dddddd;\n  flex: 3;\n  overflow: scroll; }\n  .comment-history .comment {\n    text-align: center;\n    margin: 0.5em 0; }\n  .comment-history .latest {\n    background-color: #dbeae1;\n    font-size: 1.5em;\n    font-style: italic;\n    padding: 0.5em 0.5em; }\n\n#home-wrapper {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n  background: url(\"/images/home-background-image.png\") no-repeat 100%;\n  background-position: center center; }\n\n#welcome {\n  color: #ffffff; }\n\n#logo-wrapper {\n  flex: 2;\n  display: flex;\n  justify-content: center;\n  align-items: flex-end; }\n\n#home-content {\n  display: flex;\n  flex-direction: column;\n  flex: 5; }\n\n#input-wrapper {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  flex: 4; }\n\n#login, #register, #welcome {\n  display: flex;\n  justify-content: center; }\n\n#login-form {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  color: #ffffff; }\n  #login-form input {\n    margin: .2em; }\n\n#register-form {\n  display: flex;\n  flex: 2;\n  flex-direction: column;\n  align-items: center;\n  color: #ffffff; }\n  #register-form input {\n    margin: .2em; }\n\n.enter-page {\n  display: flex;\n  flex: 1;\n  justify-content: center;\n  align-items: flex-start; }\n  .enter-page a {\n    color: #ffffff;\n    text-decoration: none; }\n\n.button {\n  margin: 0.5em;\n  border-radius: 0.4em;\n  width: 10em; }\n\n#previews-wrapper {\n  display: flex;\n  flex-direction: column; }\n\n#preview-all-games {\n  display: flex;\n  flex-direction: column;\n  overflow: scroll; }\n\n#preview {\n  display: flex;\n  flex-direction: column;\n  text-decoration: none;\n  color: #000000; }\n\n.preview-header {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  border: 1px solid #dddddd; }\n\n.team-names {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  border: 1px solid #dddddd; }\n\n.score-wrapper {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  border: 1px solid #dddddd; }\n  .score-wrapper h1 {\n    font-size: 4em; }\n  .score-wrapper .period {\n    font-size: 1em; }\n\n.comments {\n  display: flex;\n  justify-content: center;\n  border: 1px solid #dddddd;\n  background: #dddddd; }\n\n#footer {\n  display: flex;\n  justify-content: center; }\n\n.team-logo {\n  display: none; }\n\n#navbar {\n  background-color: #c70000;\n  display: flex;\n  flex-direction: row;\n  height: 4em; }\n\n#logo-nav-wrapper {\n  display: flex;\n  align-items: center;\n  flex: 2; }\n\n.nav-links {\n  justify-content: flex-end;\n  align-items: center;\n  flex: 5;\n  display: flex;\n  flex-direction: row;\n  text-decoration: none; }\n\n.nav-login-register {\n  margin-right: 1em;\n  color: #ffffff; }\n\n#logo-nav {\n  width: 100%;\n  height: 3em; }\n\n.drop-down-menu {\n  color: #ffffff;\n  text-decoration: none;\n  margin-right: 1em; }\n", ""]);
 
 	// exports
 
@@ -67300,6 +67271,112 @@
 	  self.fetch.polyfill = true
 	})(typeof self !== 'undefined' ? self : this);
 
+
+/***/ },
+/* 529 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(201);
+
+	var _Login = __webpack_require__(267);
+
+	var _Login2 = _interopRequireDefault(_Login);
+
+	var _Register = __webpack_require__(268);
+
+	var _Register2 = _interopRequireDefault(_Register);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var GuestView = function (_React$Component) {
+	  _inherits(GuestView, _React$Component);
+
+	  function GuestView(props) {
+	    _classCallCheck(this, GuestView);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(GuestView).call(this, props));
+
+	    _this.toggle = function (showing) {
+	      return function () {
+	        _this.props.clearError();
+	        _this.setState({ showing: showing });
+	      };
+	    };
+
+	    _this.state = {
+	      // state goes here
+	      showing: false
+	    };
+	    return _this;
+	  }
+
+	  _createClass(GuestView, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { id: 'home-content' },
+	        _react2.default.createElement(
+	          'div',
+	          { id: 'input-wrapper' },
+	          _react2.default.createElement(
+	            'div',
+	            { id: 'login' },
+	            this.state.showing === 'login' ? _react2.default.createElement(_Login2.default, null) : _react2.default.createElement(
+	              'button',
+	              { onClick: this.toggle('login'), className: 'button' },
+	              'Login'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { id: 'register' },
+	            this.state.showing === 'register' ? _react2.default.createElement(_Register2.default, null) : _react2.default.createElement(
+	              'button',
+	              { onClick: this.toggle('register'), className: 'button' },
+	              'Register to PIRO'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'enter-page' },
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: '/games' },
+	              'ENTER AS A GUEST'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return GuestView;
+	}(_react2.default.Component);
+
+	exports.default = GuestView;
 
 /***/ }
 /******/ ]);
