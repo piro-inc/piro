@@ -71,11 +71,15 @@
 }
 
 .error {
-  border: 1px solid red;
+  border: 2px solid red;
 }
 
 .error-container {
-  font-size: .7em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: .8em;
+
 }
 
 .enter-page {

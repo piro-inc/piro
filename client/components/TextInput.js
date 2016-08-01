@@ -3,7 +3,6 @@ import React from 'react'
 class TextInput extends React.Component {
   render () {
     let classNames = this.props.className;
-
     if (this.props.error) {
       classNames += " error"
     }
@@ -30,11 +29,3 @@ class TextInput extends React.Component {
 }
 
 export default TextInput
-
-//classNames
-//disabled
-//error
-//placeholder
-//value
-//onChange
-//onBlur
