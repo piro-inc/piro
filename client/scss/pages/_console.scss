@@ -14,36 +14,6 @@ button {
   color: $white;
 
 }
-#navbar-wrapper {
-  // flex: 5;
-}
-
-#navbar {
-  display: flex;
-  flex-direction: row;
-  background-color: $piroRed;
-}
-
-#logo-nav-wrapper {
-  flex: 2;
-}
-
-#logo-nav {
-  width: 100%;
-}
-
-.nav-links {
-  display: flex;
-  flex: 5;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 .5em;
-  a {
-    color: white;
-    text-decoration: none;
-  }
-}
 
 .console-timer-wrapper {
   width: 100%;
