@@ -20,9 +20,9 @@ class Navbar extends React.Component {
     const user = this.props.user
     return (
       <div id='navbar'>
-        <div id='logo-nav-wrapper'>
+        <Link to='/games' id='logo-nav-wrapper'>
           <img id='logo-nav' src='/images/logo-nav.svg' />
-        </div>
+        </Link>
 
         {!user.username
           ? <Link to='/' className='nav-links'>
