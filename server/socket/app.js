@@ -1,7 +1,7 @@
 const updateGame = require('../database/games_utils').updateGame
 const addComment = require('../database/comments_utils').addComment
-const followGame = require('../database/games_utils').followGame
-const unfollowGame = require('../database/games_utils').unfollowGame
+const followGame = require('../database/follow').followGame
+const unfollowGame = require('../database/follow').unfollowGame
 
 // elapsed: '00:00:00' with every socket
 function socketServer (io) {
