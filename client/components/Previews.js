@@ -6,6 +6,13 @@ import { followGame, unfollowGame } from '../redux/socketActions'
 import Preview from './Preview'
 import Navbar from './Navbar'
 
+function sortByMostRecent(games) {
+  const compareGames = (a, b) => {
+    return new Date(a.date_time) - new Date(b.date_time)
+  }
+  return games.sort(compareGames)
+}
+
 class Previews extends React.Component {
   constructor (props) {
     super(props)
@@ -19,21 +26,21 @@ class Previews extends React.Component {
   }
 
   render () {
-    const games = this.props.games || []
-    const userID = this.props.user.id
+    const games = sortByMostRecent(this.props.games) || []
+    const userId = this.props.user.id
     return (
       <div id='previews-wrapper'>
         <Navbar />
         <div id='preview-all-games'>
-          {(this.props.games &&
-          this.props.games.length &&
-          this.props.games.filter(game => game.showing).length)
+          {(games &&
+          games.length &&
+          games.filter(game => game.showing).length)
           ? games.map((game, key) => {
             return (game.showing &&
               <Preview
                 key={key}
                 game={game}
-                userID={userID}
+                userID={userId}
                 followGame={this.props.followGame}
                 unfollowGame={this.props.unfollowGame} />)
           })
