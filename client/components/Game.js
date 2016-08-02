@@ -19,10 +19,13 @@ class Game extends React.Component {
   render () {
     const currentGame = this.props.game
     let date
+    let time
     if (currentGame.game) {
       const newDate = new Date(currentGame.game.date_time)
-      date = newDate.toUTCString()
+      date = newDate.toDateString()
+      time = newDate.toTimeString()
       date = date.replace(/GMT/, '')
+      time = time.replace(/GMT/, '')
     }
     let orderedComments
     if (currentGame.comments) {
@@ -38,7 +41,7 @@ class Game extends React.Component {
         <div id='game-header'>
           <h2 className='sport-name'>{currentGame.game && currentGame.game.sport_name}</h2>
           <h3 className='division'>Division</h3>  {/*No division in database yet*/}
-          <h3 className='date-time'>{date}</h3>
+          <h3 className='date-time'>{date} | {time}</h3>
           <h3 className='match-location'>{currentGame.game && currentGame.game.location}</h3>
         </div>
 
