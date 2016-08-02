@@ -1,14 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import ReactTimeout from 'react-timeout'
-import { IconButton } from 'react-mdl'
 
 import { changeTeamScore, startGame, stopGame, addComment, togglePause } from '../redux/socketActions'
 import { clearGame, fetchGameInfo } from '../redux/gamesActions'
 import { authenticateGame } from '../redux/sessionActions'
 import { readCookie } from '../utils'
 import Navbar from './Navbar'
-
 
 class Console extends React.Component {
   constructor (props) {
