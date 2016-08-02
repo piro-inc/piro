@@ -341,25 +341,26 @@ test('Get all games with a following flag', function (t) {
 test('User follows a game', function (t) {
   const userId = 1
   const gameId = 3
-  // knex.migrate.rollback()
-  //   .then(() => knex.migrate.latest())
-  //   .then(() => knex.seed.run())
-  //   .then(() => {
-  //     return follow.followGame(userId, gameId)
-  //   })
   knex('following_join')
     .then(res => {
-      console.log(res)
+      console.log('following join before', res)
+      return follow.followGame(userId, gameId)
     })
-  follow.followGame(userId, gameId)
     .then((res) => {
       t.ok(1, 'followed game')
       return gamesUtils.getGamesInfo(userId)
     })
     .then((gamesInfo) => {
-      t.ok(gamesInfo.find((gameInfo) => {
-        return gameInfo.id === gameId
-      }), 'game is followed')
+      const followedGame = gamesInfo.find((gameInfo) => { return gameInfo.id === gameId })
+      t.equal(followedGame.following, true, 'game is followed')
+      return follow.followGame(userId, gameId)
+    })
+    .then((res) => {
+      t.notOk(res, 'user cant duplicate followed game')
+      return knex('following_join')
+    })
+    .then((followinJoin) => {
+      console.log('followinJoin', followinJoin)
       t.end()
     })
     .catch((err) => {
@@ -375,21 +376,18 @@ test('User unfollows a game', function (t) {
   knex('following_join')
     .then(res => {
       console.log(res)
+      return follow.unfollowGame(userId, gameId)
     })
-    .catch(err => {
-      console.log(err)
-    })
-
-  follow.unfollowGame(userId, gameId)
     .then((res) => {
-      t.ok(1, 'followed game')
-      return gamesUtils.getGamesInfo(userId)
+      console.log('RES HEREs', res)
+      t.ok(1, 'unfollowed game')
+      return knex('following_join')
     })
-    .then((gamesInfo) => {
-      console.log('gamesInfo', gamesInfo)
-      t.notOk(gamesInfo.find((gameInfo) => {
-        return gameInfo.id === gameId
-      }), 'game is followed')
+    .then((followJoin) => {
+      console.log('followJoin', followJoin)
+      // t.notOk(gamesInfo.find((gameInfo) => {
+      //   return gameInfo.id === gameId
+      // }), 'game is followed')
       t.end()
     })
     .catch((err) => {
