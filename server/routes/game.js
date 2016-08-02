@@ -20,7 +20,8 @@ router.post('/:id', authenticateUserId, (req, res, next) => {
 })
 
 router.get('/', (req, res, next) => {
-  gameUtils.getGamesInfo()
+  const id = req.cookies['user.id']
+  gameUtils.getGamesInfo(parseInt(id))
     .then(games => {
       if (games) {
         res.json(games)

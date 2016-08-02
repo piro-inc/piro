@@ -1,5 +1,7 @@
 const updateGame = require('../database/games_utils').updateGame
 const addComment = require('../database/comments_utils').addComment
+const followGame = require('../database/follow').followGame
+const unfollowGame = require('../database/follow').unfollowGame
 
 // elapsed: '00:00:00' with every socket
 function socketServer (io) {
@@ -71,6 +73,28 @@ function socketServer (io) {
 
       addComment(newData)
         .then(obj => {
+          io.emit('globalUpdate', { id: parseInt(data.gameId) })
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    })
+
+    socket.on('followGame', (data) => {
+      // { gameId: '1', id: '1' }
+      followGame(data.id, data.gameId)
+        .then(() => {
+          io.emit('globalUpdate', { id: parseInt(data.gameId) })
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    })
+
+    socket.on('unfollowGame', (data) => {
+      // { gameId: '1', id: '1' }
+      unfollowGame(data.id, data.gameId)
+        .then(() => {
           io.emit('globalUpdate', { id: parseInt(data.gameId) })
         })
         .catch(err => {
