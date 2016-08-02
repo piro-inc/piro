@@ -15,7 +15,11 @@ const reducer = (state = initialState, action) => {
     case gamesActions.GET_GAMES_SUCCESS:
       return state.set('games', fromJS(action.games))
     case gamesActions.CREATE_GAME_SUCCESS:
-      return state.set('games', state.get('games').push(fromJS(action.game)))
+      return state
+        .set('currentGame', fromJS(action.game))
+        .set('games', state.get('games').push(fromJS(action.game)))
+    case gamesActions.CLEAR_GAME:
+      return state.set('currentGame', fromJS({}))
     default:
       return state
   }
