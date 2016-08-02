@@ -18,6 +18,8 @@ const reducer = (state = initialState, action) => {
       state.set('currentGame', fromJS(action.game))
       state.set('games', state.get('games').push(fromJS(action.game)))
       return state
+    case gamesActions.CLEAR_GAME:
+      return state.set('currentGame', fromJS({}))
     default:
       return state
   }

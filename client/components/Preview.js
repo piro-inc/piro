@@ -11,8 +11,6 @@ class Preview extends React.Component {
   render () {
     const game = this.props.game
     const userID = this.props.userID
-    console.log('userID :', userID)
-    console.log('Game Owner :', game.user_id)
     return (
       <div id='preview'>
         <Link to={`/games/${game.id}`} className='preview-header'>

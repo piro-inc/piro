@@ -27,7 +27,7 @@ function socketServer (io) {
       // { gameId: '1', id: null }
       const searchParams = { id: data.gameId }
       console.log(data)
-      const updateInfo = { is_running: true, is_started: true, time_elapsed: data.elapsed }
+      const updateInfo = { is_running: true, is_started: true, time_elapsed: 0 }
       updateGame(searchParams, updateInfo)
         .then(arr => {
           io.emit('globalUpdate', { id: arr[0] })
