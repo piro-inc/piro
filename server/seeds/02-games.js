@@ -7,7 +7,7 @@ exports.seed = function (knex, Promise) {
         // Inserts seed entries
         knex('games').insert({
           user_id: 1,
-          date_time: 990108,
+          date_time: 170108,
           location: 'EDA',
           team_a_name: 'the fun team',
           team_b_name: 'the other guys',
@@ -15,7 +15,7 @@ exports.seed = function (knex, Promise) {
         }),
         knex('games').insert({
           user_id: 1,
-          date_time: 150108,
+          date_time: 180108,
           location: 'Vivian St',
           team_a_name: 'the ok team',
           team_b_name: 'the other team',
@@ -28,7 +28,7 @@ exports.seed = function (knex, Promise) {
         }),
         knex('games').insert({
           user_id: 2,
-          date_time: 160108,
+          date_time: 190108,
           location: 'Cuba St',
           team_a_name: 'the great team',
           team_b_name: 'the others',
