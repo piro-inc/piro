@@ -1,4 +1,4 @@
-import { fromJS, toJS } from 'immutable'
+import { fromJS } from 'immutable'
 import * as gamesActions from './gamesActions'
 // import * as socketActions from './socketActions'
 
@@ -18,10 +18,9 @@ const reducer = (state = initialState, action) => {
       const newState = state.set('games', fromJS(action.games))
       return newState.set('active', fromJS(action.games))
     case gamesActions.FILTER_GAMES:
-      console.log("Reducer Action User ID", action.userID)
-      const games = toJS(state.get('games'))
-      const filtered = games.filter(game => game.userID === action.userID)
-      return state.set('active', filtered)
+      const games = state.get('games').toJS()
+      const filtered = games.filter(game => game.user_id === action.userID)
+      return state.set('active', fromJS(filtered))
     case gamesActions.CREATE_GAME_SUCCESS:
       return state.set('games', state.get('games').push(fromJS(action.game)))
     default:

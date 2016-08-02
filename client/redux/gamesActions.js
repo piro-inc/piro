@@ -151,7 +151,6 @@ export const startGame = () => {
 export const FILTER_GAMES = 'FILTER_GAMES'
 
 export const filterGames = (userID) => {
-  console.log("Reducer Action: ", userID)
   return {
     type: FILTER_GAMES,
     userID: userID
