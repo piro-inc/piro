@@ -3,6 +3,7 @@ const test = require('tape')
 const dbUtils = require('../database/utils')
 const commentUtils = require('../database/comments_utils')
 const gamesUtils = require('../database/games_utils')
+const follow = require('../database/follow')
 
 const knex = dbUtils.knex
 
@@ -328,8 +329,73 @@ test('Get all games with a following flag', function (t) {
         t.equal(gameInfo.following, expected.find((game) => game.id === gameInfo.id).following, 'Game info following = expected')
       })
     })
+    .catch((err) => {
+      t.ok(0, err)
+      t.end()
+    })
   t.ok(1)
   t.end()
+})
+
+/** **    Follow   ****/
+test('User follows a game', function (t) {
+  const userId = 1
+  const gameId = 3
+  // knex.migrate.rollback()
+  //   .then(() => knex.migrate.latest())
+  //   .then(() => knex.seed.run())
+  //   .then(() => {
+  //     return follow.followGame(userId, gameId)
+  //   })
+  knex('following_join')
+    .then(res => {
+      console.log(res)
+    })
+  follow.followGame(userId, gameId)
+    .then((res) => {
+      t.ok(1, 'followed game')
+      return gamesUtils.getGamesInfo(userId)
+    })
+    .then((gamesInfo) => {
+      t.ok(gamesInfo.find((gameInfo) => {
+        return gameInfo.id === gameId
+      }), 'game is followed')
+      t.end()
+    })
+    .catch((err) => {
+      t.ok(0, err)
+      t.end()
+    })
+})
+
+test('User unfollows a game', function (t) {
+  const userId = 1
+  const gameId = 2
+
+  knex('following_join')
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+
+  follow.unfollowGame(userId, gameId)
+    .then((res) => {
+      t.ok(1, 'followed game')
+      return gamesUtils.getGamesInfo(userId)
+    })
+    .then((gamesInfo) => {
+      console.log('gamesInfo', gamesInfo)
+      t.notOk(gamesInfo.find((gameInfo) => {
+        return gameInfo.id === gameId
+      }), 'game is followed')
+      t.end()
+    })
+    .catch((err) => {
+      t.ok(0, err)
+      t.end()
+    })
 })
 
 /** **    Users    ****/

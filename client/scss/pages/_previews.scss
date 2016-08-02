@@ -21,6 +21,16 @@
   box-shadow: 1px 1px 5px #999999;
 }
 
+
+.manage-follow-header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #b6adad;
+  #manage-icon {
+    color: black;
+  }
+}
+
 .preview-header {
   display: flex;
   flex-direction: row;

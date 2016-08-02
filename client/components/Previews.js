@@ -25,7 +25,9 @@ class Previews extends React.Component {
         <Navbar />
         <div id='preview-all-games'>
           {this.props.games.length &&
-            games.map((game, key) => { return <Preview key={key} game={game} userID={userID} /> })
+            games.map((game, key) => {
+              return <Preview key={key} game={game} userID={userID} />
+            })
           }
         </div>
         <div id='footer'>
@@ -38,7 +40,7 @@ class Previews extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    games: state.games.get('games').toJS(),
+    games: state.games.get('active').toJS(),
     user: state.session.get('user').toJS()
   }
 }
