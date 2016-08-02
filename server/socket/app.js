@@ -65,12 +65,7 @@ function socketServer (io) {
     })
 
     socket.on('addComment', (data) => {
-      // { comment: 'dsfsasd', gameId: '1', id: '1' }
-      const newData = {
-        game_id: data.gameId,
-        comment: data.comment
-      }
-
+      // { comment: 'dgames_utilscomment  }
       addComment(newData)
         .then(obj => {
           io.emit('globalUpdate', { id: parseInt(data.gameId) })
@@ -82,9 +77,10 @@ function socketServer (io) {
 
     socket.on('followGame', (data) => {
       // { gameId: '1', id: '1' }
-      followGame(data.id, data.gameId)
+      console.log(data)
+      followGame(parseInt(data.id), parseInt(data.gameId))
         .then(() => {
-          io.emit('globalUpdate', { id: parseInt(data.gameId) })
+          // io.emit('globalUpdate', { id: parseInt(data.gameId) })
         })
         .catch(err => {
           console.log(err)
@@ -93,9 +89,10 @@ function socketServer (io) {
 
     socket.on('unfollowGame', (data) => {
       // { gameId: '1', id: '1' }
-      unfollowGame(data.id, data.gameId)
+      console.log(data)
+      unfollowGame(parseInt(data.id), parseInt(data.gameId))
         .then(() => {
-          io.emit('globalUpdate', { id: parseInt(data.gameId) })
+          // io.emit('globalUpdate', { id: parseInt(data.gameId) })
         })
         .catch(err => {
           console.log(err)
