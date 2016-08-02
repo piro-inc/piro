@@ -112,7 +112,6 @@ class Console extends React.Component {
 
   render () {
     const currentGame = this.props.game
-    console.log('what id', currentGame)
     let orderedComments
     if (currentGame.comments) {
       orderedComments = currentGame.comments.slice().reverse()
@@ -132,7 +131,7 @@ class Console extends React.Component {
           </div>
 
           <div id='content-wrapper'>
-            <h4 className='console-title'>#{this.props.game.game.id} {this.props.game.game && this.props.game.game.sport_name}</h4>
+            <h4 className='console-title'>{this.props.game.game && this.props.game.game.sport_name}</h4>
             <h4 className='console-complete'>{this.props.game.game && this.props.game.game.is_complete && 'Game is complete.'}</h4>
 
             <div className='console-timer-wrapper'>
