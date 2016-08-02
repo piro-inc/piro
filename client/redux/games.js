@@ -18,12 +18,11 @@ const reducer = (state = initialState, action) => {
       return newState.set('active', fromJS(action.games))
     case gamesActions.FILTER_MY_GAMES:
       const games = state.get('games').toJS()
-      const filtered = games.filter(game => game.user_id === action.userID)
-      return state.set('active', fromJS(filtered))
-    // case gamesActions.FILTER_GAMES:
-    //   const games = state.get('games').toJS()
-    //   const filtered = games.filter(game => game.user_id === action.userID)
-    //   return state.set('active', fromJS(filtered))
+      const myGames = games.filter(game => game.user_id === action.userID)
+      return state.set('active', fromJS(myGames))
+    case gamesActions.FILTER_FOLLOW_GAMES:
+      const followingGames = state.get('games').toJS().filter(game => game.following)
+      return state.set('active', fromJS(followingGames))
     case gamesActions.CREATE_GAME_SUCCESS:
       return state
         .set('currentGame', fromJS(action.game))
