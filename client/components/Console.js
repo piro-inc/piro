@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { changeTeamScore, startGame, stopGame, addComment, togglePause } from '../redux/socketActions'
-import { fetchGameInfo } from '../redux/gamesActions'
+import { clearGame, fetchGameInfo } from '../redux/gamesActions'
 import { authenticateGame } from '../redux/sessionActions'
 import { readCookie } from '../utils'
 import Navbar from './Navbar'
@@ -16,6 +16,10 @@ class Console extends React.Component {
       timer: 0,
       syncTime: false
     }
+  }
+
+  componentWillMount () {
+    this.props.clearGame()
   }
 
   componentDidMount () {
@@ -76,7 +80,8 @@ class Console extends React.Component {
   }
 
   startGame = () => {
-    this.props.startGame(this.state.timer, this.props.params.id)
+    this.props.startGame(this.props.params.id)
+    this.setState({ syncTime: true })
   }
 
   stopGame = () => {
@@ -214,14 +219,17 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    clearGame: () => {
+      dispatch(clearGame())
+    },
     authenticateGame: (id, gameId) => {
       dispatch(authenticateGame(id, gameId))
     },
     changeTeamScore: (elapsed, team, newScore, gameId) => {
       dispatch(changeTeamScore(elapsed, team, newScore, gameId))
     },
-    startGame: (elapsed, gameId) => {
-      dispatch(startGame(elapsed, gameId))
+    startGame: (gameId) => {
+      dispatch(startGame(gameId))
     },
     togglePause: (elapsed, bool, gameId) => {
       dispatch(togglePause(elapsed, bool, gameId))
