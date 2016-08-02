@@ -14,11 +14,12 @@
     "start:watch": "nodemon ./server/bin/www",
     "test:client": "cd client && babel-tape-runner test/*.js | tap-spec",
     "test:server": "cd server && tape test/*.js | tap-spec",
-    "database": "cd server && knex migrate:rollback && knex migrate:latest && knex seed:run",
+    "database:reset": "cd server && knex migrate:rollback && knex migrate:latest && knex seed:run",
     "test": "npm run lint && npm run test:client",
     "build": "cd client && webpack --progress --profile --colors",
     "build:watch": "cd client && webpack --progress --profile --colors --watch",
-    "lint": "standard --fix",
+    "fixlint": "standard-format -w",
+    "lint": "standard",
     "dev": "cd client && webpack-dev-server --hot --inline --history-api-fallback"
   },
   "keywords": [

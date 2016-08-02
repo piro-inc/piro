@@ -10,11 +10,9 @@ function socketServer (io) {
         if (!err) {
           const searchParams = { id: data.gameId }
           const updateInfo = {}
-          if (data.team === 'one') {
-            updateInfo.team_a_score = data.newScore
-          } else if (data.team === 'two') {
-            updateInfo.team_b_score = data.newScore
-          }
+
+          updateInfo[data.team] = data.newScore
+
           updateGame(searchParams, updateInfo)
             .then(arr => {
               io.emit('globalUpdate', { id: arr[0] })

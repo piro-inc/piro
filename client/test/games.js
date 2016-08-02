@@ -7,15 +7,15 @@ test('Games reducer', (t) => {
   const game = { team_a: 'hello' }
   store.dispatch({
     game,
-    type: gamesActions.GET_GAME_SUCCESS
+    type: gamesActions.SET_CURRENT_GAME
   })
 
-  t.deepEqual(store.getState().games.get('currentGame').toJS(), game, 'GET_GAME_SUCCESS updates store correctly')
+  t.deepEqual(store.getState().games.get('currentGame').toJS(), game, 'SET_CURRENT_GAME updates store correctly')
   const games = [
     { team_a: 'hello', sport: 'soccer' },
     { team_a: 'hello', sport: 'hockey' }
   ]
-
+//start a new test here.
   store.dispatch({
     games,
     type: gamesActions.GET_GAMES_SUCCESS

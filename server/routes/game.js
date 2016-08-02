@@ -7,14 +7,11 @@ router.post('/:id', authenticateUserId, (req, res, next) => {
   // create a new game
   const data = req.body
   data.user_id = req.params.id
-  console.log(data)
   gameUtils.addGame(data)
     .then(id => {
-      console.log(id)
       res.json({ id })
     })
     .catch(err => {
-      console.log(err)
       res.json(err)
     })
 })
@@ -29,8 +26,7 @@ router.get('/', (req, res, next) => {
       }
     })
     .catch(err => {
-      console.error(err)
-      res.json(err)
+      res.sendStatus(404)
     })
 })
 
