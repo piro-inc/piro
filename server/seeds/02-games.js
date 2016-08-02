@@ -23,7 +23,7 @@ exports.seed = function (knex, Promise) {
           team_a_score: 4,
           team_b_score: 2,
           sport_name: 'coding',
-          time_elapsed: '00:00:00',
+          time_elapsed: 0,
           is_running: false
         }),
         knex('games').insert({
@@ -36,7 +36,7 @@ exports.seed = function (knex, Promise) {
           team_a_score: 1,
           team_b_score: 1,
           sport_name: 'hackysack',
-          time_elapsed: '00:00:00',
+          time_elapsed: 0,
           is_running: false
         })
       ])
