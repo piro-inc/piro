@@ -82,9 +82,10 @@ function socketServer (io) {
 
     socket.on('followGame', (data) => {
       // { gameId: '1', id: '1' }
-      followGame(data.id, data.gameId)
+      console.log(data)
+      followGame(parseInt(data.id), parseInt(data.gameId))
         .then(() => {
-          io.emit('globalUpdate', { id: parseInt(data.gameId) })
+          // io.emit('globalUpdate', { id: parseInt(data.gameId) })
         })
         .catch(err => {
           console.log(err)
@@ -93,9 +94,10 @@ function socketServer (io) {
 
     socket.on('unfollowGame', (data) => {
       // { gameId: '1', id: '1' }
-      unfollowGame(data.id, data.gameId)
+      console.log(data)
+      unfollowGame(parseInt(data.id), parseInt(data.gameId))
         .then(() => {
-          io.emit('globalUpdate', { id: parseInt(data.gameId) })
+          // io.emit('globalUpdate', { id: parseInt(data.gameId) })
         })
         .catch(err => {
           console.log(err)
