@@ -53,3 +53,21 @@ export const addComment = (elapsed, comment, gameId) => {
     })
   }
 }
+
+export const followGame = (gameId) => {
+  return () => {
+    socket.emit('followGame', {
+      gameId,
+      id: readCookie('user.id')
+    })
+  }
+}
+
+export const unfollowGame = (gameId) => {
+  return () => {
+    socket.emit('unfollowGame', {
+      gameId,
+      id: readCookie('user.id')
+    })
+  }
+}
