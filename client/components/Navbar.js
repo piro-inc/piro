@@ -39,13 +39,18 @@ class Navbar extends React.Component {
             <Link to='/games/new' id='nav-menu' className='drop-down-menu'>+</Link>
           </div>
         }
-        <div style={{position: 'relative'}}>
+        <div className='menu-button'>
           <IconButton name='+' id='demo-menu-lower-right' />
+        </div>
+
+        <div className='menu-dropdown'>
           <Menu target='demo-menu-lower-right' align='right'>
             <MenuItem onClick={() => browserHistory.push('/')}>Home</MenuItem>
+            <MenuItem onClick={() => browserHistory.push('/games/new')}>Create Game</MenuItem>
             <MenuItem onClick={this.logout}>Logout</MenuItem>
           </Menu>
         </div>
+
       </div>
     )
   }
