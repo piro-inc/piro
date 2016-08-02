@@ -10,7 +10,6 @@ const initialState = fromJS({
 
 /* reducer */
 const reducer = (state = initialState, action) => {
-  console.log(action)
   switch (action.type) {
     case gamesActions.GET_GAME_SUCCESS:
       return state.set('currentGame', fromJS(action.game))
