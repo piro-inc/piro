@@ -187,10 +187,10 @@ export const clearGame = () => {
   }
 }
 
-export const filterMyGames = (userID) => {
+export const filterMyGames = (userId) => {
   return {
-    type: FILTER_MY_GAMES,
-    userID: userID
+    userId,
+    type: FILTER_MY_GAMES
   }
 }
 

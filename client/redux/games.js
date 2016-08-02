@@ -3,7 +3,6 @@ import * as gamesActions from './gamesActions'
 // import * as socketActions from './socketActions'
 
 const initialState = fromJS({
-  active: [],
   games: [],
   currentGame: {}
 })
@@ -19,15 +18,26 @@ const reducer = (state = initialState, action) => {
       newGames[gameToUpdate] = action.game
       return state.set('games', fromJS(newGames))
     case gamesActions.GET_GAMES_SUCCESS:
-      const newState = state.set('games', fromJS(action.games))
-      return newState.set('active', fromJS(action.games))
+      const mapToShowing = action.games.map(game => {
+        return {
+          ...game,
+          showing: true
+        }
+      })
+      const newState = state.set('games', fromJS(mapToShowing))
+      return newState
     case gamesActions.FILTER_MY_GAMES:
       const games = state.get('games').toJS()
-      const myGames = games.filter(game => game.user_id === action.userID)
-      return state.set('active', fromJS(myGames))
+      const myGames = games.map(game => {
+        return game.user_id === action.userID ? game : { ...game, showing: false }
+      })
+      return state.set('games', fromJS(myGames))
     case gamesActions.FILTER_FOLLOW_GAMES:
-      const followingGames = state.get('games').toJS().filter(game => game.following)
-      return state.set('active', fromJS(followingGames))
+      const followingGames = state.get('games').toJS()
+      const myFollowing = followingGames.map(game => {
+        return game.following ? game : { ...game, showing: false }
+      })
+      return state.set('games', fromJS(myFollowing))
     case gamesActions.CREATE_GAME_SUCCESS:
       return state
         .set('currentGame', fromJS(action.game))
