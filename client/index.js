@@ -13,7 +13,7 @@ export const socket = io()
 const store = configureStore()
 
 socket.on('globalUpdate', (data) => {
-  store.dispatch(gamesActions.updateGameScore(data.id))
+  store.dispatch(gamesActions.updateGame(data.id))
 })
 
 const reactRoot = document.getElementById('app')
