@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link, browserHistory } from 'react-router'
 import { readCookie } from '../utils'
 import { authenticateUser, logout } from '../redux/sessionActions'
+import { filterGames } from '../redux/gamesActions'
 import { IconButton, Menu, MenuItem } from 'react-mdl'
 
 class Navbar extends React.Component {
@@ -17,6 +18,10 @@ class Navbar extends React.Component {
     this.props.authenticateUser(readCookie('user.id'))
   }
 
+  handleMyGamesClick = () => {
+    this.props.filterGames(this.props.user.id)
+  }
+
   logout = () => {
     this.props.logout()
   }
@@ -28,7 +33,6 @@ class Navbar extends React.Component {
         <Link to='/games' id='logo-nav-wrapper'>
           <img id='logo-nav' src='/images/logo-nav.svg' />
         </Link>
-
         {!user.username
           ? <Link to='/' className='nav-links'>
             <p className='nav-login-register'>login</p>
@@ -43,6 +47,7 @@ class Navbar extends React.Component {
           <IconButton name='+' id='demo-menu-lower-right' />
           <Menu target='demo-menu-lower-right' align='right'>
             <MenuItem onClick={() => browserHistory.push('/')}>Home</MenuItem>
+            <MenuItem onClick={this.handleMyGamesClick}>My Games</MenuItem>
             <MenuItem onClick={this.logout}>Logout</MenuItem>
           </Menu>
         </div>
@@ -61,6 +66,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     authenticateUser: (id) => {
       dispatch(authenticateUser(id))
+    },
+    filterGames: (userID) => {
+      dispatch(filterGames(userID))
     },
     logout: () => {
       dispatch(logout())
