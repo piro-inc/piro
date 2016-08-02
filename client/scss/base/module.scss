@@ -1,3 +1,4 @@
+@import 'material';
 @import 'base';
 @import 'color';
 @import 'fonts';
@@ -8,10 +9,6 @@ body {
   font-family: $font-piro;
   font-size: 100%;
   font-weight: 400;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 500;
 }
 
 input {
@@ -26,3 +23,14 @@ button {
   @include homeButton();
 }
 
+h1 { @include fontHeadings ($h1-font-size) }
+
+h2 { @include fontHeadings ($h2-font-size) }
+
+h3 { @include fontHeadings ($h3-font-size) }
+
+h4 { @include fontHeadings ($h4-font-size) }
+
+h5 { @include fontHeadings ($h5-font-size) }
+
+h6 { @include fontHeadings ($h6-font-size) }
