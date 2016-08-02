@@ -25,8 +25,10 @@ class Previews extends React.Component {
       <div id='previews-wrapper'>
         <Navbar />
         <div id='preview-all-games'>
-          {this.props.games && this.props.games.length &&
-            games.map((game, key) => {
+          {(this.props.games &&
+          this.props.games.length &&
+          this.props.games.filter(game => game.showing).length)
+          ? games.map((game, key) => {
               return (game.showing &&
                 <Preview
                 key={key}
@@ -35,6 +37,7 @@ class Previews extends React.Component {
                 followGame={this.props.followGame}
                 unfollowGame={this.props.unfollowGame} />)
             })
+          : 'No games to display.'
           }
         </div>
         <div id='footer'>
