@@ -22,17 +22,34 @@
   display: flex;
   flex-direction: column;
   flex: 5;
+    .toggle a {
+      align-self: center;
+      color: $white;
+      font-size: .9em;
+      margin: .2em 0em;
+    }
 }
 
 #input-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex: 4;
+  align-items: center;
+  flex: 3;
+    .button {
+      margin: .8em;
+      border-radius: 0.4em;
+      width: 10em;
+      align-self: center;
+    }
+    #login.button {
+      color: $piroRed;
+    }
 }
 
-#login, #register, #welcome {
+.button-wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -57,6 +74,18 @@
     }
 }
 
+.error {
+  border: 2px solid red;
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: .8em;
+
+}
+
 .enter-page {
   display: flex;
   flex: 1;
@@ -68,11 +97,6 @@
     }
 }
 
-.button {
-  margin: 0.5em;
-  border-radius: 0.4em;
-  width: 10em;
-}
 
 .loggedinButton {
   border-radius: 0.4em;
