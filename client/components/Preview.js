@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { IconButton, Menu, MenuItem } from 'react-mdl'
+import { IconButton } from 'react-mdl'
 
 class Preview extends React.Component {
   constructor (props) {
@@ -17,8 +17,8 @@ class Preview extends React.Component {
         <div className='manage-follow-header'>
           {(userID === game.user_id)
           ? <Link to={`/console/${game.id}`} className='console-link'>
-              <IconButton name='mode_edit' id='manage-icon' />
-            </Link>
+            <IconButton name='mode_edit' id='manage-icon' />
+          </Link>
           : null}
           <div className='follow-link'>
             <IconButton name='star' id='star-icon' />
