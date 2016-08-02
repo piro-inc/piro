@@ -19,22 +19,27 @@ class Previews extends React.Component {
   }
 
   render () {
-    const games = this.props.games
+    const games = this.props.games || []
     const userID = this.props.user.id
     return (
       <div id='previews-wrapper'>
         <Navbar />
         <div id='preview-all-games'>
+
         <h2>ALL GAMES</h2>
-          {this.props.games.length &&
-            games.map((game, key) => {
-              return <Preview
+          {(this.props.games &&
+          this.props.games.length &&
+          this.props.games.filter(game => game.showing).length)
+          ? games.map((game, key) => {
+            return (game.showing &&
+              <Preview
                 key={key}
                 game={game}
                 userID={userID}
                 followGame={this.props.followGame}
-                unfollowGame={this.props.unfollowGame} />
-            })
+                unfollowGame={this.props.unfollowGame} />)
+          })
+          : 'No games to display.'
           }
         </div>
         <div id='footer'>
@@ -47,8 +52,8 @@ class Previews extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    games: state.games.get('active').toJS(),
-    user: state.session.get('user').toJS()
+    user: state.session.get('user').toJS(),
+    games: state.games.get('games').toJS()
   }
 }
 

@@ -1,10 +1,17 @@
+@mixin coverBackground() {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 #home-wrapper {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background: url('/images/home-background-image.png') no-repeat 100%;
-  background-position: center center;
+  background: url(/images/home-background-image.png) no-repeat center center fixed;
+  @include coverBackground();
 }
 
 #welcome {
