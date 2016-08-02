@@ -40,8 +40,10 @@
 .console-title-header {
   display: flex;
   flex-direction: column;
-  padding-left: 3em;
   width: 100%;
+  h2 {
+    text-align: center;
+  }
 }
 
 .console-timer-wrapper {
