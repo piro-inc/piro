@@ -15,7 +15,8 @@ const reducer = (state = initialState, action) => {
     case gamesActions.UPDATE_GAME_SUCCESS:
       const newGames = state.get('games').toJS()
       const gameToUpdate = newGames.findIndex(game => game.id === action.game.id)
-      newGames[gameToUpdate] = action.game
+      const withShow = { ...action.game, showing: true }
+      newGames[gameToUpdate] = withShow
       return state.set('games', fromJS(newGames))
     case gamesActions.GET_GAMES_SUCCESS:
       const mapToShowing = action.games.map(game => {
