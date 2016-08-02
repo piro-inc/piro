@@ -9,6 +9,11 @@
   flex-direction: column;
   align-items: center;
   overflow: scroll;
+  h2 {
+    color: $piroRed;
+    text-align: center;
+    margin-bottom: 0;
+  }
 }
 
 #preview {
@@ -21,31 +26,45 @@
   box-shadow: 1px 1px 5px #999999;
 }
 
-
 .manage-follow-header {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  background-color: #b6adad;
-  #manage-icon {
-    color: black;
+  align-items: center;
+  background-color: $backgroundGrey;
+  border: 1px solid $backgroundGrey;
+  #icon-manage.mdl-button {
+      color: $staticGrey;
   }
+  #icon-follow {
+      color: $gold;
+    }
+  #icon-unfollow {
+    color: $staticGrey;
+  } 
 }
 
 .preview-header {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  background-color: $backgroundGrey;
+  background-color: $lightGreen;
   border: 1px solid $backgroundGrey;
   color: $black;
   text-decoration: none;
+  text-align: center;
     h3, h4 {
       margin: .5em 0;
     }
-    .sport, .division {
+    .sport {
+      flex: 1;
       text-transform: uppercase;
     }
+    .location {
+      flex: 1;
+    }
+      #icon-location {
+        color: $staticGrey;
+      }
 }
 
 .team-names {
@@ -58,7 +77,6 @@
 .score-wrapper {
   display: flex;
   flex-direction: row;
-  // justify-content: space-around;
   border: 1px solid $backgroundGrey;
     h1 {
       font-size: 4em;
