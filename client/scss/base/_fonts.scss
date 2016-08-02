@@ -1,4 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic,300italic,300);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
 /* font family */
 $font-piro: 'Open Sans', sans-serif;
 
@@ -24,7 +26,7 @@ h1, h2, h3, h4, h5, h6, p {
   font-family: $font-piro;
   font-size: $size;
   margin-top: 0.5em;
-  margin-bottom: 0.5em; 
+  margin-bottom: 0.5em;
 }
 
 h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
@@ -33,5 +35,5 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
   font-weight: 400;
   letter-spacing: -0.02em;
   opacity: 0.54;
-  font-size: 0.6em; 
+  font-size: 0.6em;
 }

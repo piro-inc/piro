@@ -29,7 +29,7 @@ function getGameComments (gameId) {
     })
 }
 
-function getGamesInfo () {
+function getGamesInfo (userId = null) {
   let gamesInfo = {}
   return getGamesTable()
     .then((games) => {
@@ -43,6 +43,21 @@ function getGamesInfo () {
         game.latestComment = comments.find((comment) => {
           return (comment && comment.game_id === game.id)
         })
+      })
+      return userId ? getFollowingState(gamesInfo, userId) : gamesInfo
+    })
+}
+
+function getFollowingState (gamesInfo, userId) {
+  // console.log('gamesInfo', gamesInfo)
+  return utils.getOne('following_join', {user_id: userId})
+    .then((followingArr) => {
+      gamesInfo.map((game) => {
+        if (followingArr.find((following) => following.game_id === game.id)) {
+          game.following = true
+        } else {
+          game.following = false
+        }
       })
       return gamesInfo
     })

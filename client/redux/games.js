@@ -26,7 +26,11 @@ const reducer = (state = initialState, action) => {
     //   const filtered = games.filter(game => game.user_id === action.userID)
     //   return state.set('active', fromJS(filtered))
     case gamesActions.CREATE_GAME_SUCCESS:
-      return state.set('games', state.get('games').push(fromJS(action.game)))
+      return state
+        .set('currentGame', fromJS(action.game))
+        .set('games', state.get('games').push(fromJS(action.game)))
+    case gamesActions.CLEAR_GAME:
+      return state.set('currentGame', fromJS({}))
     default:
       return state
   }

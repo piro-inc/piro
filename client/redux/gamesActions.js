@@ -140,11 +140,11 @@ export const updateGameScore = (id) => {
   }
 }
 
-export const START_GAME = 'START_GAME'
+export const CLEAR_GAME = 'CLEAR_GAME'
 
-export const startGame = () => {
+export const clearGame = () => {
   return {
-    type: START_GAME
+    type: CLEAR_GAME
   }
 }
 

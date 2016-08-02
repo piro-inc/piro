@@ -1,23 +1,52 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { changeTeamScore, stopGame, addComment } from '../redux/socketActions'
-import { fetchGameInfo } from '../redux/gamesActions'
+import { changeTeamScore, startGame, stopGame, addComment, togglePause } from '../redux/socketActions'
+import { clearGame, fetchGameInfo } from '../redux/gamesActions'
 import { authenticateGame } from '../redux/sessionActions'
 import { readCookie } from '../utils'
 import Navbar from './Navbar'
+import ReactTimeout from 'react-timeout'
 
 class Console extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       // state goes here
-      comment: ''
+      comment: '',
+      timer: 0,
+      syncTime: false
     }
+  }
+
+  componentWillMount () {
+    this.props.clearGame()
   }
 
   componentDidMount () {
     this.props.fetchGameInfo(this.props.params.id)
     this.props.authenticateGame(readCookie('user.id'), this.props.params.id)
+    this.props.setInterval(() => {
+      if (this.props.game.game &&
+        this.props.game.game.is_running &&
+        this.props.game.game.is_started &&
+        !this.props.game.game.is_complete) {
+        this.setState({ timer: this.state.timer + 1 })
+      }
+    }, 1000)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.game.game && nextProps.game.game.is_started && !this.state.syncTime) {
+      const startDate = new Date(nextProps.game.game.updated_at)
+
+      if (!nextProps.game.game.is_running) {
+        this.setState({ syncTime: true, timer: nextProps.game.game.time_elapsed })
+      } else {
+        const diff = Date.now() - startDate + nextProps.game.game.time_elapsed
+        const secs = Math.floor(diff / 1000)
+        this.setState({ syncTime: true, timer: secs })
+      }
+    }
   }
 
   incrementScore = (team) => {
@@ -29,7 +58,7 @@ class Console extends React.Component {
     }
 
     return () => {
-      this.props.changeTeamScore(team, newScore, this.props.params.id)
+      this.props.changeTeamScore(this.state.timer, team, newScore, this.props.params.id)
     }
   }
 
@@ -41,21 +70,43 @@ class Console extends React.Component {
       newScore = this.props.game.game && this.props.game.game.team_b_score - 1
     }
     return () => {
-      this.props.changeTeamScore(team, newScore, this.props.params.id)
+      this.props.changeTeamScore(this.state.timer, team, newScore, this.props.params.id)
     }
   }
 
   addComment = () => {
-    this.props.addComment(this.state.comment, this.props.params.id)
+    this.props.addComment(this.state.timer, this.state.comment, this.props.params.id)
     this.setState({ comment: '' })
   }
 
+  startGame = () => {
+    this.props.startGame(this.props.params.id)
+    this.setState({ syncTime: true })
+  }
+
   stopGame = () => {
-    this.props.stopGame(this.props.params.id)
+    this.props.stopGame(this.state.timer, this.props.params.id)
+  }
+
+  togglePause = () => {
+    if (this.props.game.game) {
+      this.props.togglePause(this.state.timer, !this.props.game.game.is_running, this.props.params.id)
+    }
   }
 
   changeComment = (e) => {
     this.setState({ comment: e.target.value })
+  }
+
+  format = (time) => {
+    let hours = Math.floor(time / 3600)
+    let minutes = Math.floor((time - (hours * 3600)) / 60)
+    let seconds = time - (hours * 3600) - (minutes * 60)
+
+    if (hours < 10) { hours = '0' + hours }
+    if (minutes < 10) { minutes = '0' + minutes }
+    if (seconds < 10) { seconds = '0' + seconds }
+    return hours + ':' + minutes + ':' + seconds
   }
 
   render () {
@@ -80,17 +131,22 @@ class Console extends React.Component {
           </div>
 
           <div id='content-wrapper'>
-
-            <h4 className='console-title'>{this.props.game.game.sport_name}</h4>
+            <h4 className='console-title'>{this.props.game.game && this.props.game.game.is_complete && 'Game is complete.'}</h4>
+            <h4 className='console-title'>{this.props.game.game && this.props.game.game.sport_name}</h4>
 
             <div className='console-timer-wrapper'>
 
               <div className='pause'>
-                <button className='button' id='pause'>PAUSE</button>
+                <button className='button' id='pause' onClick={this.togglePause}>
+                  {this.props.game.game && this.props.game.game.is_running ? 'PAUSE' : 'RESUME'}
+                </button>
               </div>
 
               <div className='start'>
-                <button className='button' id='start'>START</button>
+                {this.state.timer === 0
+                ? <button className='button' id='start' onClick={this.startGame}>START</button>
+                : <button className='button' id='start' onClick={this.startGame}>{this.format(this.state.timer.toString())}</button>
+                }
               </div>
 
               <div className='stop'>
@@ -99,12 +155,16 @@ class Console extends React.Component {
 
             </div>
 
+            <div>
+
+            </div>
+
             <div className='console-scores-wrapper'>
 
               <div className='console-teamone'>
 
                 <img src='http://placehold.it/50X50' className='team-logo' />
-                <h3 className='team-one-name'>{this.props.game.game.team_a_name}</h3>
+                <h3 className='team-one-name'>{this.props.game.game && this.props.game.game.team_a_name}</h3>
                 <h1 className='console-score' id='team-one-score'>{this.props.game.game && this.props.game.game.team_a_score}</h1>
 
                 <div className='scoring-buttons'>
@@ -118,7 +178,7 @@ class Console extends React.Component {
               <div className='console-teamtwo'>
 
                 <img src='http://placehold.it/50X50' className='team-logo' />
-                <h3 className='team-two-name'>{this.props.game.game.team_b_name}</h3>
+                <h3 className='team-two-name'>{this.props.game.game && this.props.game.game.team_b_name}</h3>
                 <h1 className='console-score' id='team-two-score'>{this.props.game.game && this.props.game.game.team_b_score}</h1>
 
                 <div className='scoring-buttons'>
@@ -159,17 +219,26 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    clearGame: () => {
+      dispatch(clearGame())
+    },
     authenticateGame: (id, gameId) => {
       dispatch(authenticateGame(id, gameId))
     },
-    changeTeamScore: (team, newScore, gameId) => {
-      dispatch(changeTeamScore(team, newScore, gameId))
+    changeTeamScore: (elapsed, team, newScore, gameId) => {
+      dispatch(changeTeamScore(elapsed, team, newScore, gameId))
     },
-    stopGame: (gameId) => {
-      dispatch(stopGame(gameId))
+    startGame: (gameId) => {
+      dispatch(startGame(gameId))
     },
-    addComment: (comment, gameId) => {
-      dispatch(addComment(comment, gameId))
+    togglePause: (elapsed, bool, gameId) => {
+      dispatch(togglePause(elapsed, bool, gameId))
+    },
+    stopGame: (elapsed, gameId) => {
+      dispatch(stopGame(elapsed, gameId))
+    },
+    addComment: (elapsed, comment, gameId) => {
+      dispatch(addComment(elapsed, comment, gameId))
     },
     fetchGameInfo: (id) => {
       dispatch(fetchGameInfo(id))
@@ -179,4 +248,4 @@ const mapDispatchToProps = (dispatch) => {
 
 const ConsoleContainer = connect(mapStateToProps, mapDispatchToProps)(Console)
 
-export default ConsoleContainer
+export default ReactTimeout(ConsoleContainer)
