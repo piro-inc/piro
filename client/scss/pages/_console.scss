@@ -33,8 +33,15 @@
   div.comment-history {
     margin-top: 2em;
     width: 100%;
-    flex: 0;
+    height: 7em;
   }
+}
+
+.console-title-header {
+  display: flex;
+  flex-direction: column;
+  padding-left: 3em;
+  width: 100%;
 }
 
 .console-timer-wrapper {
@@ -113,10 +120,11 @@
   flex-direction: column;
   align-items: center;
   margin-top: 1em;
-  input {
+  input.console-comment {
     text-align: center;
     background-color: $inactiveGrey;
     width: 100%;
+    padding: 0;
   }
   & :focus {
     background-color: $white;
@@ -127,6 +135,20 @@
     background-color: $startGreen;
     margin: .5em 0 0 0;
     border-radius: 5px;
+  }
+}
+
+.comment-history {
+  p.comment{
+    width: 100%;
+    word-wrap: break-word;
+    color: $black;
+  }
+  p:first-child {
+    color: $piroRed;
+    font-style: italic;
+    font-weight: 600;
+    background-color: $lightGreen;
   }
 }
 
