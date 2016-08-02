@@ -337,7 +337,7 @@ test('Get all games with a following flag', function (t) {
   t.end()
 })
 
-/****    Follow   ****/
+/** **    Follow   ****/
 test('User follows a game', function (t) {
   const userId = 1
   const gameId = 3
@@ -398,4 +398,4 @@ test('User unfollows a game', function (t) {
     })
 })
 
-/****    Users    ****/
+/** **    Users    ****/
