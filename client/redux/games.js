@@ -11,8 +11,13 @@ const initialState = fromJS({
 /* reducer */
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case gamesActions.GET_GAME_SUCCESS:
+    case gamesActions.UPDATE_CURRENT_GAME:
       return state.set('currentGame', fromJS(action.game))
+    case gamesActions.UPDATE_GAME_SUCCESS:
+      const newGames = state.get('games').toJS()
+      const gameToUpdate = newGames.findIndex(game => game.id === action.game.id)
+      newGames[gameToUpdate] = action.game
+      return state.set('games', fromJS(newGames))
     case gamesActions.GET_GAMES_SUCCESS:
       const newState = state.set('games', fromJS(action.games))
       return newState.set('active', fromJS(action.games))
