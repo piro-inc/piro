@@ -62,7 +62,7 @@ class Game extends React.Component {
         </div>
 
         <div id="console-link">
-          <button>Manage game in console</button>
+          <button>Go to game console</button>
         </div>
 
         <div className='comment-history'>

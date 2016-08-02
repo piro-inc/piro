@@ -60,7 +60,7 @@
   // @include flexCenter();
   display: flex;
   align-items: center;
-  flex: 3;
+  flex: 2;
   .game-score {
     flex: 6;
     font-size: 4em;
@@ -104,9 +104,11 @@
 #console-link {
   display: flex;
   justify-content: center;
+  margin: .5em;
     button {
       color: $white;
       background-color: $startGreen;
       border-radius: 5px;
+      width: 11em;
     }
 }
