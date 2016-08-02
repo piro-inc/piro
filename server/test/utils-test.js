@@ -311,19 +311,23 @@ test('Get all games and a comment for each game', function (t) {
 
 test('Get all games with a following flag', function (t) {
   const userId = 2
-  const expectedT = [
+  const expected = [
     {id:1, following:true},
     {id:2, following:false},
     {id:3, following:true}
   ]
-  const expected = 'Try!'
   knex.migrate.rollback()
     .then(() => knex.migrate.latest())
     .then(() => knex.seed.run('games', 'comments'))
     .then(() => {
       return gamesUtils.getGamesInfo(userId)
     })
-
+    .then((gamesInfo) => {
+      gamesInfo.map((gameInfo, index) => {
+        // console.log('gameInfo key: ' + index, gameInfo)
+        t.equal(gameInfo.following, expected.find((game) => game.id === gameInfo.id).following, 'Game info following = expected')
+      })
+    })
   t.ok(1)
   t.end()
 })
