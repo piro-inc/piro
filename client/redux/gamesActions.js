@@ -156,3 +156,11 @@ export const filterMyGames = (userID) => {
     userID: userID
   }
 }
+
+export const FILTER_FOLLOW_GAMES = 'FILTER_FOLLOW_GAMES'
+
+export const filterFollowGames = () => {
+  return {
+    type: FILTER_FOLLOW_GAMES
+  }
+}
