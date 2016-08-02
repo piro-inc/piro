@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchGameInfo } from '../redux/gamesActions'
+import { Link } from 'react-router'
 
 import Navbar from './Navbar'
 
@@ -18,6 +19,10 @@ class Game extends React.Component {
 
   render () {
     const currentGame = this.props.game
+    const currentGameID = currentGame.game && currentGame.game.user_id
+    const userID = this.props.user.id
+    console.log('userID', userID)
+    console.log('currentGameID', currentGameID)
     let date
     let time
     let formatTime = (str) => {
@@ -70,9 +75,11 @@ class Game extends React.Component {
 
         </div>
 
-        <div id="console-link">
+        {userID && (userID === currentGameID)
+        ? <Link to={`/console/${currentGame.id}`} className='console-link'>
           <button>Go to game console</button>
-        </div>
+        </Link>
+        : null}
 
         <div className='comment-history'>
           {orderedComments && orderedComments.map((obj, key) => {
@@ -90,7 +97,8 @@ class Game extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    game: state.games.get('currentGame').toJS()
+    game: state.games.get('currentGame').toJS(),
+    user: state.session.get('user').toJS()
   }
 }
 
