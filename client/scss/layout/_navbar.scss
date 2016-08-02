@@ -9,14 +9,17 @@
   display: flex;
   flex-direction: row;
   height: 4em;
+  padding: 0 0.5em 0 1em;
 }
 
 .menu-button {
   display: flex;
   align-items: center;
   flex-direction: column;
-  .mdl-button {
-    flex-grow: 1;
+  i.material-icons {
+    display: flex;
+    align-items: center;
+    color: $white;
   }
 }
 
@@ -45,8 +48,6 @@
   height: 3em;
 }
 
-.drop-down-menu {
-  color: $white;
-  text-decoration: none;
-  margin-right: 1em;
+.mdl-menu__outline {
+  margin-top: 1em;
 }
