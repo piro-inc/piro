@@ -32,7 +32,7 @@ class Previews extends React.Component {
                 game={game}
                 userID={userID}
                 followGame={this.props.followGame}
-                unfollowGame={this.props.unfollowGame}/>
+                unfollowGame={this.props.unfollowGame} />
             })
           }
         </div>

@@ -65,7 +65,12 @@ function socketServer (io) {
     })
 
     socket.on('addComment', (data) => {
-      // { comment: 'dgames_utilscomment  }
+      // { comment: 'dsfsasd', gameId: '1', id: '1' }
+      const newData = {
+        game_id: data.gameId,
+        comment: data.comment
+      }
+
       addComment(newData)
         .then(obj => {
           io.emit('globalUpdate', { id: parseInt(data.gameId) })

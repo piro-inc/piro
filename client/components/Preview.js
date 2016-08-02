@@ -30,7 +30,7 @@ class Preview extends React.Component {
           : null}
           <div className='follow-link'>
           {this.props.game.following
-          ?  <IconButton name='star' id='star-icon' onClick={this.followGame} />
+          ? <IconButton name='star' id='star-icon' onClick={this.followGame} />
           : <IconButton name='star_outline' id='star-icon' onClick={this.unfollowGame} />}
           </div>
 
