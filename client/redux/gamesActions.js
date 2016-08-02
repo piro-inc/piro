@@ -1,6 +1,13 @@
-export const GET_GAME_SUCCESS = 'GET_GAME_SUCCESS'
-export const GAMES_ERROR = 'GAMES_ERROR'
 import { browserHistory } from 'react-router'
+
+export const UPDATE_CURRENT_GAME = 'UPDATE_CURRENT_GAME'
+export const GAMES_ERROR = 'GAMES_ERROR'
+export const CLEAR_GAME = 'CLEAR_GAME'
+export const GET_GAMES_SUCCESS = 'GET_GAMES_SUCCESS'
+export const CREATE_GAME_SUCCESS = 'CREATE_GAME_SUCCESS'
+export const UPDATE_GAME_SUCCESS = 'UPDATE_GAME_SUCCESS'
+export const FILTER_MY_GAMES = 'FILTER_MY_GAMES'
+export const FILTER_FOLLOW_GAMES = 'FILTER_FOLLOW_GAMES'
 
 export const fetchGameInfo = (id) => {
   const options = {
@@ -20,7 +27,7 @@ export const fetchGameInfo = (id) => {
         if (game) {
           return dispatch({
             game,
-            type: GET_GAME_SUCCESS
+            type: UPDATE_CURRENT_GAME
           })
         } else {
           throw new Error('Game not fetched correctly.')
@@ -35,8 +42,6 @@ export const fetchGameInfo = (id) => {
       })
   }
 }
-
-export const GET_GAMES_SUCCESS = 'GET_GAMES_SUCCESS'
 
 export const fetchGamesInfo = () => {
   const options = {
@@ -71,8 +76,6 @@ export const fetchGamesInfo = () => {
       })
   }
 }
-
-export const CREATE_GAME_SUCCESS = 'CREATE_GAME_SUCCESS'
 
 export const createGame = (userId, date, location, teamA, teamB, isComplete, teamAScore, teamBScore, sportName) => {
   const options = {
@@ -130,17 +133,53 @@ export const createGame = (userId, date, location, teamA, teamB, isComplete, tea
   }
 }
 
-export const updateGameScore = (id) => {
-  return (dispatch, getState) => {
-    dispatch(fetchGamesInfo())
-    const current = getState().games.toJS().currentGame.game
-    if (current && (current.id === id)) {
-      dispatch(fetchGameInfo(id))
-    }
+export const updateGame = (id) => {
+  return dispatch => {
+    dispatch(updateGameInfo(id))
   }
 }
 
-export const CLEAR_GAME = 'CLEAR_GAME'
+export const updateGameInfo = (id) => {
+  const options = {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    credentials: 'same-origin'
+  }
+
+  return (dispatch, getState) => {
+    fetch(`/api/games/${id}`, options) // eslint-disable-line
+      .then(res => {
+        return res.json()
+      })
+      .then(obj => {
+        if (obj) {
+          const current = getState().games.toJS().currentGame.game
+          if (current && (current.id === id)) {
+            dispatch({
+              game: obj,
+              type: UPDATE_CURRENT_GAME
+            })
+          }
+
+          return dispatch({
+            game: obj.game,
+            type: UPDATE_GAME_SUCCESS
+          })
+        } else {
+          throw new Error('Game not fetched correctly.')
+        }
+      })
+      .catch(err => {
+        console.log(err)
+        return dispatch({
+          err,
+          type: GAMES_ERROR
+        })
+      })
+  }
+}
 
 export const clearGame = () => {
   return {
@@ -148,11 +187,15 @@ export const clearGame = () => {
   }
 }
 
-export const FILTER_MY_GAMES = 'FILTER_MY_GAMES'
-
 export const filterMyGames = (userID) => {
   return {
     type: FILTER_MY_GAMES,
     userID: userID
+  }
+}
+
+export const filterFollowGames = () => {
+  return {
+    type: FILTER_FOLLOW_GAMES
   }
 }

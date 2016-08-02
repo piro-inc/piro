@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import ReactTimeout from 'react-timeout'
+
 import { changeTeamScore, startGame, stopGame, addComment, togglePause } from '../redux/socketActions'
 import { clearGame, fetchGameInfo } from '../redux/gamesActions'
 import { authenticateGame } from '../redux/sessionActions'
 import { readCookie } from '../utils'
 import Navbar from './Navbar'
-import ReactTimeout from 'react-timeout'
 
 class Console extends React.Component {
   constructor (props) {
@@ -37,13 +38,12 @@ class Console extends React.Component {
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.game.game && nextProps.game.game.is_started && !this.state.syncTime) {
-      const startDate = new Date(nextProps.game.game.updated_at)
-
       if (!nextProps.game.game.is_running) {
         this.setState({ syncTime: true, timer: nextProps.game.game.time_elapsed })
       } else {
-        const diff = Date.now() - startDate + nextProps.game.game.time_elapsed
-        const secs = Math.floor(diff / 1000)
+        const startDate = new Date(nextProps.game.game.updated_at)
+        const diff = Date.now() - startDate
+        const secs = Math.floor(diff / 1000) + nextProps.game.game.time_elapsed
         this.setState({ syncTime: true, timer: secs })
       }
     }
@@ -117,94 +117,80 @@ class Console extends React.Component {
     }
     return (
       <div id='console-wrapper'>
-      {this.props.session.error &&
-        <div>
-          {this.props.session.error}
-          <a href='/'> Home </a>
-        </div>
-      }
-
-      {this.props.session.user.id &&
-        <div>
-          <div id='navbar-wrapper'>
-            <Navbar />
+        {this.props.session.error &&
+          <div className='session-error'>
+            {this.props.session.error} - Go <a href='/'>Home.</a>
           </div>
+        }
 
-          <div id='content-wrapper'>
-            <h4 className='console-title'>{this.props.game.game && this.props.game.game.is_complete && 'Game is complete.'}</h4>
-            <h4 className='console-title'>{this.props.game.game && this.props.game.game.sport_name}</h4>
-
-            <div className='console-timer-wrapper'>
-
-              <div className='pause'>
-                <button className='button' id='pause' onClick={this.togglePause}>
-                  {this.props.game.game && this.props.game.game.is_running ? 'PAUSE' : 'RESUME'}
-                </button>
-              </div>
-
-              <div className='start'>
-                {this.state.timer === 0
-                ? <button className='button' id='start' onClick={this.startGame}>START</button>
-                : <button className='button' id='start' onClick={this.startGame}>{this.format(this.state.timer.toString())}</button>
-                }
-              </div>
-
-              <div className='stop'>
-                <button className='button' id='stop' onClick={this.stopGame}>STOP</button>
-              </div>
-
+        {this.props.session.user.id &&
+          <div id='user-console-wrapper'>
+            <div id='navbar-wrapper'>
+              <Navbar />
             </div>
 
-            <div>
+            <div id='content-wrapper'>
+              <div className='console-title-header'>
+                <h2 className='console-heading'>Scoring Console: <em>{this.props.game.game && this.props.game.game.sport_name}</em></h2>
+                <h4 className='console-complete'>{this.props.game.game && this.props.game.game.is_complete && 'Game is complete.'}</h4>
+              </div>
+              <div className='console-timer-wrapper'>
+                <div className='pause'>
+                  <button className='button' id='pause' onClick={this.togglePause}>
+                    {this.props.game.game && this.props.game.game.is_running ? 'PAUSE' : 'RESUME'}
+                  </button>
+                </div>
+                <div className='start'>
+                  {this.state.timer === 0
+                  ? <button className='button' id='start' onClick={this.startGame}>START</button>
+                  : <button className='button' id='start' onClick={this.startGame}>{this.format(this.state.timer.toString())}</button>
+                  }
+                </div>
+                <div className='stop'>
+                  <button className='button' id='stop' onClick={this.stopGame}>STOP</button>
+                </div>
+              </div>
 
-            </div>
-
-            <div className='console-scores-wrapper'>
-
-              <div className='console-teamone'>
-
-                <img src='http://placehold.it/50X50' className='team-logo' />
-                <h3 className='team-one-name'>{this.props.game.game && this.props.game.game.team_a_name}</h3>
-                <h1 className='console-score' id='team-one-score'>{this.props.game.game && this.props.game.game.team_a_score}</h1>
-
-                <div className='scoring-buttons'>
-                  <button className='button decrement' id='decrement-team-one' onClick={this.decrementScore('one')}>-</button>
-                  <button className='button increment' id='increment-team-one' onClick={this.incrementScore('one')}>+</button>
-
+              <div className='console-scores-wrapper'>
+                <div className='console-teamone'>
+                  <img src='http://placehold.it/25x25' className='team-logo' />
+                  <h3 className='team-one-name'>{this.props.game.game && this.props.game.game.team_a_name}</h3>
+                  <div className='scoring-buttons'>
+                    <h1 className='console-score' id='team-one-score'>{this.props.game.game && this.props.game.game.team_a_score}</h1>
+                    <button className='button decrement' id='decrement-team-one' onClick={this.decrementScore('one')}>-</button>
+                    <button className='button increment' id='increment-team-one' onClick={this.incrementScore('one')}>+</button>
+                  </div>
                 </div>
 
-              </div>
-
-              <div className='console-teamtwo'>
-
-                <img src='http://placehold.it/50X50' className='team-logo' />
-                <h3 className='team-two-name'>{this.props.game.game && this.props.game.game.team_b_name}</h3>
-                <h1 className='console-score' id='team-two-score'>{this.props.game.game && this.props.game.game.team_b_score}</h1>
-
-                <div className='scoring-buttons'>
-                  <button className='button decrement' id='decrement-team-two' onClick={this.decrementScore('two')}>-</button>
-                  <button className='button increment' id='increment-team-two' onClick={this.incrementScore('two')}>+</button>
+                <div className='console-teamtwo'>
+                  <img src='http://placehold.it/25x25' className='team-logo' />
+                  <h3 className='team-two-name'>{this.props.game.game && this.props.game.game.team_b_name}</h3>
+                  <div className='scoring-buttons'>
+                    <h1 className='console-score' id='team-two-score'>{this.props.game.game && this.props.game.game.team_b_score}</h1>
+                    <button className='button decrement' id='decrement-team-two' onClick={this.decrementScore('two')}>-</button>
+                    <button className='button increment' id='increment-team-two' onClick={this.incrementScore('two')}>+</button>
+                  </div>
                 </div>
-
               </div>
 
-            </div>
+              <div className='add-comment-wrapper'>
+                {/* <h3 className='console-headers'>ADD COMMENT</h3>*/}
+                <input onChange={this.changeComment} placeholder='post comments to the game here' value={this.state.comment} type='text' className='console-comment' id='add-comment' />
+                <button className='submit button' id='submit-comment' onClick={this.addComment}>POST</button>
+              </div>
 
-            <div className='add-comment-wrapper'>
-              <h3 className='console-headers'>ADD COMMENT</h3>
-              <input onChange={this.changeComment} value={this.state.comment} type='text' className='console-comment' id='add-comment' />
-              <button className='submit button' id='submit-comment' onClick={this.addComment}>+ SUBMIT</button>
+              <div className='comment-history'>
+                {orderedComments && orderedComments.map((obj, key) => {
+                  return (
+                    <p key={key} className='comment'>
+                      {obj.comment}
+                    </p>
+                  )
+                })}
+              </div>
             </div>
-            {orderedComments && orderedComments.map((obj, key) => {
-              return (
-                <p key={key} className='comment'>
-                  {obj.comment}
-                </p>
-              )
-            })}
           </div>
-        </div>
-      }
+        }
       </div>
     )
   }
