@@ -1,11 +1,8 @@
+const test = require('tape')
 const gamesUtils = require('../database/games_utils')
 
-const test = require('tape')
-
-const Knex = require('knex')
-const knexConfig = require('../knexfile')
-
-const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
+const dbUtils = require('../database/utils')
+const knex = dbUtils.knex
 
 test('User test works', function (t) {
   t.ok(1, 'user test works')
