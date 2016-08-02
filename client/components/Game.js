@@ -20,12 +20,18 @@ class Game extends React.Component {
     const currentGame = this.props.game
     let date
     let time
+    let formatTime = (str) => {
+      if (str.length === 11) {
+        return str.slice(0, 4) + str.slice(-4)
+      } if (str.length === 10) {
+        return str.slice(0, 4) + str.slice(-3)
+      }
+    }
     if (currentGame.game) {
       const newDate = new Date(currentGame.game.date_time)
-      date = newDate.toDateString()
-      time = newDate.toTimeString()
-      date = date.replace(/GMT/, '')
-      time = time.replace(/GMT/, '')
+      date = newDate.toLocaleDateString('en-NZ')
+      time = newDate.toLocaleTimeString('en-NZ')
+      time = formatTime(time)
     }
     let orderedComments
     if (currentGame.comments) {
