@@ -1,5 +1,8 @@
-const dbUtils = require('../database/utils')
 const test = require('tape')
+
+const dbUtils = require('../database/utils')
+const commentUtils = require('../database/comments_utils')
+const gamesUtils = require('../database/games_utils')
 
 const knex = dbUtils.knex
 
@@ -86,6 +89,7 @@ test('Add user to users table', function (t) {
   })
 })
 
+// Failing due to added columns TODO fix test.
 /*test('Add game to games table and get game from games table', function (t) {
   const expected = [
     {
@@ -154,6 +158,7 @@ test('Add comment to comments table', function (t) {
   })
 })
 
+// Failing due to added columns TODO fix test.
 /*test('Get all games from games table', function (t) {
   const expected = {
     id: 1,
@@ -303,7 +308,7 @@ test('Get all games and a comment for each game', function (t) {
     t.end()
   })
 })
-/*
+
 test('Get all games with a following flag', function (t) {
   const userId = 2
   const expectedT = [
@@ -321,6 +326,6 @@ test('Get all games with a following flag', function (t) {
 
   t.ok(1)
   t.end()
-})*/
+})
 
 /****    Users    ****/
