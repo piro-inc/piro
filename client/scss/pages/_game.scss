@@ -24,7 +24,7 @@
 }
 
 #navbar-wrapper {
-  flex: 1;
+  // flex: 1;
 }
 
 #game-wrapper {
@@ -36,17 +36,37 @@
       @include flexCenterColumn();
       @include flexCenter();
       flex: 2;
-      @include headerMargin();
+      // @include headerMargin();
+    }
+}
+
+#game-header {
+  margin: 0 0 1em 0;
+}
+
+.game-team-names {
+  display: flex;
+  border-bottom: solid 1px $backgroundGrey;
+    h2 {
+      flex: 1;
+      text-align: center;
+      margin: .5em 0 0 0;
+      padding-bottom: .5em;
     }
 }
 
 .game-score-wrapper {
   @include flexCenterRow();
-  @include flexCenter();
-  flex: 3;
+  // @include flexCenter();
+  display: flex;
+  align-items: center;
+  flex: 2;
   .game-score {
+    flex: 6;
     font-size: 4em;
+    font-weight: 700;
     margin: 0.5em 0;
+    text-align: center;
   }
 }
 
@@ -55,9 +75,12 @@
   background-color: $backgroundGrey;
   flex: 3;
   overflow: scroll;
+  box-shadow: 0px 15px 30px -10px #999999 inset;
   .comment {
     text-align: center;
-    margin: 0.5em 0;
+    margin: 0.5em 0 0 0;
+    padding-bottom: .5em;
+    border-bottom: solid 1px $inactiveGrey;
   }
   .latest {
     background-color: $lightGreen;
@@ -65,4 +88,27 @@
     font-style: italic;
     padding: 0.5em 0.5em;
   }
+}
+
+.sport-name, .division {
+  text-transform: uppercase;
+  margin: .5em 0 0 0;
+}
+
+.division, .date-time, .match-location {
+  margin: .5em 0 0 0;
+  padding-bottom: .5em;
+  border-bottom: solid 1px $backgroundGrey;
+}
+
+#console-link {
+  display: flex;
+  justify-content: center;
+  margin: .5em;
+    button {
+      color: $white;
+      background-color: $startGreen;
+      border-radius: 5px;
+      width: 11em;
+    }
 }

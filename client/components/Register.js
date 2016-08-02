@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { register } from '../redux/sessionActions'
+import TextInput from './TextInput'
 
 function errorExists (obj) {
   let res = false
@@ -86,16 +87,18 @@ class Register extends React.Component {
   render () {
     return (
       <div id='register-form'>
-        {this.props.error && <div>{this.props.error.message}</div>}
-        {this.state.username.error && <div>{this.state.username.error}</div>}
-        <input type='text' onChange={this.userChange} placeholder='Enter username' id='register-username' className='username' />
-        {this.state.email.error && <div>{this.state.email.error}</div>}
-        <input type='text' onChange={this.emailChange} placeholder='Email' id='register-email' className='email' />
-        {this.state.password.error && <div>{this.state.password.error}</div>}
-        <input type='password' onChange={this.pwChange} placeholder='Enter password' id='register-password' className='password' />
-        {this.state.passwordConfirm.error && <div>{this.state.passwordConfirm.error}</div>}
-        <input type='password' onChange={this.pwcChange} placeholder='Re-enter password' id='register-password-confirm' className='password' />
-        <button onClick={this.register} className='submit button'>Register to PIRO</button>
+        <div className='error-container'>
+          {this.props.error && <div>{this.props.error}</div>}
+          {this.state.username.error && <div>{this.state.username.error}</div>}
+          {this.state.email.error && <div>{this.state.email.error}</div>}
+          {this.state.password.error && <div>{this.state.password.error}</div>}
+          {this.state.passwordConfirm.error && <div>{this.state.passwordConfirm.error}</div>}
+        </div>
+        <TextInput type='text' onBlur={this.userChange} placeholder='Enter username' error={this.state.username.error} />
+        <TextInput type='email' onBlur={this.emailChange} placeholder='Email' error={this.state.email.error} />
+        <TextInput type='password' onBlur={this.pwChange} placeholder='Enter password' error={this.state.password.error} />
+        <TextInput type='password' onBlur={this.pwcChange} placeholder='Re-enter password' error={this.state.password.error} />
+        <button onClick={this.register} className='submit button'>Register</button>
       </div>
     )
   }

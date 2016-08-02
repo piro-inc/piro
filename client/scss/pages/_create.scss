@@ -1,26 +1,42 @@
 #create-form {
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  align-content: center;
   margin: 0 auto;
   width: 75%;
-  & > * {
-    margin: 10px;
-  }
   h2 {
+    color: $piroRed;
     text-align: center;
-    color: $piroRed
+  }
+  p {
+    margin-top: 0;
   }
 }
 
-button.create-button {
-  color: $white;
-  background-color: $startGreen;
-  border-radius: .25em;
-  width: 6em;
+.dropdown, .datePicker {
+   margin: 1em 0;
 }
 
-.round-button {
+.rw-list-option {
+  margin: 1em 0;
+  font-size: 1.15em;
+}
+
+input.team-name, input.location {
+  margin: 1em 0;
+  border: 1px solid #dddddd;
+}
+
+.create-game {
   display: flex;
+  flex-direction: row;
   justify-content: center;
+  margin-top: 1em;
+  button {
+    color: $white;
+    background-color: $startGreen;
+    width: 8em;
+    border-radius: 5px;
+    text-align: center;
+  }
 }
