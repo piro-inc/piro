@@ -70,21 +70,24 @@ class Create extends React.Component {
         <Navbar />
         <div id='create-form'>
           <h2>CREATE GAME</h2>
+          <p className='create-description'>Create a new game below</p>
           <DropdownList
             data={sports}
             value={this.state.sport}
             onChange={this.changeSport}
             className='dropdown' />
-          <input type='text' onChange={this.changeTeamOne} placeholder='TEAM 1' id='team-one' className='team-name' />
-          <input type='text' onChange={this.changeTeamTwo} placeholder='TEAM 2' id='team-two' className='team-name' />
-          <input type='text' onChange={this.changeLocation} placeholder='LOCATION' id='game-location' className='location' />
+          <div className='create-form-fields'>
+            <input type='text' onChange={this.changeTeamOne} placeholder='TEAM 1' id='team-one' className='team-name' />
+            <input type='text' onChange={this.changeTeamTwo} placeholder='TEAM 2' id='team-two' className='team-name' />
+            <input type='text' onChange={this.changeLocation} placeholder='LOCATION' id='game-location' className='location' />
+          </div>
           <DateTimePicker
             defaultValue={new Date()}
             onChange={this.changeDate}
             className='datePicker' />
-          <div className='round-button'>
-            <div className='round-button-circle'>
-              <button onClick={this.createGame} className='create-button'>CREATE</button>
+          <div className='create-game-button'>
+            <div className='create-game'>
+              <button onClick={this.createGame} className='create-button'>+ CREATE</button>
             </div>
           </div>
         </div>
