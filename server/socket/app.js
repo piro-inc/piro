@@ -1,6 +1,5 @@
 const updateGame = require('../database/games_utils').updateGame
 const addComment = require('../database/comments_utils').addComment
-const authenticateSocket = require('../auth').authenticateSocket
 
 // elapsed: '00:00:00' with every socket
 function socketServer (io) {
