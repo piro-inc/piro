@@ -13,7 +13,7 @@
     "start": "node ./server/bin/www",
     "start:watch": "nodemon ./server/bin/www",
     "test:client": "cd client && babel-tape-runner test/*.js | tap-spec",
-    "test:server": "cd server && tape test/*.js | tap-spec",
+    "test:server": "cd server && tape test/utils-test.js | tap-spec",
     "database": "cd server && knex migrate:rollback && knex migrate:latest && knex seed:run",
     "test": "npm run lint && npm run test:client",
     "build": "cd client && webpack --progress --profile --colors",
