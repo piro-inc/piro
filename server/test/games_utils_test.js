@@ -65,3 +65,22 @@ test('Get all games and a comment for each game', function (t) {
     t.end()
   })
 })
+
+test('Get all games with a following flag', function (t) {
+  const userId = 2
+  const expectedT = [
+    {id:1, following:true},
+    {id:2, following:false},
+    {id:3, following:true}
+  ]
+  const expected = 'Try!'
+  knex.migrate.rollback()
+    .then(() => knex.migrate.latest())
+    .then(() => knex.seed.run('games', 'comments'))
+    .then(() => {
+      return gamesUtils.getGamesInfo(userId)
+    })
+
+  t.ok(1)
+  t.end()
+})

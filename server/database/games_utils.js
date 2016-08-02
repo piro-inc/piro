@@ -29,7 +29,7 @@ function getGameComments (gameId) {
     })
 }
 
-function getGamesInfo () {
+function getGamesInfo (userId = null) {
   let gamesInfo = {}
   return getGamesTable()
     .then((games) => {
