@@ -90,6 +90,7 @@
 }
 
 .sport-name {
+  background-color: $lightGreen;
   text-transform: uppercase;
   margin: 0;
 }
@@ -109,4 +110,17 @@
       border-radius: 5px;
       width: 11em;
     }
+}
+
+#manage-follow {
+  background-color: $backgroundGrey;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  #manage {
+    color: $staticGrey;
+  }
+  #follow {
+    color: $staticGrey;
+  }
 }

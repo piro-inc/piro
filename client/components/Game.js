@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { clearGame, fetchGameInfo } from '../redux/gamesActions'
 import { Link } from 'react-router'
+import { IconButton } from 'react-mdl'
 import ReactTimeout from 'react-timeout'
 import Navbar from './Navbar'
 
@@ -81,15 +82,22 @@ class Game extends React.Component {
     }
     return (
       <div id="page-wrapper">
-      
+
         <div id='navbar-wrapper'>
         <Navbar />
         </div>
 
         <div id='game-wrapper'>
 
-
           <div id='game-header'>
+            <div id="manage-follow">
+              <div id="manage">
+                <IconButton name="mode_edit" className="manage-follow-button"/>
+              </div>
+              <div id="follow">
+                <IconButton name="star_outline" className="manage-follow-button"/>
+              </div>
+            </div>
             <h2 className='sport-name'>{currentGame.game && currentGame.game.sport_name}</h2>
             <h3 className='date-time'>{date} | {time} | {this.format(this.state.timer.toString())}</h3>
             <h3 className='match-location'>{currentGame.game && currentGame.game.location}</h3>
