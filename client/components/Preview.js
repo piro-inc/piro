@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { IconButton, Menu, MenuItem } from 'react-mdl'
 
 class Preview extends React.Component {
   constructor (props) {
@@ -13,15 +14,21 @@ class Preview extends React.Component {
     const userID = this.props.userID
     return (
       <div id='preview'>
+        <div className='manage-follow-header'>
+          {(userID === game.user_id)
+          ? <Link to={`/console/${game.id}`} className='console-link'>
+              <IconButton name='mode_edit' id='manage-icon' />
+            </Link>
+          : null}
+          <div className='follow-link'>
+            <IconButton name='star' id='star-icon' />
+          </div>
+
+        </div>
         <Link to={`/games/${game.id}`} className='preview-header'>
           <h4 className='sport'>{game.sport_name}</h4>
           <h3 className='division'>division</h3>
           <h4 className='location'>{game.location}</h4>
-          {(userID === game.user_id)
-          ? <Link to={`/console/${game.id}`} className='consoleLink'>
-            <p>Manage</p>
-          </Link>
-          : null}
         </Link>
 
         <div className='team-names'>
