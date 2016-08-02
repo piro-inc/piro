@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link, browserHistory } from 'react-router'
 import { readCookie } from '../utils'
 import { authenticateUser, logout } from '../redux/sessionActions'
-import { filterMyGames } from '../redux/gamesActions'
+import { filterMyGames, filterFollowGames } from '../redux/gamesActions'
 import { IconButton, Menu, MenuItem } from 'react-mdl'
 
 class Navbar extends React.Component {
@@ -20,6 +20,10 @@ class Navbar extends React.Component {
 
   handleMyGamesClick = () => {
     this.props.filterMyGames(this.props.user.id)
+  }
+
+  handleFollowingClick = () => {
+    this.props.filterFollowGames()
   }
 
   logout = () => {
@@ -52,6 +56,7 @@ class Navbar extends React.Component {
                   <MenuItem onClick={() => browserHistory.push('/')}>Home</MenuItem>
                   <MenuItem onClick={() => browserHistory.push('/games/new')}>Create Game</MenuItem>
                   <MenuItem onClick={this.handleMyGamesClick}>My Games</MenuItem>
+                  <MenuItem onClick={this.handleFollowingClick}>Following</MenuItem>
                   <MenuItem onClick={this.logout}>Logout</MenuItem>
                 </Menu>
               </div>
@@ -76,6 +81,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     filterMyGames: (userID) => {
       dispatch(filterMyGames(userID))
+    },
+    filterFollowGames: () => {
+      dispatch(filterFollowGames())
     },
     logout: () => {
       dispatch(logout())

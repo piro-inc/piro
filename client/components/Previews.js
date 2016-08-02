@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchGamesInfo } from '../redux/gamesActions'
+import { followGame, unfollowGame } from '../redux/socketActions'
 
 import Preview from './Preview'
 import Navbar from './Navbar'
@@ -26,7 +27,12 @@ class Previews extends React.Component {
         <div id='preview-all-games'>
           {this.props.games.length &&
             games.map((game, key) => {
-              return <Preview key={key} game={game} userID={userID} />
+              return <Preview
+                key={key}
+                game={game}
+                userID={userID}
+                followGame={this.props.followGame}
+                unfollowGame={this.props.unfollowGame} />
             })
           }
         </div>
@@ -49,6 +55,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchGamesInfo: () => {
       dispatch(fetchGamesInfo())
+    },
+    followGame: (gameId) => {
+      dispatch(followGame(gameId))
+    },
+    unfollowGame: (gameId) => {
+      dispatch(unfollowGame(gameId))
     }
   }
 }
