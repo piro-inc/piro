@@ -29,7 +29,7 @@ const reducer = (state = initialState, action) => {
     case gamesActions.FILTER_MY_GAMES:
       const games = state.get('games').toJS()
       const myGames = games.map(game => {
-        return game.user_id === action.userID ? game : { ...game, showing: false }
+        return game.user_id === action.userId ? game : { ...game, showing: false }
       })
       return state.set('games', fromJS(myGames))
     case gamesActions.FILTER_FOLLOW_GAMES:
