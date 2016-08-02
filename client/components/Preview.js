@@ -9,6 +9,14 @@ class Preview extends React.Component {
     }
   }
 
+  followGame = () => {
+    this.props.followGame(this.props.game.id)
+  }
+
+  unfollowGame = () => {
+    this.props.unfollowGame(this.props.game.id)
+  }
+
   render () {
     const game = this.props.game
     const userID = this.props.userID
@@ -17,11 +25,13 @@ class Preview extends React.Component {
         <div className='manage-follow-header'>
           {(userID === game.user_id)
           ? <Link to={`/console/${game.id}`} className='console-link'>
-            <IconButton name='mode_edit' id='manage-icon' />
+            <IconButton name='mode_edit' id='manage-icon' onClick={this.followGame} />
           </Link>
           : null}
           <div className='follow-link'>
-            <IconButton name='star' id='star-icon' />
+          {this.props.game.following
+          ? <IconButton name='star' id='star-icon' onClick={this.followGame} />
+          : <IconButton name='star_outline' id='star-icon' onClick={this.unfollowGame} />}
           </div>
 
         </div>
