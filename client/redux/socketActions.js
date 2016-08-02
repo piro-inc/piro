@@ -13,10 +13,9 @@ export const changeTeamScore = (elapsed, team, newScore, gameId) => {
   }
 }
 
-export const startGame = (elapsed, gameId) => {
+export const startGame = (gameId) => {
   return () => {
     socket.emit('startGame', {
-      elapsed,
       gameId,
       id: readCookie('user.id')
     })
