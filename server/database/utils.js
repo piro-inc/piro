@@ -20,6 +20,7 @@ function update (table, searchParams, updateInfo) {
 }
 
 module.exports = {
+  knex,
   getOne,
   addOne,
   getAll,
