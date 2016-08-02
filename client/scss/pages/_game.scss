@@ -23,25 +23,20 @@
   }
 }
 
-#navbar-wrapper {
-  // flex: 1;
+#page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #game-wrapper {
-  @include flexCenterColumn();
+  display: flex;
+  flex-direction: column;
   background-color: $white;
   height: 100vh;
-  width: 100%;
-    #game-header {
-      @include flexCenterColumn();
-      @include flexCenter();
-      flex: 2;
-      // @include headerMargin();
-    }
-}
-
-#game-header {
-  margin: 0 0 1em 0;
+  width: 90%;
+  margin: 1em 0;
+  box-shadow: 1px 1px 5px #999999;
 }
 
 .game-team-names {
@@ -56,11 +51,10 @@
 }
 
 .game-score-wrapper {
-  @include flexCenterRow();
+  // @include flexCenterRow();
   // @include flexCenter();
   display: flex;
   align-items: center;
-  flex: 2;
   .game-score {
     flex: 6;
     font-size: 4em;
@@ -71,7 +65,7 @@
 }
 
 .comment-history {
-  @include flexCenterColumn();
+  // @include flexCenterColumn();
   background-color: $backgroundGrey;
   flex: 3;
   overflow: scroll;
@@ -90,14 +84,18 @@
   }
 }
 
-.sport-name, .division {
-  text-transform: uppercase;
-  margin: .5em 0 0 0;
+.sport-name, .date-time, .match-location {
+  display: flex;
+  justify-content: center;
 }
 
-.division, .date-time, .match-location {
-  margin: .5em 0 0 0;
-  padding-bottom: .5em;
+.sport-name {
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.date-time, .match-location {
+  margin: 0;
   border-bottom: solid 1px $backgroundGrey;
 }
 

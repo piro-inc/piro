@@ -80,53 +80,60 @@ class Game extends React.Component {
       orderedComments = currentGame.comments.slice().reverse()
     }
     return (
-      <div id='game-wrapper'>
-
+      <div id="page-wrapper">
+      
         <div id='navbar-wrapper'>
-          <Navbar />
+        <Navbar />
         </div>
 
-        <div id='game-header'>
-          <h2 className='sport-name'>{currentGame.game && currentGame.game.sport_name}</h2>
-          <h3 className='division'>Division</h3>
-          <h3>{this.format(this.state.timer.toString())}</h3>
-          <h3 className='date-time'>{date} | {time}</h3>
-          <h3 className='match-location'>{currentGame.game && currentGame.game.location}</h3>
-        </div>
+        <div id='game-wrapper'>
 
-        <div className='game-team-names'>
-          <h2 className='team-one'>{currentGame.game && currentGame.game.team_a_name}</h2>
-          <h2 className='team-two'>{currentGame.game && currentGame.game.team_b_name}</h2>
-        </div>
 
-        <div className='game-score-wrapper'>
+          <div id='game-header'>
+            <h2 className='sport-name'>{currentGame.game && currentGame.game.sport_name}</h2>
+            <h3 className='date-time'>{date} | {time} | {this.format(this.state.timer.toString())}</h3>
+            <h3 className='match-location'>{currentGame.game && currentGame.game.location}</h3>
+          </div>
 
-          <img src='http://placehold.it/60x60' className='team-logo' />
 
-          <h1 className='game-score'>{currentGame.game && currentGame.game.team_a_score}</h1>
+          <div className='game-detail-wrapper'>
 
-          <h1 className='period'>v</h1>
+            <div className='game-team-names'>
+            <h2 className='team-one'>{currentGame.game && currentGame.game.team_a_name}</h2>
+            <h2 className='team-two'>{currentGame.game && currentGame.game.team_b_name}</h2>
+            </div>
 
-          <h1 className='game-score'>{currentGame.game && currentGame.game.team_b_score}</h1>
+            <div className="game-score-wrapper">
 
-          <img src='http://placehold.it/60x60' className='team-logo' />
+              <img src='http://placehold.it/60x60' className='team-logo' />
 
-        </div>
+              <h1 className='game-score'>{currentGame.game && currentGame.game.team_a_score}</h1>
 
-        {userID && (userID === currentGameID)
-        ? <Link to={`/console/${currentGame.id}`} className='console-link'>
-          <button>Go to game console</button>
-        </Link>
-        : null}
+              <h1 className='period'>v</h1>
 
-        <div className='comment-history'>
-          {orderedComments && orderedComments.map((obj, key) => {
-            return (
-              <p key={key} className='comment'>
-                {obj.comment}
-              </p>
-            )
-          })}
+              <h1 className='game-score'>{currentGame.game && currentGame.game.team_b_score}</h1>
+
+              <img src='http://placehold.it/60x60' className='team-logo' />
+
+            </div>
+
+          </div>
+
+          {userID && (userID === currentGameID)
+          ? <Link to={`/console/${currentGame.id}`} className='console-link'>
+            <button>Go to game console</button>
+          </Link>
+          : null}
+
+          <div className='comment-history'>
+            {orderedComments && orderedComments.map((obj, key) => {
+              return (
+                <p key={key} className='comment'>
+                  {obj.comment}
+                </p>
+              )
+            })}
+          </div>
         </div>
       </div>
     )
