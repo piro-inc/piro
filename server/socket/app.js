@@ -33,7 +33,7 @@ function socketServer (io) {
         is_started: true,
         time_elapsed: 0,
         updated_at: knex.fn.now()
-       }
+      }
       updateGame(searchParams, updateInfo)
         .then(arr => {
           io.emit('globalUpdate', { id: arr[0] })
