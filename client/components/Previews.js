@@ -29,14 +29,14 @@ class Previews extends React.Component {
           this.props.games.length &&
           this.props.games.filter(game => game.showing).length)
           ? games.map((game, key) => {
-              return (game.showing &&
-                <Preview
+            return (game.showing &&
+              <Preview
                 key={key}
                 game={game}
                 userID={userID}
                 followGame={this.props.followGame}
                 unfollowGame={this.props.unfollowGame} />)
-            })
+          })
           : 'No games to display.'
           }
         </div>

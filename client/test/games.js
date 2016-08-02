@@ -53,13 +53,13 @@ test('UPDATE_GAME_SUCCESS', (t) => {
   })
 
   const game = { team_a: 'yo', sport: 'new', id: 1 }
-
+  const expected = { ...game, showing: true }
   store.dispatch({
     game,
     type: gamesActions.UPDATE_GAME_SUCCESS
   })
 
-  t.deepEqual(store.getState().games.get('games').toJS()[0], game, 'UPDATE_GAME_SUCCESS updates store correctly')
+  t.deepEqual(store.getState().games.get('games').toJS()[0], expected, 'UPDATE_GAME_SUCCESS updates store correctly')
   t.end()
 })
 
