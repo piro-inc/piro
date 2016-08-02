@@ -1,16 +1,34 @@
-#console-wrapper {
+@mixin flexCenterColumn() {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+#content-wrapper {
   // height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  color: $piroRed;
   align-items: center;
+  color: $piroRed;
+  h1{
+    color: $black;
+  }
   h3, h4 {
     color: $black;
     margin: .5em 0;
   }
+  h3.team-one-name, h3.team-two-name {
+    font-weight: 800;
+  }
+  h4 {
+    font-weight: 700;
+  }
   button {
     color: $white;
+  }
+  div.comment-history {
+    margin-top: 2em;
+    width: 100%;
   }
 }
 
@@ -31,9 +49,9 @@
       align-self: flex-start;
     }
     #start {
-      background-color: $staticGrey;
-      width: 7em;
-      height: 7em;
+      background-color: $startGreen;
+      width: 6.5em;
+      height: 6.5em;
     }
     #stop {
       background-color: $piroRed;
@@ -47,9 +65,9 @@
   color: $staticGrey;
   margin-top: 1em;
   .button {
-    width: 3.5em;
-    height: 3.5em;
-    border-radius: 50%;
+    width: 3.8em;
+    height: 2.5em;
+    border-radius: 5px;
     margin: 0 1em;
     background-color: $startGreen;
   }
@@ -69,16 +87,10 @@
     margin: 0 .2em .2em .2em;
     font-size: 4em;
     font-weight: 700;
-    width: 99%;
+    width: 100%;
+    border: 1px solid $inactiveGrey;
     text-align: center;
-    background-color: $backgroundGrey;
   }
-}
-
-#content-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .add-comment-wrapper, .edit-comment-wrapper {
@@ -86,21 +98,46 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-    input {
-      width: 100%;
-      padding: 0;
-      background-color: $inactiveGrey;
-      border-style: solid 1px $backgroundGrey;
-    }
-    h3 {
-      align-self: flex-start;
-      margin-top: .5em;
-    }
-    button {
-      align-self: flex-end;
-      width: 7em;
-      background-color: $startGreen;
-      margin: .5em 0 0 0;
-      border-radius: 5px;
-    }
+  margin-top: 1em;
+  input {
+    width: 100%;
+    padding-left: 1em;
+    background-color: $inactiveGrey;
+    border-style: solid 1px $backgroundGrey;
+  }
+  & :focus {
+    background-color: $white;
+  }
+  h3 {
+    align-self: flex-start;
+    margin-top: .5em;
+  }
+  button {
+    align-self: flex-end;
+    width: 7em;
+    background-color: $startGreen;
+    margin: .5em 0 0 0;
+    border-radius: 5px;
+  }
 }
+
+.comment-history {
+  @include flexCenterColumn();
+  background-color: $inactiveGrey;
+  flex: 3;
+  overflow: scroll;
+  box-shadow: 0px 15px 10px -10px #ffffff inset;
+  .comment {
+    text-align: center;
+    margin: 0.5em 0 0 0;
+    padding-bottom: .5em;
+    border-bottom: solid 1px $inactiveGrey;
+  }
+  .latest {
+    background-color: $lightGreen;
+    font-size: 1.5em;
+    font-style: italic;
+    padding: 0.5em 0.5em;
+  }
+}
+

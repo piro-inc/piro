@@ -1,11 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import ReactTimeout from 'react-timeout'
+import { IconButton } from 'react-mdl'
+
 import { changeTeamScore, startGame, stopGame, addComment, togglePause } from '../redux/socketActions'
 import { clearGame, fetchGameInfo } from '../redux/gamesActions'
 import { authenticateGame } from '../redux/sessionActions'
 import { readCookie } from '../utils'
 import Navbar from './Navbar'
-import ReactTimeout from 'react-timeout'
+
 
 class Console extends React.Component {
   constructor (props) {
@@ -131,8 +134,8 @@ class Console extends React.Component {
           </div>
 
           <div id='content-wrapper'>
-            <h4 className='console-title'>{this.props.game.game && this.props.game.game.is_complete && 'Game is complete.'}</h4>
             <h4 className='console-title'>{this.props.game.game && this.props.game.game.sport_name}</h4>
+            <h4 className='console-title'>{this.props.game.game && this.props.game.game.is_complete && 'Game is complete.'}</h4>
 
             <div className='console-timer-wrapper'>
 
@@ -192,16 +195,20 @@ class Console extends React.Component {
 
             <div className='add-comment-wrapper'>
               <h3 className='console-headers'>ADD COMMENT</h3>
-              <input onChange={this.changeComment} value={this.state.comment} type='text' className='console-comment' id='add-comment' />
+              <input onChange={this.changeComment} placeholder='Add comment here' value={this.state.comment} type='text' className='console-comment' id='add-comment' />
               <button className='submit button' id='submit-comment' onClick={this.addComment}>+ SUBMIT</button>
             </div>
-            {orderedComments && orderedComments.map((obj, key) => {
-              return (
-                <p key={key} className='comment'>
-                  {obj.comment}
-                </p>
-              )
-            })}
+
+            <div className='comment-history'>
+              {orderedComments && orderedComments.map((obj, key) => {
+                return (
+                  <p key={key} className='comment'>
+                    {obj.comment}
+                  </p>
+                )
+              })}
+            </div>
+
           </div>
         </div>
       }
