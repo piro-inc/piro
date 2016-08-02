@@ -19,10 +19,15 @@ function update (table, searchParams, updateInfo) {
   return knex(table).where(searchParams).update(updateInfo, 'id')
 }
 
+function deleteRow (table, params) {
+  return knex(table).where(params).del()
+}
+
 module.exports = {
   knex,
   getOne,
   addOne,
   getAll,
-  update
+  update,
+  deleteRow
 }
