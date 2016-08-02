@@ -106,18 +106,6 @@
   border-bottom: solid 2px $backgroundGrey;
 }
 
-#console-link {
-  display: flex;
-  justify-content: center;
-  margin: .5em;
-    button {
-      color: $white;
-      background-color: $startGreen;
-      border-radius: 5px;
-      width: 11em;
-    }
-}
-
 #manage-follow {
   background-color: $backgroundGrey;
   display: flex;
@@ -129,4 +117,8 @@
   #follow {
     color: $staticGrey;
   }
+}
+
+a.console-link {
+  color: $staticGrey;
 }

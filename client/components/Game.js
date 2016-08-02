@@ -92,7 +92,11 @@ class Game extends React.Component {
           <div id='game-header'>
             <div id="manage-follow">
               <div id="manage">
-                <IconButton name="mode_edit" className="manage-follow-button"/>
+                {userID && (userID === currentGameID)
+                ? <Link to={`/console/${currentGame.id}`} className='console-link'>
+                  <IconButton name="mode_edit" className="manage-follow-button"/>
+                </Link>
+                : null}
               </div>
               <div id="follow">
                 <IconButton name="star_outline" className="manage-follow-button"/>
@@ -126,12 +130,6 @@ class Game extends React.Component {
             </div>
 
           </div>
-
-          {userID && (userID === currentGameID)
-          ? <Link to={`/console/${currentGame.id}`} className='console-link'>
-            <button>Go to game console</button>
-          </Link>
-          : null}
 
           <div className='comment-history'>
             {orderedComments && orderedComments.map((obj, key) => {
