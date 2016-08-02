@@ -10,7 +10,7 @@ exports.up = function (knex, Promise) {
     table.integer('team_a_score').notNullable().defaultTo(0)
     table.integer('team_b_score').notNullable().defaultTo(0)
     table.string('sport_name').notNullable()
-    table.time('time_elapsed').notNullable().defaultTo('00:00:00')
+    table.integer('time_elapsed').notNullable().defaultTo(0)
     table.timestamps(true, true)
     table.boolean('is_running').notNullable().defaultTo(false)
   })
