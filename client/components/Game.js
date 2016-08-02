@@ -21,8 +21,6 @@ class Game extends React.Component {
     const currentGame = this.props.game
     const currentGameID = currentGame.game && currentGame.game.user_id
     const userID = this.props.user.id
-    console.log('userID', userID)
-    console.log('currentGameID', currentGameID)
     let date
     let time
     let formatTime = (str) => {

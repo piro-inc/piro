@@ -1,39 +1,32 @@
 const updateGame = require('../database/games_utils').updateGame
 const addComment = require('../database/comments_utils').addComment
-const authenticateSocket = require('../auth').authenticateSocket
 
 // elapsed: '00:00:00' with every socket
 function socketServer (io) {
   io.on('connection', (socket) => {
     socket.on('changeTeamScore', (data) => {
       // { team: 'one', gameId: '1', id: null }
-      authenticateSocket(data.id, data.gameId, socket, err => {
-        if (!err) {
-          const searchParams = { id: data.gameId }
-          const updateInfo = { time_elapsed: data.elapsed }
-          if (data.team === 'one') {
-            updateInfo.team_a_score = data.newScore
-          } else if (data.team === 'two') {
-            updateInfo.team_b_score = data.newScore
-          }
-          updateGame(searchParams, updateInfo)
-            .then(arr => {
-              io.emit('globalUpdate', { id: arr[0] })
-            })
-            .catch(err => {
-              console.log(err)
-            })
-        } else {
+      const searchParams = { id: data.gameId }
+      const updateInfo = { time_elapsed: data.elapsed }
+      if (data.team === 'one') {
+        updateInfo.team_a_score = data.newScore
+      } else if (data.team === 'two') {
+        updateInfo.team_b_score = data.newScore
+      }
+      updateGame(searchParams, updateInfo)
+        .then(arr => {
+          io.emit('globalUpdate', { id: arr[0] })
+        })
+        .catch(err => {
           console.log(err)
-        }
-      })
+        })
     })
 
     socket.on('startGame', (data) => {
       // { gameId: '1', id: null }
       const searchParams = { id: data.gameId }
       console.log(data)
-      const updateInfo = { is_running: true, is_started: true, time_elapsed: data.elapsed }
+      const updateInfo = { is_running: true, is_started: true, time_elapsed: 0 }
       updateGame(searchParams, updateInfo)
         .then(arr => {
           io.emit('globalUpdate', { id: arr[0] })

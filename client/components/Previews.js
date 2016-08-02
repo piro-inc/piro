@@ -20,7 +20,6 @@ class Previews extends React.Component {
   render () {
     const games = this.props.games
     const userID = this.props.user.id
-    console.log(userID)
     return (
       <div id='previews-wrapper'>
         <Navbar />
