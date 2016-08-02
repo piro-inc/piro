@@ -44,19 +44,18 @@ function getGamesInfo (userId = null) {
           return (comment && comment.game_id === game.id)
         })
       })
-      return userId ? getFollowingState(gamesInfo, userId): gamesInfo
+      return userId ? getFollowingState(gamesInfo, userId) : gamesInfo
     })
 }
 
-function getFollowingState (gamesInfo, userId){
+function getFollowingState (gamesInfo, userId) {
   // console.log('gamesInfo', gamesInfo)
   return utils.getOne('following_join', {user_id: userId})
     .then((followingArr) => {
       gamesInfo.map((game) => {
-        if(followingArr.find((following) => following.game_id === game.id)){
+        if (followingArr.find((following) => following.game_id === game.id)) {
           game.following = true
-        }
-        else{
+        } else {
           game.following = false
         }
       })

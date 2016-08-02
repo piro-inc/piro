@@ -90,7 +90,7 @@ test('Add user to users table', function (t) {
 })
 
 // Failing due to added columns TODO fix test.
-/*test('Add game to games table and get game from games table', function (t) {
+/* test('Add game to games table and get game from games table', function (t) {
   const expected = [
     {
       id: 4,
@@ -159,7 +159,7 @@ test('Add comment to comments table', function (t) {
 })
 
 // Failing due to added columns TODO fix test.
-/*test('Get all games from games table', function (t) {
+/* test('Get all games from games table', function (t) {
   const expected = {
     id: 1,
     user_id: 1,
@@ -216,7 +216,7 @@ test('Update games info', (t) => {
   })
 })
 
-/****    Comments ****/
+/** **    Comments ****/
 test('Get a single comment searching by game id', function (t) {
   const expected = 'Try!'
   knex.migrate.rollback()
@@ -254,7 +254,7 @@ test('Get all comments', function (t) {
   })
 })
 
-/****    Games    ****/
+/** **    Games    ****/
 test('Get a game searching by sport name', function (t) {
   const expected = 'Vivian St'
   knex.migrate.rollback()
@@ -312,9 +312,9 @@ test('Get all games and a comment for each game', function (t) {
 test('Get all games with a following flag', function (t) {
   const userId = 2
   const expected = [
-    {id:1, following:true},
-    {id:2, following:false},
-    {id:3, following:true}
+    {id: 1, following: true},
+    {id: 2, following: false},
+    {id: 3, following: true}
   ]
   knex.migrate.rollback()
     .then(() => knex.migrate.latest())
@@ -332,4 +332,4 @@ test('Get all games with a following flag', function (t) {
   t.end()
 })
 
-/****    Users    ****/
+/** **    Users    ****/
