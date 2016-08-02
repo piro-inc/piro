@@ -1,16 +1,48 @@
-#console-wrapper {
+@mixin flexCenterColumn() {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+#content-wrapper {
   // height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  color: $piroRed;
   align-items: center;
+  color: $piroRed;
+  h1{
+    color: $black;
+  }
   h3, h4 {
     color: $black;
     margin: .5em 0;
   }
+  h3.team-one-name, h3.team-two-name {
+    font-weight: 600;
+  }
+  h4 {
+    font-weight: 600;
+  }
+  h4.console-title {
+    color: $piroRed;
+    text-transform: uppercase;
+  }
   button {
     color: $white;
+  }
+  div.comment-history {
+    margin-top: 2em;
+    width: 100%;
+    height: 7em;
+  }
+}
+
+.console-title-header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  h2 {
+    text-align: center;
   }
 }
 
@@ -19,7 +51,8 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin-bottom: 0;
+  padding: 1em 0;
+  border-top: 1px dotted $inactiveGrey;
   .button {
     margin: 0;
     width: 5em;
@@ -31,9 +64,9 @@
       align-self: flex-start;
     }
     #start {
-      background-color: $staticGrey;
-      width: 7em;
-      height: 7em;
+      background-color: $startGreen;
+      width: 6.5em;
+      height: 6.5em;
     }
     #stop {
       background-color: $piroRed;
@@ -45,16 +78,25 @@
   display: flex;
   justify-content: center;
   color: $staticGrey;
-  margin-top: 1em;
+  border-top: 1px dotted $inactiveGrey;
+  border-bottom: 1px dotted $inactiveGrey;
+  padding-bottom: 1.2em;
   .button {
-    width: 3.5em;
-    height: 3.5em;
-    border-radius: 50%;
+    width: 3.8em;
+    height: 2.5em;
+    border-radius: 5px;
     margin: 0 1em;
     background-color: $startGreen;
   }
   .decrement{
-    background-color: $piroRed;
+    background-color: $piroLightRed;
+  }
+  .scoring-buttons {
+    border: 1px solid $inactiveGrey;
+    button { margin-bottom: .5em; }
+  }
+  h3 {
+    font-size: 1.5em;
   }
 }
 
@@ -66,19 +108,12 @@
     margin-bottom: .2em;
   }
   .console-score {
-    margin: 0 .2em .2em .2em;
     font-size: 4em;
     font-weight: 700;
-    width: 99%;
+    margin: .2em 0;
     text-align: center;
-    background-color: $backgroundGrey;
+    width: 100%;
   }
-}
-
-#content-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .add-comment-wrapper, .edit-comment-wrapper {
@@ -86,21 +121,36 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-    input {
-      width: 100%;
-      padding: 0;
-      background-color: $inactiveGrey;
-      border-style: solid 1px $backgroundGrey;
-    }
-    h3 {
-      align-self: flex-start;
-      margin-top: .5em;
-    }
-    button {
-      align-self: flex-end;
-      width: 7em;
-      background-color: $startGreen;
-      margin: .5em 0 0 0;
-      border-radius: 5px;
-    }
+  margin-top: 1em;
+  input.console-comment {
+    text-align: center;
+    background-color: $inactiveGrey;
+    width: 100%;
+    padding: 0;
+  }
+  & :focus {
+    background-color: $white;
+  }
+  button {
+    align-self: center;
+    width: 4em;
+    background-color: $startGreen;
+    margin: .5em 0 0 0;
+    border-radius: 5px;
+  }
 }
+
+.comment-history {
+  p.comment{
+    width: 100%;
+    word-wrap: break-word;
+    color: $black;
+  }
+  p:first-child {
+    color: $piroRed;
+    font-style: italic;
+    font-weight: 600;
+    background-color: $lightGreen;
+  }
+}
+
