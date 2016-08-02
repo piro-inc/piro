@@ -2,6 +2,7 @@ const updateGame = require('../database/games_utils').updateGame
 const addComment = require('../database/comments_utils').addComment
 const authenticateSocket = require('../auth').authenticateSocket
 
+// elapsed: '00:00:00' with every socket
 function socketServer (io) {
   io.on('connection', (socket) => {
     socket.on('changeTeamScore', (data) => {
@@ -9,7 +10,7 @@ function socketServer (io) {
       authenticateSocket(data.id, data.gameId, socket, err => {
         if (!err) {
           const searchParams = { id: data.gameId }
-          const updateInfo = {}
+          const updateInfo = { time_elapsed: data.elapsed }
           if (data.team === 'one') {
             updateInfo.team_a_score = data.newScore
           } else if (data.team === 'two') {
@@ -28,10 +29,37 @@ function socketServer (io) {
       })
     })
 
+    socket.on('startGame', (data) => {
+      // { gameId: '1', id: null }
+      const searchParams = { id: data.gameId }
+      console.log(data)
+      const updateInfo = { is_running: true, is_started: true, time_elapsed: data.elapsed }
+      updateGame(searchParams, updateInfo)
+        .then(arr => {
+          io.emit('globalUpdate', { id: arr[0] })
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    })
+
+    socket.on('togglePause', (data) => {
+      // { gameId: '1', id: null, is_running: false }
+      const searchParams = { id: data.gameId }
+      const updateInfo = { is_running: data.is_running, time_elapsed: data.elapsed }
+      updateGame(searchParams, updateInfo)
+        .then(arr => {
+          io.emit('globalUpdate', { id: arr[0] })
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    })
+
     socket.on('stopGame', (data) => {
       // { gameId: '1', id: null }
       const searchParams = { id: data.gameId }
-      const updateInfo = { is_complete: true }
+      const updateInfo = { is_complete: true, is_running: false, time_elapsed: data.elapsed }
       updateGame(searchParams, updateInfo)
         .then(arr => {
           io.emit('globalUpdate', { id: arr[0] })
