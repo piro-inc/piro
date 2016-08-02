@@ -24,23 +24,25 @@ class Navbar extends React.Component {
   render () {
     const user = this.props.user
     return (
-      <div id='navbar'>
-        <Link to='/games' id='logo-nav-wrapper'>
-          <img id='logo-nav' src='/images/logo-nav.svg' />
-        </Link>
-
-        {!user.username
-          ? <Link to='/' className='nav-links'>
-            <p className='nav-login-register'>login</p>
-            <p className='nav-login-register'>register</p>
+      <div className='navbar-wrapper'>
+        <div id='navbar'>
+          <Link to='/games' id='logo-nav-wrapper'>
+            <img id='logo-nav' src='/images/logo-nav.svg' />
           </Link>
-          : <div className='nav-links'>
-            <p className='nav-login-register'>{user.username}</p>
-            <Link to='/games/new' id='nav-menu' className='drop-down-menu'>+</Link>
+
+          {!user.username
+            ? <Link to='/' className='nav-links'>
+              <p className='nav-login-register'>login</p>
+              <p className='nav-login-register'>register</p>
+            </Link>
+            : <div className='nav-links'>
+              <p className='nav-login-register'>{user.username}</p>
+              <Link to='/games/new' id='nav-menu' className='drop-down-menu'>+</Link>
+            </div>
+          }
+          <div className='menu-button'>
+            <IconButton name='+' id='demo-menu-lower-right' />
           </div>
-        }
-        <div className='menu-button'>
-          <IconButton name='+' id='demo-menu-lower-right' />
         </div>
 
         <div className='menu-dropdown'>
@@ -50,7 +52,6 @@ class Navbar extends React.Component {
             <MenuItem onClick={this.logout}>Logout</MenuItem>
           </Menu>
         </div>
-
       </div>
     )
   }
