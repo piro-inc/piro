@@ -112,89 +112,72 @@ class Console extends React.Component {
 
   render () {
     const currentGame = this.props.game
+    console.log('what id', currentGame)
     let orderedComments
     if (currentGame.comments) {
       orderedComments = currentGame.comments.slice().reverse()
     }
     return (
       <div id='console-wrapper'>
-      {this.props.session.error &&
-        <div>
-          {this.props.session.error}
-          <a href='/'> Home </a>
-        </div>
-      }
+        {this.props.session.error &&
+          <div className='session-error'>
+            {this.props.session.error} - Go <a href='/'>Home.</a>
+          </div>
+        }
 
-      {this.props.session.user.id &&
-        <div>
+        {this.props.session.user.id &&
+        <div id='user-console-wrapper'>
           <div id='navbar-wrapper'>
             <Navbar />
           </div>
 
           <div id='content-wrapper'>
-            <h4 className='console-title'>{this.props.game.game && this.props.game.game.sport_name}</h4>
-            <h4 className='console-title'>{this.props.game.game && this.props.game.game.is_complete && 'Game is complete.'}</h4>
+            <h4 className='console-title'>#{this.props.game.game.id} {this.props.game.game && this.props.game.game.sport_name}</h4>
+            <h4 className='console-complete'>{this.props.game.game && this.props.game.game.is_complete && 'Game is complete.'}</h4>
 
             <div className='console-timer-wrapper'>
-
               <div className='pause'>
                 <button className='button' id='pause' onClick={this.togglePause}>
                   {this.props.game.game && this.props.game.game.is_running ? 'PAUSE' : 'RESUME'}
                 </button>
               </div>
-
               <div className='start'>
                 {this.state.timer === 0
                 ? <button className='button' id='start' onClick={this.startGame}>START</button>
                 : <button className='button' id='start' onClick={this.startGame}>{this.format(this.state.timer.toString())}</button>
                 }
               </div>
-
               <div className='stop'>
                 <button className='button' id='stop' onClick={this.stopGame}>STOP</button>
               </div>
-
-            </div>
-
-            <div>
-
             </div>
 
             <div className='console-scores-wrapper'>
-
               <div className='console-teamone'>
-
-                <img src='http://placehold.it/50X50' className='team-logo' />
+                <img src='http://placehold.it/25x25' className='team-logo' />
                 <h3 className='team-one-name'>{this.props.game.game && this.props.game.game.team_a_name}</h3>
-                <h1 className='console-score' id='team-one-score'>{this.props.game.game && this.props.game.game.team_a_score}</h1>
-
                 <div className='scoring-buttons'>
+                  <h1 className='console-score' id='team-one-score'>{this.props.game.game && this.props.game.game.team_a_score}</h1>
                   <button className='button decrement' id='decrement-team-one' onClick={this.decrementScore('one')}>-</button>
                   <button className='button increment' id='increment-team-one' onClick={this.incrementScore('one')}>+</button>
-
                 </div>
-
               </div>
 
               <div className='console-teamtwo'>
-
-                <img src='http://placehold.it/50X50' className='team-logo' />
+                <img src='http://placehold.it/25x25' className='team-logo' />
                 <h3 className='team-two-name'>{this.props.game.game && this.props.game.game.team_b_name}</h3>
-                <h1 className='console-score' id='team-two-score'>{this.props.game.game && this.props.game.game.team_b_score}</h1>
-
                 <div className='scoring-buttons'>
+                  <h1 className='console-score' id='team-two-score'>{this.props.game.game && this.props.game.game.team_b_score}</h1>
                   <button className='button decrement' id='decrement-team-two' onClick={this.decrementScore('two')}>-</button>
                   <button className='button increment' id='increment-team-two' onClick={this.incrementScore('two')}>+</button>
                 </div>
-
               </div>
-
             </div>
 
             <div className='add-comment-wrapper'>
-              <h3 className='console-headers'>ADD COMMENT</h3>
-              <input onChange={this.changeComment} placeholder='Add comment here' value={this.state.comment} type='text' className='console-comment' id='add-comment' />
-              <button className='submit button' id='submit-comment' onClick={this.addComment}>+ SUBMIT</button>
+              {/*<h3 className='console-headers'>ADD COMMENT</h3>*/}
+              <input onChange={this.changeComment} placeholder='post comments to the game here' value={this.state.comment} type='text' className='console-comment' id='add-comment' />
+              <button className='submit button' id='submit-comment' onClick={this.addComment}>POST</button>
             </div>
 
             <div className='comment-history'>
@@ -206,10 +189,9 @@ class Console extends React.Component {
                 )
               })}
             </div>
-
           </div>
         </div>
-      }
+        }
       </div>
     )
   }

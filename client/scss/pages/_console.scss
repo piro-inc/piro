@@ -18,10 +18,14 @@
     margin: .5em 0;
   }
   h3.team-one-name, h3.team-two-name {
-    font-weight: 800;
+    font-weight: 600;
   }
   h4 {
-    font-weight: 700;
+    font-weight: 600;
+  }
+  h4.console-title {
+    color: $piroRed;
+    text-transform: uppercase;
   }
   button {
     color: $white;
@@ -38,7 +42,8 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin-bottom: 0;
+  padding: 1em 0;
+  border-top: 1px dotted $inactiveGrey;
   .button {
     margin: 0;
     width: 5em;
@@ -64,7 +69,9 @@
   display: flex;
   justify-content: center;
   color: $staticGrey;
-  margin-top: 1em;
+  border-top: 1px dotted $inactiveGrey;
+  border-bottom: 1px dotted $inactiveGrey;
+  padding-bottom: 1.2em;
   .button {
     width: 3.8em;
     height: 2.5em;
@@ -73,7 +80,14 @@
     background-color: $startGreen;
   }
   .decrement{
-    background-color: $piroRed;
+    background-color: $piroLightRed;
+  }
+  .scoring-buttons {
+    border: 1px solid $inactiveGrey;
+    button { margin-bottom: .5em; }
+  }
+  h3 {
+    font-size: 1.5em;
   }
 }
 
@@ -85,12 +99,11 @@
     margin-bottom: .2em;
   }
   .console-score {
-    margin: 0 .2em .2em .2em;
     font-size: 4em;
     font-weight: 700;
-    width: 100%;
-    border: 1px solid $inactiveGrey;
+    margin: .2em 0;
     text-align: center;
+    width: 100%;
   }
 }
 
@@ -101,21 +114,16 @@
   align-items: center;
   margin-top: 1em;
   input {
-    width: 100%;
-    padding-left: 1em;
+    text-align: center;
     background-color: $inactiveGrey;
-    border-style: solid 1px $backgroundGrey;
+    width: 100%;
   }
   & :focus {
     background-color: $white;
   }
-  h3 {
-    align-self: flex-start;
-    margin-top: .5em;
-  }
   button {
     align-self: flex-end;
-    width: 7em;
+    width: 4em;
     background-color: $startGreen;
     margin: .5em 0 0 0;
     border-radius: 5px;
