@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable'
 import * as gamesActions from './gamesActions'
-import * as socketActions from './socketActions'
+// import * as socketActions from './socketActions'
 
 const initialState = fromJS({
   games: [],
@@ -45,11 +45,11 @@ const reducer = (state = initialState, action) => {
         .set('games', state.get('games').push(fromJS(action.game)))
     case gamesActions.CLEAR_GAME:
       return state.set('currentGame', fromJS({}))
-    case socketActions.FOLLOW_GAME:
+    case gamesActions.FOLLOW_GAME:
       let followGames = state.get('games').toJS()
       followGames.find((game) => { return game.id === action.gameId }).following = true
       return state.set('games', fromJS(followGames))
-    case socketActions.UNFOLLOW_GAME:
+    case gamesActions.UNFOLLOW_GAME:
       let unfollowGames = state.get('games').toJS()
       unfollowGames.find((game) => { return game.id === action.gameId }).following = false
       return state.set('games', fromJS(unfollowGames))

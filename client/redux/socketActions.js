@@ -1,8 +1,6 @@
 import { readCookie } from '../utils'
 import { socket } from '../index'
-
-export const FOLLOW_GAME = 'FOLLOW_GAME'
-export const UNFOLLOW_GAME = 'UNFOLLOW_GAME'
+import { FOLLOW_GAME, UNFOLLOW_GAME } from './gamesActions'
 
 export const changeTeamScore = (elapsed, team, newScore, gameId) => {
   return () => {
