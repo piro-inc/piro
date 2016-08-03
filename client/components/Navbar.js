@@ -3,27 +3,27 @@ import { connect } from 'react-redux'
 import { Link, browserHistory } from 'react-router'
 import { readCookie } from '../utils'
 import { authenticateUser, logout } from '../redux/sessionActions'
-import { filterMyGames, filterFollowGames } from '../redux/gamesActions'
+import { filterMyGames, filterFollowGames, showAllGames } from '../redux/gamesActions'
 import { IconButton, Menu, MenuItem } from 'react-mdl'
 
 class Navbar extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      // state goes here
-    }
-  }
-
   componentDidMount () {
     this.props.authenticateUser(readCookie('user.id'))
   }
 
   handleMyGamesClick = () => {
+    browserHistory.push('/games')
     this.props.filterMyGames(this.props.user.id)
   }
 
   handleFollowingClick = () => {
+    browserHistory.push('/games')
     this.props.filterFollowGames()
+  }
+
+  handleShowAllClick = () => {
+    browserHistory.push('/games')
+    this.props.showAllGames()
   }
 
   logout = () => {
@@ -53,10 +53,17 @@ class Navbar extends React.Component {
 
               <div className='menu-dropdown'>
                 <Menu target='demo-menu-lower-right' align='right'>
-                  <MenuItem onClick={() => browserHistory.push('/')}>Home</MenuItem>
+                  <MenuItem onClick={() => browserHistory.push('/games')}>Home</MenuItem>
                   <MenuItem onClick={() => browserHistory.push('/games/new')}>Create Game</MenuItem>
-                  <MenuItem onClick={this.handleMyGamesClick}>My Games</MenuItem>
-                  <MenuItem onClick={this.handleFollowingClick}>Following</MenuItem>
+                  <MenuItem onClick={this.handleMyGamesClick}>
+                    {this.props.filter === 'myGames' && '✔'} My Games
+                  </MenuItem>
+                  <MenuItem onClick={this.handleFollowingClick}>
+                    {this.props.filter === 'following' && '✔'} Following
+                  </MenuItem>
+                  <MenuItem onClick={this.handleShowAllClick}>
+                    {this.props.filter === 'all' && '✔'} All Games
+                  </MenuItem>
                   <MenuItem onClick={this.logout}>Logout</MenuItem>
                 </Menu>
               </div>
@@ -70,7 +77,8 @@ class Navbar extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.session.get('user').toJS()
+    user: state.session.get('user').toJS(),
+    filter: state.games.get('filter')
   }
 }
 
@@ -84,6 +92,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     filterFollowGames: () => {
       dispatch(filterFollowGames())
+    },
+    showAllGames: () => {
+      dispatch(showAllGames())
     },
     logout: () => {
       dispatch(logout())
