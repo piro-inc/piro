@@ -22,21 +22,22 @@ class Preview extends React.Component {
     const userID = this.props.userID
     return (
       <div id='preview'>
-        <div className='manage-follow-header'>
+        {(userID)
+        ? <div className='manage-follow-header'>
           <div className='manage-link'>
-            {(userID === game.user_id)
-            ? <Link to={`/console/${game.id}`} className='console-link'>
-              <IconButton name='mode_edit' id='icon-manage' onClick={this.followGame} />
-            </Link>
-            : null}
+              {(userID === game.user_id)
+              ? <Link to={`/console/${game.id}`} className='console-link'>
+                <IconButton name='mode_edit' id='icon-manage' onClick={this.followGame} />
+              </Link>
+              : null}
           </div>
           <div className='follow-link'>
-          {!this.props.game.following
-          ? <IconButton name='star_outline' id='icon-unfollow' onClick={this.followGame} />
-          : <IconButton name='star' id='icon-follow' onClick={this.unfollowGame} />}
+            {!this.props.game.following
+            ? <IconButton name='star_outline' id='icon-unfollow' onClick={this.followGame} />
+            : <IconButton name='star' id='icon-follow' onClick={this.unfollowGame} />}
           </div>
-
         </div>
+          : null}
         <Link to={`/games/${game.id}`} className='preview-header'>
           <h4 className='sport'>{game.sport_name}</h4>
           <h4 className='location'>{game.location}</h4>
