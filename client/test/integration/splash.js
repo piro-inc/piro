@@ -46,7 +46,6 @@ module.exports = {
       .end()
   },
 
-
   'User can register successfully': function (browser) {
     exec('npm run database')
     browser
@@ -69,20 +68,6 @@ module.exports = {
       .waitForElementVisible('body', 2000)
       .assert.urlEquals('http://localhost:3000/games')
       .end()
-  },
-
-  'User can log in successfully': function (browser) {
-    browser
-    .url('http://localhost:3000')
-    .waitForElementVisible('body', 5000)
-    .click('button[id=login]')
-    .pause(1000)
-    .assert.elementPresent('#login-form')
-    .setValue('form.login-form .username', process.env.PIRO_TEST_USERNAME)
-    .setValue('form.login-form .password', process.env.PIRO_TEST_PASSWORD)
-    .click('form.login-form button')
-    .pause(1000)
-    .end()
   },
 
   'User can log in successfully': function (browser) {
