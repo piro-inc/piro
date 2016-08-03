@@ -80,23 +80,23 @@ class Game extends React.Component {
       orderedComments = currentGame.comments.slice().reverse()
     }
     return (
-      <div id="game-wrapper">
+      <div id='game-wrapper'>
 
         <div id='navbar-wrapper'>
-        <Navbar />
+          <Navbar />
         </div>
 
         <div id='game-header'>
-          <div id="manage-header">
-            <div id="manage">
+          <div id='manage-header'>
+            <div id='manage'>
               {userID && (userID === currentGameID)
               ? <Link to={`/console/${currentGame.id}`} className='console-link'>
-                <IconButton name="mode_edit" className="manage-follow-button"/>
+                <IconButton name='mode_edit' className='manage-follow-button' />
               </Link>
               : null}
             </div>
-            <div id="follow">
-              <IconButton name="star_outline" className="manage-follow-button"/>
+            <div id='follow'>
+              <IconButton name='star_outline' className='manage-follow-button' />
             </div>
 
           </div>
@@ -105,15 +105,14 @@ class Game extends React.Component {
           <h3 className='match-location'>{currentGame.game && currentGame.game.location}</h3>
         </div>
 
-
         <div className='game-detail-wrapper'>
 
           <div className='game-team-names'>
-          <h2 className='team-one'>{currentGame.game && currentGame.game.team_a_name}</h2>
-          <h2 className='team-two'>{currentGame.game && currentGame.game.team_b_name}</h2>
+            <h2 className='team-one'>{currentGame.game && currentGame.game.team_a_name}</h2>
+            <h2 className='team-two'>{currentGame.game && currentGame.game.team_b_name}</h2>
           </div>
 
-          <div className="game-score-wrapper">
+          <div className='game-score-wrapper'>
 
             <img src='http://placehold.it/60x60' className='team-logo' />
 
