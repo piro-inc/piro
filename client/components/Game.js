@@ -38,7 +38,7 @@ class Game extends React.Component {
     if (nextProps.game.game && nextProps.game.game.is_started && !this.state.syncTime) {
       if (!nextProps.game.game.is_running) {
         this.setState({ syncTime: true, timer: nextProps.game.game.time_elapsed })
-      } else if(nextProps.serverTime) {
+      } else if (nextProps.serverTime) {
         this.sync(nextProps)
       }
     }
