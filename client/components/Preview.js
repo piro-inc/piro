@@ -3,12 +3,6 @@ import { Link } from 'react-router'
 import { IconButton } from 'react-mdl'
 
 class Preview extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-    }
-  }
-
   followGame = () => {
     this.props.followGame(this.props.game.id)
   }

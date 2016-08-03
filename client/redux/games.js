@@ -4,7 +4,8 @@ import * as gamesActions from './gamesActions'
 
 const initialState = fromJS({
   games: [],
-  currentGame: {}
+  currentGame: {},
+  filter: ''
 })
 
 /* reducer */
@@ -20,7 +21,7 @@ const reducer = (state = initialState, action) => {
       return state.set('games', fromJS(newGames))
     case gamesActions.GET_GAMES_SUCCESS:
       const mapToShowing = action.games.map(game => {
-        return {
+        return game.showing === false ? game : {
           ...game,
           showing: true
         }
@@ -30,15 +31,31 @@ const reducer = (state = initialState, action) => {
     case gamesActions.FILTER_MY_GAMES:
       const games = state.get('games').toJS()
       const myGames = games.map(game => {
-        return game.user_id === action.userId ? game : { ...game, showing: false }
+        return game.user_id === action.userId ? { ...game, showing: true } : { ...game, showing: false }
       })
-      return state.set('games', fromJS(myGames))
+      return state
+        .set('games', fromJS(myGames))
+        .set('filter', 'myGames')
     case gamesActions.FILTER_FOLLOW_GAMES:
       const followingGames = state.get('games').toJS()
       const myFollowing = followingGames.map(game => {
-        return game.following ? game : { ...game, showing: false }
+        return game.following ? { ...game, showing: true } : { ...game, showing: false }
       })
-      return state.set('games', fromJS(myFollowing))
+      return state
+        .set('games', fromJS(myFollowing))
+        .set('filter', 'following')
+    case gamesActions.SHOW_ALL_GAMES:
+      const gamesToShow = state.get('games').toJS()
+      const showAll = gamesToShow.map(game => {
+        return {
+          ...game,
+          showing: true
+        }
+      })
+      const newAll = state
+        .set('games', fromJS(showAll))
+        .set('filter', 'all')
+      return newAll
     case gamesActions.CREATE_GAME_SUCCESS:
       return state
         .set('currentGame', fromJS(action.game))
