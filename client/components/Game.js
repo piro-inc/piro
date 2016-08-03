@@ -112,7 +112,7 @@ class Game extends React.Component {
             {currentGame.game && currentGame.game.is_complete && '| Game is finished.'}</h3>
             <h3 className='match-location'>{currentGame.game && currentGame.game.location}</h3>
           </div>
-          : <h2 className='sport-name'> No Game Found. </h2>
+          : {currentGame.game && <h2 className='sport-name'> No Game Found. </h2>}
           }
         </div>
 
