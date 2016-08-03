@@ -6,14 +6,17 @@ import { DropdownList, DateTimePicker } from 'react-widgets'
 import 'react-widgets/lib/scss/react-widgets.scss'
 import Moment from 'moment'
 import momentLocalizer from 'react-widgets/lib/localizers/moment'
-import { readCookie } from '../utils'
+import { readCookie, errorExists } from '../utils'
 
 momentLocalizer(Moment)
 
 const sports = [
-  'rugby',
-  'netball',
-  'football'
+  'Rugby',
+  'Netball',
+  'Football',
+  'Basketball',
+  'Hockey',
+  'Rugby league'
 ]
 
 class Create extends React.Component {
@@ -23,9 +26,9 @@ class Create extends React.Component {
       // state goes here
       sport: sports[0],
       date: new Date(),
-      teamOne: '',
-      teamTwo: '',
-      location: ''
+      teamOne: { value: '', error: '' },
+      teamTwo: { value: '', error: '' },
+      location: { value: '', error: '' }
     }
   }
 
@@ -38,30 +41,56 @@ class Create extends React.Component {
   }
 
   changeTeamOne = (e) => {
-    this.setState({ teamOne: e.target.value })
+    const updateTeamOne = {
+      value: e.target.value,
+      error: ''
+    }
+    this.setState({ teamOne: updateTeamOne })
+    if (e.target.value.length < 4 || e.target.value.length > 20) {
+      updateTeamOne.error = 'Team One name must be between 4 and 20 characters.'
+      this.setState({ username: updateTeamOne })
+    }
   }
 
   changeTeamTwo = (e) => {
-    this.setState({ teamTwo: e.target.value })
+    const updateTeamTwo = {
+      value: e.target.value,
+      error: ''
+    }
+    this.setState({ teamTwo: updateTeamTwo })
+    if (e.target.value.length < 4 || e.target.value.length > 20) {
+      updateTeamTwo.error = 'Team Two name must be between 4 and 20 characters.'
+      this.setState({ username: updateTeamTwo })
+    }
   }
 
   changeLocation = (e) => {
-    this.setState({ location: e.target.value })
+    const updateLocation = {
+      value: e.target.value,
+      error: ''
+    }
+    this.setState({ location: updateLocation })
+    if (e.target.value.length < 4 || e.target.value.length > 20) {
+      updateLocation.error = 'Location must be between 4 and 20 characters.'
+      this.setState({ username: updateLocation })
+    }
   }
 
   createGame = () => {
-    const userId = readCookie('user.id')
-    this.props.createGame(
-      userId,
-      this.state.date,
-      this.state.location,
-      this.state.teamOne,
-      this.state.teamTwo,
-      false,
-      0,
-      0,
-      this.state.sport
-    )
+    if (!errorExists(this.state)) {
+      const userId = readCookie('user.id')
+      this.props.createGame(
+        userId,
+        this.state.date,
+        this.state.location.value,
+        this.state.teamOne.value,
+        this.state.teamTwo.value,
+        false,
+        0,
+        0,
+        this.state.sport
+      )
+    }
   }
 
   render () {
@@ -71,15 +100,20 @@ class Create extends React.Component {
         <div id='create-form'>
           <h2>CREATE GAME</h2>
           <p className='create-description'>Create a new game below</p>
+          <div className='create-form-fields'>
+            {this.state.teamOne.error && <div>{this.state.teamOne.error}</div>}
+            {this.state.teamTwo.error && <div>{this.state.teamTwo.error}</div>}
+            {this.state.location.error && <div>{this.state.location.error}</div>}
+          </div>
           <DropdownList
             data={sports}
             value={this.state.sport}
             onChange={this.changeSport}
             className='dropdown' />
-          <div className='create-form-fields'>
-            <input type='text' onChange={this.changeTeamOne} placeholder='TEAM 1' id='team-one' className='team-name' />
-            <input type='text' onChange={this.changeTeamTwo} placeholder='TEAM 2' id='team-two' className='team-name' />
-            <input type='text' onChange={this.changeLocation} placeholder='LOCATION' id='game-location' className='location' />
+          <div>
+            <input type='text' onBlur={this.changeTeamOne} placeholder='TEAM 1' id='team-one' className='team-name' />
+            <input type='text' onBlur={this.changeTeamTwo} placeholder='TEAM 2' id='team-two' className='team-name' />
+            <input type='text' onBlur={this.changeLocation} placeholder='LOCATION' id='game-location' className='location' />
           </div>
           <DateTimePicker
             defaultValue={new Date()}

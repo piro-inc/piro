@@ -2,22 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { register } from '../redux/sessionActions'
 import TextInput from './TextInput'
-
-function errorExists (obj) {
-  let res = false
-  Object.keys(obj).forEach(key => {
-    if (typeof obj[key] === 'object') {
-      if (errorExists(obj[key])) {
-        res = true
-      }
-    } else {
-      if (key === 'error' && obj[key]) {
-        res = true
-      }
-    }
-  })
-  return res
-}
+import { errorExists } from '../utils'
 
 class Register extends React.Component {
   constructor (props) {
