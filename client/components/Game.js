@@ -85,9 +85,9 @@ class Game extends React.Component {
     if (currentGame.comments) {
       orderedComments = currentGame.comments.slice().reverse()
     }
+    console.log(currentGame.game)
     return (
       <div id='game-wrapper'>
-
         <div id='navbar-wrapper'>
           <Navbar />
         </div>
@@ -106,9 +106,14 @@ class Game extends React.Component {
             </div>
 
           </div>
-          <h2 className='sport-name'>{currentGame.game && currentGame.game.sport_name}</h2>
-          <h3 className='date-time'>{date} | {time} | {this.format(this.state.timer.toString())}</h3>
-          <h3 className='match-location'>{currentGame.game && currentGame.game.location}</h3>
+          {(currentGame.game && currentGame.game.id)
+          ? <div>
+            <h2 className='sport-name'>{currentGame.game && currentGame.game.sport_name}</h2>
+            <h3 className='date-time'>{date} | {time} | {this.format(this.state.timer.toString())}</h3>
+            <h3 className='match-location'>{currentGame.game && currentGame.game.location}</h3>
+          </div>
+          : <h2 className='sport-name'> No Game Found. </h2>
+          }
         </div>
 
         <div className='game-detail-wrapper'>
@@ -124,7 +129,7 @@ class Game extends React.Component {
 
             <h1 className='game-score'>{currentGame.game && currentGame.game.team_a_score}</h1>
 
-            <h1 className='period'>v</h1>
+            {currentGame.game && currentGame.game.id && <h1 className='period'>v</h1>}
 
             <h1 className='game-score'>{currentGame.game && currentGame.game.team_b_score}</h1>
 

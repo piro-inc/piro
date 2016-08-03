@@ -5,7 +5,7 @@ import ReactTimeout from 'react-timeout'
 import { changeTeamScore, startGame, stopGame, addComment, togglePause } from '../redux/socketActions'
 import { clearGame, fetchGameInfo } from '../redux/gamesActions'
 import { authenticateGame } from '../redux/sessionActions'
-import { readCookie } from '../utils'
+import { readCookie, errorExists } from '../utils'
 import Navbar from './Navbar'
 
 class Console extends React.Component {
@@ -13,7 +13,7 @@ class Console extends React.Component {
     super(props)
     this.state = {
       // state goes here
-      comment: '',
+      comment: { value: '', error: '' },
       timer: 0,
       syncTime: false
     }
@@ -76,8 +76,10 @@ class Console extends React.Component {
 
   addComment = (e) => {
     e.preventDefault()
-    this.props.addComment(this.state.timer, this.state.comment, this.props.params.id)
-    this.setState({ comment: '' })
+    if (!errorExists(this.state)) {
+      this.props.addComment(this.state.timer, this.state.comment.value, this.props.params.id)
+      this.setState({ comment: { ...this.state.comment, value: '' } })
+    }
   }
 
   startGame = () => {
@@ -96,7 +98,15 @@ class Console extends React.Component {
   }
 
   changeComment = (e) => {
-    this.setState({ comment: e.target.value })
+    const updateComment = {
+      value: e.target.value,
+      error: ''
+    }
+    this.setState({ comment: updateComment })
+    if (e.target.value.length === 0) {
+      updateComment.error = 'Please add a comment.'
+      this.setState({ comment: updateComment })
+    }
   }
 
   format = (time) => {
@@ -175,8 +185,8 @@ class Console extends React.Component {
               </div>
 
               <form className='add-comment-wrapper'>
-                {/* <h3 className='console-headers'>ADD COMMENT</h3>*/}
-                <input onChange={this.changeComment} placeholder='post comments to the game here' value={this.state.comment} type='text' className='console-comment' id='add-comment' />
+                {this.state.comment.error && <div>{this.state.comment.error}</div>}
+                <input onChange={this.changeComment} placeholder='post comments to the game here' value={this.state.comment.value} type='text' className='console-comment' id='add-comment' />
                 <button className='submit button' id='submit-comment' onClick={this.addComment}>POST</button>
               </form>
 
@@ -192,6 +202,7 @@ class Console extends React.Component {
             </div>
           </div>
         }
+        {this.props.game.game && !this.props.game.game.id && <div>No console found.</div>}
       </div>
     )
   }
