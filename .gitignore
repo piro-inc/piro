@@ -5,5 +5,6 @@ selenium-debug.log
 npm-debug.log
 server/dev.sqlite3
 public/bundle.js
-bin
+selenium-debug.log
 reports
+bin

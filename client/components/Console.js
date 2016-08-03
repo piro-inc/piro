@@ -126,6 +126,7 @@ class Console extends React.Component {
     if (currentGame.comments) {
       orderedComments = currentGame.comments.slice().reverse()
     }
+    const timerDisplay = this.state.timer > 0 ? this.format(this.state.timer.toString()) : '00:00:00'
     return (
       <div id='console-wrapper'>
         {this.props.session.error &&
@@ -156,14 +157,14 @@ class Console extends React.Component {
                  <div className='start'>
                   {this.state.timer === 0
                   ? <button className='button' id='start' onClick={this.startGame}>START</button>
-                  : <button className='button' id='start' onClick={this.startGame}>{this.format(this.state.timer.toString())}</button>
+                  : <button className='button' id='start' onClick={this.startGame}>{timerDisplay}</button>
                   }
                  </div>
                  <div className='stop'>
                    <button className='button' id='stop' onClick={this.stopGame}>STOP</button>
                  </div>
                </div>
-            : <h4 className='console-complete'>GAME IS COMPLETE. {this.format(this.state.timer.toString())}</h4>}
+            : <h4 className='console-complete'>GAME IS COMPLETE. {timerDisplay}</h4>}
 
               <div className='console-scores-wrapper'>
                 <div className='console-teamone'>
