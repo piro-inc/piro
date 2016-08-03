@@ -61,25 +61,24 @@ class Navbar extends React.Component {
 
               <div className='menu-dropdown'>
                 <Menu target='demo-menu-lower-right' align='right'>
-                  <MenuItem onClick={() => browserHistory.push('/games')}>Home</MenuItem>
                   <MenuItem onClick={() => browserHistory.push('/games/new')}>Create Game</MenuItem>
+                  <MenuItem onClick={this.handleShowAllClick}>
+                    {this.props.filter === 'all' && '>'} All Games
+                  </MenuItem>
                   <MenuItem onClick={this.handleMyGamesClick}>
-                    {this.props.filter === 'myGames' && '✔'} My Games
+                    {this.props.filter === 'myGames' && '>'} My Games
                   </MenuItem>
                   <MenuItem onClick={this.handleFollowingClick}>
-                    {this.props.filter === 'following' && '✔'} Following
-                  </MenuItem>
-                  <MenuItem onClick={this.handleShowAllClick}>
-                    {this.props.filter === 'all' && '✔'} All Games
+                    {this.props.filter === 'following' && '>'} Following
                   </MenuItem>
                   <MenuItem onClick={this.logout}>Logout</MenuItem>
                 </Menu>
               </div>
-              <SkyLight hideOnOverlayClicked ref='simpleDialog' title='Help'>
-                <p>What to learn more about Piro.  Play around and see how it works!</p>
-              </SkyLight>
             </div>
           }
+          <SkyLight hideOnOverlayClicked ref='simpleDialog' title='Help'>
+            <p>Want to learn more about Piro? Play around and see how it works!</p>
+          </SkyLight>
         </div>
       </div>
     )
