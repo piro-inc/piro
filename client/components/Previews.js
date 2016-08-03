@@ -25,6 +25,8 @@ class Previews extends React.Component {
       <div id='previews-wrapper'>
         <Navbar />
         <div id='preview-all-games'>
+
+          <h2>ALL GAMES</h2>
           {(this.props.games &&
           this.props.games.length &&
           this.props.games.filter(game => game.showing).length)
