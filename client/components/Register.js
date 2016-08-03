@@ -79,10 +79,10 @@ class Register extends React.Component {
           {this.state.password.error && <div>{this.state.password.error}</div>}
           {this.state.passwordConfirm.error && <div>{this.state.passwordConfirm.error}</div>}
         </div>
-        <TextInput type='text' onBlur={this.userChange} placeholder='Enter username' error={this.state.username.error} />
-        <TextInput type='email' onBlur={this.emailChange} placeholder='Email' error={this.state.email.error} />
-        <TextInput type='password' onBlur={this.pwChange} placeholder='Enter password' error={this.state.password.error} />
-        <TextInput type='password' onBlur={this.pwcChange} placeholder='Re-enter password' error={this.state.password.error} />
+        <TextInput type='text' id='username' onBlur={this.userChange} placeholder='Enter username' error={this.state.username.error} />
+        <TextInput type='email' id='email' onBlur={this.emailChange} placeholder='Email' error={this.state.email.error} />
+        <TextInput type='password' id='password' onBlur={this.pwChange} placeholder='Enter password' error={this.state.password.error} />
+        <TextInput type='password' id='confirmPassword' onBlur={this.pwcChange} placeholder='Re-enter password' error={this.state.password.error} />
         <button onClick={this.register} className='submit button'>Register</button>
       </div>
     )
