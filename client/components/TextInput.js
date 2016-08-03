@@ -18,6 +18,7 @@ class TextInput extends React.Component {
           title={this.props.error}
           type={type}
           className={classNames}
+          id={this.props.id}
           value={this.props.value}
           disabled={this.props.disabled}
           onBlur={this.props.onBlur}
