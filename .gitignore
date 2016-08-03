@@ -1,7 +1,7 @@
 node_modules
 .env
 .DS_Store
-.log
+selenium-debug.log
 npm-debug.log
 server/dev.sqlite3
 public/bundle.js
