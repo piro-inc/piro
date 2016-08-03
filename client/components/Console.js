@@ -110,8 +110,6 @@ class Console extends React.Component {
     return hours + ':' + minutes + ':' + seconds
   }
 
-
-
   render () {
     const currentGame = this.props.game
     let orderedComments
