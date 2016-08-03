@@ -1,6 +1,9 @@
 import { readCookie } from '../utils'
 import { socket } from '../index'
 
+export const FOLLOW_GAME = 'FOLLOW_GAME'
+export const UNFOLLOW_GAME = 'UNFOLLOW_GAME'
+
 export const changeTeamScore = (elapsed, team, newScore, gameId) => {
   return () => {
     socket.emit('changeTeamScore', {
@@ -55,7 +58,11 @@ export const addComment = (elapsed, comment, gameId) => {
 }
 
 export const followGame = (gameId) => {
-  return () => {
+  return dispatch => {
+    dispatch({
+      gameId,
+      type: FOLLOW_GAME
+    })
     socket.emit('followGame', {
       gameId,
       id: readCookie('user.id')
@@ -64,7 +71,11 @@ export const followGame = (gameId) => {
 }
 
 export const unfollowGame = (gameId) => {
-  return () => {
+  return dispatch => {
+    dispatch({
+      gameId,
+      type: UNFOLLOW_GAME
+    })
     socket.emit('unfollowGame', {
       gameId,
       id: readCookie('user.id')
