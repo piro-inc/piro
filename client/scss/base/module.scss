@@ -4,11 +4,19 @@
 @import 'fonts';
 @import 'components';
 
+html {
+  background-color: $inactiveGrey;
+}
+
 body {
+  max-width: 768px;
+  margin: auto;
+  align-text: center;
   background-color: $white;
   font-family: $font-piro;
   font-size: 100%;
   font-weight: 400;
+  box-shadow: 5px 5px 10px #999999;
 }
 
 input {
