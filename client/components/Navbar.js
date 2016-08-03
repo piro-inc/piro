@@ -5,6 +5,8 @@ import { readCookie } from '../utils'
 import { authenticateUser, logout } from '../redux/sessionActions'
 import { filterMyGames, filterFollowGames } from '../redux/gamesActions'
 import { IconButton, Menu, MenuItem } from 'react-mdl'
+import SkyLight from 'react-skylight'
+
 
 class Navbar extends React.Component {
   constructor (props) {
@@ -39,12 +41,19 @@ class Navbar extends React.Component {
             <img id='logo-nav' src='/images/logo-nav.svg' />
           </Link>
 
+          <div className='global-about'>
+            <button className='about-icon' onClick={() => this.refs.simpleDialog.show()}>
+              <i className='material-icons about'>&#xE8FD;</i>
+            </button>
+          </div>
+
           {!user.username
             ? <Link to='/' className='nav-links'>
               <p className='nav-login-register'>login</p>
               <p className='nav-login-register'>register</p>
             </Link>
             : <div className='nav-links'>
+
               <p className='nav-login-register'>{user.username}</p>
 
               <div className='menu-button'>
@@ -60,6 +69,9 @@ class Navbar extends React.Component {
                   <MenuItem onClick={this.logout}>Logout</MenuItem>
                 </Menu>
               </div>
+              <SkyLight hideOnOverlayClicked ref='simpleDialog' title='Welcome to PIRO'>
+                Follow live games.....
+              </SkyLight>
             </div>
           }
         </div>
