@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { login } from '../redux/sessionActions'
-import TextInput from './TextInput'
 
 class Login extends React.Component {
   constructor (props) {
@@ -34,9 +33,9 @@ class Login extends React.Component {
           {this.props.error && <div id='login-error'>{this.props.error}</div>}
         </div>
         <form className='login-form'>
-          <TextInput type='text' onChange={this.userChange} placeholder='Enter username' id='login-username' className='username' error={this.props.error} />
-          <TextInput type='password' onChange={this.pwChange} placeholder='Enter password' id='login-password' className='password' error={this.props.error} />
-          <button type='submit' onClick={this.login} className='submit button' >Log In</button>
+          <input type='text' onChange={this.userChange} placeholder='Enter username' id='login-username' className='username' />
+          <input type='password' onChange={this.pwChange} placeholder='Enter password' id='login-password' className='password' />
+          <button type='submit' onClick={this.login} className='submit button'>Log In</button>
         </form>
       </div>
     )
