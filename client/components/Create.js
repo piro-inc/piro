@@ -113,7 +113,7 @@ class Create extends React.Component {
           <div>
             <input type='text' onBlur={this.changeTeamOne} placeholder='TEAM 1' id='team-one' className='team-name' error={this.state.teamOne.error} />
             <input type='text' onBlur={this.changeTeamTwo} placeholder='TEAM 2' id='team-two' className='team-name' error={this.state.teamTwo.error} />
-            <input type='text' onBlur={this.changeLocation} placeholder='LOCATION' id='game-location' className='location' error={this.state.location} />
+            <input type='text' onBlur={this.changeLocation} placeholder='LOCATION' id='game-location' className='location' error={this.state.location.error} />
           </div>
           <DateTimePicker
             defaultValue={new Date()}
