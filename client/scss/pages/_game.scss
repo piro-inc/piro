@@ -23,36 +23,24 @@
   }
 }
 
-#page-wrapper {
+#game-wrapper {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-#game-wrapper {
-  display: flex;
-  flex-direction: column;
   background-color: $white;
-  width: 90%;
-  margin: 1em 0;
+  width: 100%;
+  margin: 0;
   box-shadow: 1px 1px 5px #999999;
 }
 
 .game-team-names {
   display: flex;
-  border-bottom: solid 2px $backgroundGrey;
+  border-bottom: solid 1px $backgroundGrey;
     h2 {
       flex: 1;
       text-align: center;
       margin: 0;
       padding: .5em 0;
-    }
-    .team-one {
-      border-right: solid 1px $backgroundGrey;
-    }
-    .team-two {
-      border-left: solid 1px $backgroundGrey;
     }
 }
 
@@ -92,12 +80,11 @@
 .sport-name {
   background-color: $lightGreen;
   text-transform: uppercase;
-  margin: 0;
 }
 
-.date-time, .match-location {
+.date-time, .match-location, .sport-name {
   margin: 0;
-  border-bottom: solid 2px $backgroundGrey;
+  border-bottom: solid 1px $backgroundGrey;
 }
 
 #manage-header {
@@ -111,4 +98,8 @@
 
 a.console-link {
   color: $staticGrey;
+}
+
+#follow {
+  color: $backgroundGrey;
 }

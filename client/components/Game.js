@@ -80,63 +80,63 @@ class Game extends React.Component {
       orderedComments = currentGame.comments.slice().reverse()
     }
     return (
-      <div id="page-wrapper">
+      <div id="game-wrapper">
 
         <div id='navbar-wrapper'>
         <Navbar />
         </div>
 
-        <div id='game-wrapper'>
-
-          <div id='game-header'>
-            <div id="manage-header">
-              <div id="manage">
-                {userID && (userID === currentGameID)
-                ? <Link to={`/console/${currentGame.id}`} className='console-link'>
-                  <IconButton name="mode_edit" className="manage-follow-button"/>
-                </Link>
-                : null}
-              </div>
-
+        <div id='game-header'>
+          <div id="manage-header">
+            <div id="manage">
+              {userID && (userID === currentGameID)
+              ? <Link to={`/console/${currentGame.id}`} className='console-link'>
+                <IconButton name="mode_edit" className="manage-follow-button"/>
+              </Link>
+              : null}
             </div>
-            <h2 className='sport-name'>{currentGame.game && currentGame.game.sport_name}</h2>
-            <h3 className='date-time'>{date} | {time} | {this.format(this.state.timer.toString())}</h3>
-            <h3 className='match-location'>{currentGame.game && currentGame.game.location}</h3>
-          </div>
-
-
-          <div className='game-detail-wrapper'>
-
-            <div className='game-team-names'>
-            <h2 className='team-one'>{currentGame.game && currentGame.game.team_a_name}</h2>
-            <h2 className='team-two'>{currentGame.game && currentGame.game.team_b_name}</h2>
-            </div>
-
-            <div className="game-score-wrapper">
-
-              <img src='http://placehold.it/60x60' className='team-logo' />
-
-              <h1 className='game-score'>{currentGame.game && currentGame.game.team_a_score}</h1>
-
-              <h1 className='period'>v</h1>
-
-              <h1 className='game-score'>{currentGame.game && currentGame.game.team_b_score}</h1>
-
-              <img src='http://placehold.it/60x60' className='team-logo' />
-
+            <div id="follow">
+              <IconButton name="star_outline" className="manage-follow-button"/>
             </div>
 
           </div>
+          <h2 className='sport-name'>{currentGame.game && currentGame.game.sport_name}</h2>
+          <h3 className='date-time'>{date} | {time} | {this.format(this.state.timer.toString())}</h3>
+          <h3 className='match-location'>{currentGame.game && currentGame.game.location}</h3>
+        </div>
 
-          <div className='game-comment-history'>
-            {orderedComments && orderedComments.map((obj, key) => {
-              return (
-                <p key={key} className='game-comment'>
-                  {obj.comment}
-                </p>
-              )
-            })}
+
+        <div className='game-detail-wrapper'>
+
+          <div className='game-team-names'>
+          <h2 className='team-one'>{currentGame.game && currentGame.game.team_a_name}</h2>
+          <h2 className='team-two'>{currentGame.game && currentGame.game.team_b_name}</h2>
           </div>
+
+          <div className="game-score-wrapper">
+
+            <img src='http://placehold.it/60x60' className='team-logo' />
+
+            <h1 className='game-score'>{currentGame.game && currentGame.game.team_a_score}</h1>
+
+            <h1 className='period'>v</h1>
+
+            <h1 className='game-score'>{currentGame.game && currentGame.game.team_b_score}</h1>
+
+            <img src='http://placehold.it/60x60' className='team-logo' />
+
+          </div>
+
+        </div>
+
+        <div className='game-comment-history'>
+          {orderedComments && orderedComments.map((obj, key) => {
+            return (
+              <p key={key} className='game-comment'>
+                {obj.comment}
+              </p>
+            )
+          })}
         </div>
       </div>
     )
