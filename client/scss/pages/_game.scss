@@ -33,6 +33,13 @@
   box-shadow: 1px 1px 5px #999999;
 }
 
+.game-complete {
+  color: $backgroundGrey;
+  text-align: center;
+  font-weight: 700;
+  font-size: 2em;
+}
+
 .game-team-names {
   display: flex;
   border-bottom: solid 1px $backgroundGrey;
