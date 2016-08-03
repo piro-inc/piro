@@ -14,15 +14,10 @@ function sortByMostRecent (games) {
 }
 
 class Previews extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      // state goes here
-    }
-  }
-
   componentDidMount () {
-    this.props.fetchGamesInfo()
+    if (this.props.filter === '' || this.props.filter === 'all') {
+      this.props.fetchGamesInfo()
+    }
   }
 
   render () {
@@ -59,7 +54,8 @@ class Previews extends React.Component {
 const mapStateToProps = (state) => {
   return {
     user: state.session.get('user').toJS(),
-    games: state.games.get('games').toJS()
+    games: state.games.get('games').toJS(),
+    filter: state.games.get('filter')
   }
 }
 
