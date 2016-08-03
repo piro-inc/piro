@@ -135,8 +135,9 @@
     padding: 0;
     border-radius: 3px;
   }
-  & :focus {
+  & :active {
     background-color: $white;
+    color: $startGreen;
   }
   button {
     align-self: center;
