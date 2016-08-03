@@ -99,3 +99,26 @@ test('FILTER_FOLLOW_GAMES', (t) => {
   t.deepEqual(store.getState().games.get('games').toJS()[1], expected, 'FILTER_FOLLOW_GAMES updates store correctly')
   t.end()
 })
+
+test('FOLLOW_GAME', (t) => {
+  const store = configureStore()
+  const gameId = 1
+  const games = [
+    { id: 1, team_a: 'hello', sport: 'soccer', following: false },
+    { id: 2, team_a: 'hello', sport: 'hockey', following: false }
+  ]
+  const expected = [
+    { id: 1, team_a: 'hello', sport: 'soccer', following: true, showing: true },
+    { id: 2, team_a: 'hello', sport: 'hockey', following: false, showing: true }
+  ]
+  store.dispatch({
+    games,
+    type: gamesActions.GET_GAMES_SUCCESS
+  })
+  store.dispatch({
+    gameId,
+    type: gamesActions.FOLLOW_GAME
+  })
+  t.deepEqual(store.getState().games.get('games').toJS(), expected, 'FOLLOW_GAME updated the selected game to followed')
+  t.end()
+})
