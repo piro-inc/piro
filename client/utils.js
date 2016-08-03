@@ -8,3 +8,19 @@ export function readCookie (name) {
   }
   return null
 }
+
+export function errorExists (obj) {
+  let res = false
+  Object.keys(obj).forEach(key => {
+    if (typeof obj[key] === 'object') {
+      if (errorExists(obj[key])) {
+        res = true
+      }
+    } else {
+      if (key === 'error' && obj[key]) {
+        res = true
+      }
+    }
+  })
+  return res
+}
