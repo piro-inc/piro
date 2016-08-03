@@ -128,9 +128,9 @@ class Console extends React.Component {
           <div id='user-console-wrapper'>
 
             <div id='content-wrapper'>
-            <div id='navbar-wrapper'>
-            <Navbar />
-            </div>
+              <div id='navbar-wrapper'>
+                <Navbar />
+              </div>
               <div className='console-title-header'>
                 <h2 className='console-heading'>Scoring Console: <em>{this.props.game.game && this.props.game.game.sport_name}</em></h2>
                 <h4 className='console-complete'>{this.props.game.game && this.props.game.game.is_complete && 'Game is complete.'}</h4>
