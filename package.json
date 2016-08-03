@@ -72,6 +72,7 @@
     "babel-eslint": "^6.1.2",
     "babel-tape-runner": "^2.0.1",
     "enzyme": "^2.4.1",
+    "nightwatch": "^0.9.6",
     "nodemon": "^1.10.0",
     "react-addons-test-utils": "^15.2.1",
     "standard": "^7.1.2",
