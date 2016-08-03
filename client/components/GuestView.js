@@ -61,7 +61,9 @@ class GuestView extends React.Component {
             <i className='material-icons about'>&#xE8FD;</i>
           </button>
           <SkyLight hideOnOverlayClicked ref='simpleDialog' title='Welcome to PIRO'>
-            Follow live games.....
+            <hr />
+            <p>Follow a game as it happens with our live scoring app.</p>
+            <p>Create a game, score it then share it with the world.</p>
           </SkyLight>
         </div>
 
