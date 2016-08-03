@@ -108,9 +108,9 @@ class Game extends React.Component {
           </div>
           {(currentGame.game && currentGame.game.id)
           ? <div>
-          <h2 className='sport-name'>{currentGame.game && currentGame.game.sport_name}</h2>
-          <h3 className='date-time'>{date} | {time} | {this.format(this.state.timer.toString())}</h3>
-          <h3 className='match-location'>{currentGame.game && currentGame.game.location}</h3>
+            <h2 className='sport-name'>{currentGame.game && currentGame.game.sport_name}</h2>
+            <h3 className='date-time'>{date} | {time} | {this.format(this.state.timer.toString())}</h3>
+            <h3 className='match-location'>{currentGame.game && currentGame.game.location}</h3>
           </div>
           : <h2 className='sport-name'> No Game Found. </h2>
           }
