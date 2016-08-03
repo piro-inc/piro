@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { clearGame, fetchGameInfo } from '../redux/gamesActions'
 import { Link } from 'react-router'
+import { IconButton } from 'react-mdl'
 import ReactTimeout from 'react-timeout'
 import Navbar from './Navbar'
 
@@ -86,42 +87,51 @@ class Game extends React.Component {
         </div>
 
         <div id='game-header'>
+          <div id='manage-header'>
+            <div id='manage'>
+              {userID && (userID === currentGameID)
+              ? <Link to={`/console/${currentGame.id}`} className='console-link'>
+                <IconButton name='mode_edit' className='manage-follow-button' />
+              </Link>
+              : null}
+            </div>
+            <div id='follow'>
+              <IconButton name='star_outline' className='manage-follow-button' />
+            </div>
+
+          </div>
           <h2 className='sport-name'>{currentGame.game && currentGame.game.sport_name}</h2>
-          <h3 className='division'>Division</h3>
-          <h3>{this.format(this.state.timer.toString())}</h3>
-          <h3 className='date-time'>{date} | {time}</h3>
+          <h3 className='date-time'>{date} | {time} | {this.format(this.state.timer.toString())}</h3>
           <h3 className='match-location'>{currentGame.game && currentGame.game.location}</h3>
         </div>
 
-        <div className='game-team-names'>
-          <h2 className='team-one'>{currentGame.game && currentGame.game.team_a_name}</h2>
-          <h2 className='team-two'>{currentGame.game && currentGame.game.team_b_name}</h2>
+        <div className='game-detail-wrapper'>
+
+          <div className='game-team-names'>
+            <h2 className='team-one'>{currentGame.game && currentGame.game.team_a_name}</h2>
+            <h2 className='team-two'>{currentGame.game && currentGame.game.team_b_name}</h2>
+          </div>
+
+          <div className='game-score-wrapper'>
+
+            <img src='http://placehold.it/60x60' className='team-logo' />
+
+            <h1 className='game-score'>{currentGame.game && currentGame.game.team_a_score}</h1>
+
+            <h1 className='period'>v</h1>
+
+            <h1 className='game-score'>{currentGame.game && currentGame.game.team_b_score}</h1>
+
+            <img src='http://placehold.it/60x60' className='team-logo' />
+
+          </div>
+
         </div>
 
-        <div className='game-score-wrapper'>
-
-          <img src='http://placehold.it/60x60' className='team-logo' />
-
-          <h1 className='game-score'>{currentGame.game && currentGame.game.team_a_score}</h1>
-
-          <h1 className='period'>v</h1>
-
-          <h1 className='game-score'>{currentGame.game && currentGame.game.team_b_score}</h1>
-
-          <img src='http://placehold.it/60x60' className='team-logo' />
-
-        </div>
-
-        {userID && (userID === currentGameID)
-        ? <Link to={`/console/${currentGame.id}`} className='console-link'>
-          <button>Go to game console</button>
-        </Link>
-        : null}
-
-        <div className='comment-history'>
+        <div className='game-comment-history'>
           {orderedComments && orderedComments.map((obj, key) => {
             return (
-              <p key={key} className='comment'>
+              <p key={key} className='game-comment'>
                 {obj.comment}
               </p>
             )

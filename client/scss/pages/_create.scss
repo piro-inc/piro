@@ -13,6 +13,11 @@
   }
 }
 
+.create-form-fields {
+  display: flex;
+  flex-direction: column;
+}
+
 .dropdown, .datePicker {
    margin: 1em 0;
 }
@@ -25,6 +30,8 @@
 input.team-name, input.location {
   margin: 1em 0;
   border: 1px solid #dddddd;
+  padding-left: 1em;
+  width: 94%;
 }
 
 .create-game {
