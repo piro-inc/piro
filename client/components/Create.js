@@ -6,7 +6,7 @@ import { DropdownList, DateTimePicker } from 'react-widgets'
 import 'react-widgets/lib/scss/react-widgets.scss'
 import Moment from 'moment'
 import momentLocalizer from 'react-widgets/lib/localizers/moment'
-import { readCookie, errorExists } from '../utils'
+import { readCookie } from '../utils'
 
 momentLocalizer(Moment)
 
@@ -77,20 +77,18 @@ class Create extends React.Component {
   }
 
   createGame = () => {
-    if (!errorExists(this.state)) {
-      const userId = readCookie('user.id')
-      this.props.createGame(
-        userId,
-        this.state.date,
-        this.state.location.value,
-        this.state.teamOne.value,
-        this.state.teamTwo.value,
-        false,
-        0,
-        0,
-        this.state.sport
-      )
-    }
+    const userId = readCookie('user.id')
+    this.props.createGame(
+      userId,
+      this.state.date,
+      this.state.location.value,
+      this.state.teamOne.value,
+      this.state.teamTwo.value,
+      false,
+      0,
+      0,
+      this.state.sport
+    )
   }
 
   render () {
