@@ -7,7 +7,7 @@ exports.seed = function (knex, Promise) {
         // Inserts seed entries
         knex('games').insert({
           user_id: 1,
-          date_time: 300716,
+          date_time: 160731,
           location: 'Lyndhurst Park',
           team_a_name: 'Tawa',
           team_b_name: 'Wainuiomata',
@@ -20,7 +20,7 @@ exports.seed = function (knex, Promise) {
         }),
         knex('games').insert({
           user_id: 1,
-          date_time: 300716,
+          date_time: 160730,
           location: 'Evans Bay Park',
           team_a_name: 'Marist St Pats',
           team_b_name: 'Oriental-Rongotai',
@@ -33,7 +33,7 @@ exports.seed = function (knex, Promise) {
         }),
         knex('games').insert({
           user_id: 2,
-          date_time: 060816,
+          date_time: 160806,
           location: 'Jerry Collins Stadium',
           team_a_name: 'Marist St Pats',
           team_b_name: 'Tawa',
@@ -46,7 +46,7 @@ exports.seed = function (knex, Promise) {
         }),
         knex('games').insert({
           user_id: 2,
-          date_time: 300716,
+          date_time: 160723,
           location: 'ASB Court 9',
           team_a_name: 'PIC 4',
           team_b_name: 'SMOG 4',
@@ -59,7 +59,7 @@ exports.seed = function (knex, Promise) {
         }),
         knex('games').insert({
           user_id: 2,
-          date_time: 300716,
+          date_time: 160730,
           location: 'ASB Court 8',
           team_a_name: 'Kia Ora 1',
           team_b_name: 'Wgtn East 3',
@@ -72,7 +72,7 @@ exports.seed = function (knex, Promise) {
         }),
         knex('games').insert({
           user_id: 3,
-          date_time: 060816,
+          date_time: 160807,
           location: 'ASB Court 9',
           team_a_name: 'Marsden 1',
           team_b_name: 'Vic Uni 3',
@@ -85,7 +85,7 @@ exports.seed = function (knex, Promise) {
         }),
         knex('games').insert({
           user_id: 3,
-          date_time: 300716,
+          date_time: 160724,
           location: 'Wakefield 1',
           team_a_name: 'Island Bay Utd',
           team_b_name: 'Miramar Rangers',
@@ -98,7 +98,7 @@ exports.seed = function (knex, Promise) {
         }),
         knex('games').insert({
           user_id: 1,
-          date_time: 300716,
+          date_time: 160731,
           location: 'Endeavour 2',
           team_a_name: 'Western Suburbs',
           team_b_name: 'Waterside Karori',
@@ -111,7 +111,7 @@ exports.seed = function (knex, Promise) {
         }),
         knex('games').insert({
           user_id: 1,
-          date_time: 060816,
+          date_time: 160813,
           location: 'Wakefield 2',
           team_a_name: 'Wellington Olympic',
           team_b_name: 'Kapiti Coast Utd',
