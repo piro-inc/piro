@@ -1,4 +1,3 @@
-const exec = require('child_process').exec
 const env = require('dotenv')
 env.load()
 
