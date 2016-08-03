@@ -47,20 +47,20 @@ class GuestView extends React.Component {
             : this.state.showing === 'register'
               ? <a onClick={this.toggle('login')}>Login</a>
               : (
-                  <div className='button-wrapper'>
-                    <button onClick={this.toggle('login')} className='button'>Login</button>
-                    <button onClick={this.toggle('register')} className='button'>Register</button>
-                  </div>
-                )
+              <div className='button-wrapper'>
+                <button onClick={this.toggle('login')} className='button'>Login</button>
+                <button onClick={this.toggle('register')} className='button'>Register</button>
+              </div>
+              )
             }
           </div>
         </div>
 
         <div id='about'>
           <button className='about-icon' onClick={() => this.refs.simpleDialog.show()}>
-            <i className="material-icons about">&#xE8FD;</i>
+            <i className='material-icons about'>&#xE8FD;</i>
           </button>
-          <SkyLight hideOnOverlayClicked ref="simpleDialog" title="Welcome to PIRO">
+          <SkyLight hideOnOverlayClicked ref='simpleDialog' title='Welcome to PIRO'>
             Follow live games.....
           </SkyLight>
         </div>
@@ -68,7 +68,6 @@ class GuestView extends React.Component {
         <div className='enter-page'>
           <h3><Link to='/games'>ENTER AS A GUEST</Link></h3>
         </div>
-
 
       </div>
     )
