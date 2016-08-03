@@ -13,14 +13,17 @@ class Login extends React.Component {
 
   userChange = (e) => {
     this.setState({ username: e.target.value })
+    e.preventDefault()
   }
 
   pwChange = (e) => {
     this.setState({ password: e.target.value })
+    e.preventDefault()
   }
 
-  login = () => {
+  login = (e) => {
     this.props.login(this.state.username, this.state.password)
+    e.preventDefault()
   }
 
   render () {
@@ -29,9 +32,11 @@ class Login extends React.Component {
         <div className='error-container'>
           {this.props.error && <div id='login-error'>{this.props.error}</div>}
         </div>
-        <input type='text' onChange={this.userChange} placeholder='Enter username' id='login-username' className='username' />
-        <input type='password' onChange={this.pwChange} placeholder='Enter password' id='login-password' className='password' />
-        <button type='submit' onClick={this.login} className='submit button'>Log In</button>
+        <form className='login-form'>
+          <input type='text' onChange={this.userChange} placeholder='Enter username' id='login-username' className='username' />
+          <input type='password' onChange={this.pwChange} placeholder='Enter password' id='login-password' className='password' />
+          <button type='submit' onClick={this.login} className='submit button'>Log In</button>
+        </form>
       </div>
     )
   }
