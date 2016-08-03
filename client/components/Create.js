@@ -48,7 +48,7 @@ class Create extends React.Component {
     this.setState({ teamOne: updateTeamOne })
     if (e.target.value.length < 4 || e.target.value.length > 20) {
       updateTeamOne.error = 'Team One name must be between 4 and 20 characters.'
-      this.setState({ username: updateTeamOne })
+      this.setState({ teamOne: updateTeamOne })
     }
   }
 
@@ -60,7 +60,7 @@ class Create extends React.Component {
     this.setState({ teamTwo: updateTeamTwo })
     if (e.target.value.length < 4 || e.target.value.length > 20) {
       updateTeamTwo.error = 'Team Two name must be between 4 and 20 characters.'
-      this.setState({ username: updateTeamTwo })
+      this.setState({ teamTwo: updateTeamTwo })
     }
   }
 
@@ -72,7 +72,7 @@ class Create extends React.Component {
     this.setState({ location: updateLocation })
     if (e.target.value.length < 4 || e.target.value.length > 20) {
       updateLocation.error = 'Location must be between 4 and 20 characters.'
-      this.setState({ username: updateLocation })
+      this.setState({ location: updateLocation })
     }
   }
 
