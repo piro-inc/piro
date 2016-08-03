@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { clearGame, fetchGameInfo } from '../redux/gamesActions'
+import { getTime } from '../redux/socketActions'
 import { Link } from 'react-router'
 import { IconButton } from 'react-mdl'
 import ReactTimeout from 'react-timeout'
@@ -21,6 +22,7 @@ class Game extends React.Component {
   }
 
   componentDidMount () {
+    this.props.getTime()
     this.props.fetchGameInfo(this.props.params.id)
     this.props.setInterval(() => {
       if (this.props.game.game &&
@@ -36,13 +38,17 @@ class Game extends React.Component {
     if (nextProps.game.game && nextProps.game.game.is_started && !this.state.syncTime) {
       if (!nextProps.game.game.is_running) {
         this.setState({ syncTime: true, timer: nextProps.game.game.time_elapsed })
-      } else {
-        const startDate = new Date(nextProps.game.game.updated_at)
-        const diff = Date.now() - startDate
-        const secs = Math.floor(diff / 1000) + nextProps.game.game.time_elapsed
-        this.setState({ syncTime: true, timer: secs })
+      } else if (nextProps.serverTime) {
+        this.sync(nextProps)
       }
     }
+  }
+
+  sync = (nextProps) => {
+    const startDate = new Date(nextProps.game.game.updated_at)
+    const diff = new Date(nextProps.serverTime) - startDate
+    const secs = Math.floor(diff / 1000) + nextProps.game.game.time_elapsed
+    this.setState({ syncTime: true, timer: secs })
   }
 
   format = (time) => {
@@ -145,7 +151,8 @@ class Game extends React.Component {
 const mapStateToProps = (state) => {
   return {
     game: state.games.get('currentGame').toJS(),
-    user: state.session.get('user').toJS()
+    user: state.session.get('user').toJS(),
+    serverTime: state.session.get('serverTime')
   }
 }
 
@@ -156,6 +163,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     fetchGameInfo: (id) => {
       dispatch(fetchGameInfo(id))
+    },
+    getTime: () => {
+      dispatch(getTime())
     }
   }
 }

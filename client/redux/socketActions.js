@@ -80,3 +80,9 @@ export const unfollowGame = (gameId) => {
     })
   }
 }
+
+export const getTime = () => {
+  return () => {
+    socket.emit('getTime')
+  }
+}

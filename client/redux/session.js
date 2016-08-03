@@ -3,7 +3,8 @@ import * as sessionActions from './sessionActions'
 
 const initialState = fromJS({
   user: {},
-  error: null
+  error: null,
+  serverTime: null
 })
 
 /* reducer */
@@ -15,6 +16,8 @@ const reducer = (state = initialState, action) => {
       return state.set('error', fromJS(action.err))
     case sessionActions.CLEAR_ERROR:
       return state.set('error', null)
+    case sessionActions.GET_SERVER_TIME:
+      return state.set('serverTime', action.time)
     default:
       return state
   }
