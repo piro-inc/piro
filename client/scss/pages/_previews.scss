@@ -1,3 +1,11 @@
+@mixin footerHover() {
+  background: transparent; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(transparent, $white, $white); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(transparent, $white, $white); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(transparent, $white, $white); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(transparent, $white, $white); /* Standard syntax */
+}
+
 #previews-wrapper {
   display: flex;
   flex-direction: column;
@@ -105,17 +113,17 @@
 }
 
 #footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 2em;
-  display: flex;
-  justify-content: center;
+  @include footerHover();
   align-items: center;
-  background-color: $white;
-  border-top: 1px solid $backgroundGrey;
-  font-size: .8em;
+  bottom: 0;
   color: $staticGrey;
+  display: flex;
+  font-size: .8em;
+  justify-content: center;
+  padding: .5em 0;
+  position: fixed;
+  width: 100%;
+  height: 2.5em;
 }
 
 .team-logo {
