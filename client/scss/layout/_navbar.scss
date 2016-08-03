@@ -32,7 +32,7 @@
 .nav-links {
   justify-content: flex-end;
   align-items: center;
-  flex: 5;
+  flex: 2;
   display: flex;
   flex-direction: row;
   text-decoration: none;
@@ -50,4 +50,19 @@
 
 .mdl-menu__outline {
   margin-top: 1em;
+}
+
+div.global-about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 2;
+}
+
+.about-icon {
+  background: none;
+  color: $white;
+  display: flex;
+  justify-content: center;
+  width: auto;
 }
