@@ -116,6 +116,10 @@ function socketServer (io) {
           console.log(err)
         })
     })
+
+    // socket.on('getTime', () => {
+    //   socket.emit('serverTime', { time: knex.fn.now() })
+    // })
   })
 
   return io
