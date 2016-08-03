@@ -5,3 +5,6 @@ node_modules
 npm-debug.log
 server/dev.sqlite3
 public/bundle.js
+selenium-debug.log
+reports
+bin
