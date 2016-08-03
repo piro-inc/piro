@@ -53,7 +53,7 @@ class Navbar extends React.Component {
 
               <div className='menu-dropdown'>
                 <Menu target='demo-menu-lower-right' align='right'>
-                  <MenuItem onClick={() => browserHistory.push('/')}>Home</MenuItem>
+                  <MenuItem onClick={() => browserHistory.push('/')} id='home-link'>Home</MenuItem>
                   <MenuItem onClick={() => browserHistory.push('/games/new')}>Create Game</MenuItem>
                   <MenuItem onClick={this.handleMyGamesClick}>My Games</MenuItem>
                   <MenuItem onClick={this.handleFollowingClick}>Following</MenuItem>
