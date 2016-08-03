@@ -89,7 +89,7 @@ class Game extends React.Component {
         <div id='game-wrapper'>
 
           <div id='game-header'>
-            <div id="manage-follow">
+            <div id="manage-header">
               <div id="manage">
                 {userID && (userID === currentGameID)
                 ? <Link to={`/console/${currentGame.id}`} className='console-link'>
@@ -97,9 +97,7 @@ class Game extends React.Component {
                 </Link>
                 : null}
               </div>
-              <div id="follow">
-                <IconButton name="star_outline" className="manage-follow-button"/>
-              </div>
+
             </div>
             <h2 className='sport-name'>{currentGame.game && currentGame.game.sport_name}</h2>
             <h3 className='date-time'>{date} | {time} | {this.format(this.state.timer.toString())}</h3>
@@ -130,10 +128,10 @@ class Game extends React.Component {
 
           </div>
 
-          <div className='comment-history'>
+          <div className='game-comment-history'>
             {orderedComments && orderedComments.map((obj, key) => {
               return (
-                <p key={key} className='comment'>
+                <p key={key} className='game-comment'>
                   {obj.comment}
                 </p>
               )
