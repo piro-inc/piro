@@ -23,25 +23,14 @@
   }
 }
 
-#navbar-wrapper {
-  // flex: 1;
-}
-
 #game-wrapper {
-  @include flexCenterColumn();
-  background-color: $white;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
   width: 100%;
-    #game-header {
-      @include flexCenterColumn();
-      @include flexCenter();
-      flex: 2;
-      // @include headerMargin();
-    }
-}
-
-#game-header {
-  margin: 0 0 1em 0;
+  margin: 0;
+  box-shadow: 1px 1px 5px #999999;
 }
 
 .game-team-names {
@@ -50,33 +39,34 @@
     h2 {
       flex: 1;
       text-align: center;
-      margin: .5em 0 0 0;
-      padding-bottom: .5em;
+      margin: 0;
+      padding: .5em 0;
+      font-weight: 500;
     }
+
 }
 
 .game-score-wrapper {
-  @include flexCenterRow();
+  // @include flexCenterRow();
   // @include flexCenter();
   display: flex;
   align-items: center;
-  flex: 2;
   .game-score {
     flex: 6;
-    font-size: 4em;
+    font-size: 8em;
     font-weight: 700;
-    margin: 0.5em 0;
+    margin: 0;
     text-align: center;
   }
 }
 
-.comment-history {
-  @include flexCenterColumn();
+.game-comment-history {
+  // @include flexCenterColumn();
   background-color: $backgroundGrey;
   flex: 3;
   overflow: scroll;
-  box-shadow: 0px 15px 10px -10px #ffffff inset;
-  .comment {
+  box-shadow: 0px 15px 10px -10px #999999 inset;
+  .game-comment {
     text-align: center;
     margin: 0.5em 0 0 0;
     padding-bottom: .5em;
@@ -84,25 +74,34 @@
   }
 }
 
-.sport-name, .division {
-  text-transform: uppercase;
-  margin: .5em 0 0 0;
+.sport-name, .date-time, .match-location {
+  display: flex;
+  justify-content: center;
 }
 
-.division, .date-time, .match-location {
-  margin: .5em 0 0 0;
-  padding-bottom: .5em;
+.sport-name {
+  background-color: $lightGreen;
+  text-transform: uppercase;
+}
+
+.date-time, .match-location, .sport-name {
+  margin: 0;
   border-bottom: solid 1px $backgroundGrey;
 }
 
-#console-link {
+#manage-header {
+  background-color: $backgroundGrey;
   display: flex;
-  justify-content: center;
-  margin: .5em;
-    button {
-      color: $white;
-      background-color: $startGreen;
-      border-radius: 5px;
-      width: 11em;
-    }
+  flex-direction: row;
+  #manage {
+    color: $staticGrey;
+  }
+}
+
+a.console-link {
+  color: $staticGrey;
+}
+
+#follow {
+  color: $backgroundGrey;
 }
