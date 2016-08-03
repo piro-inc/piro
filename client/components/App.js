@@ -3,13 +3,6 @@ import { connect } from 'react-redux'
 import { addData } from '../redux/session'
 
 export class App extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-
-    }
-  }
-
   render () {
     return (
       <div id='container'>
