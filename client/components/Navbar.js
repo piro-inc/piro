@@ -74,11 +74,11 @@ class Navbar extends React.Component {
                   <MenuItem onClick={this.logout}>Logout</MenuItem>
                 </Menu>
               </div>
-              <SkyLight hideOnOverlayClicked ref='simpleDialog' title='Help'>
-                <p>What to learn more about Piro.  Play around and see how it works!</p>
-              </SkyLight>
             </div>
           }
+          <SkyLight hideOnOverlayClicked ref='simpleDialog' title='Help'>
+            <p>Want to learn more about Piro? Play around and see how it works!</p>
+          </SkyLight>
         </div>
       </div>
     )
