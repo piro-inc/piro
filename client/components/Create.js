@@ -77,23 +77,19 @@ class Create extends React.Component {
   }
 
   createGame = () => {
-    const userId = readCookie('user.id')
-    this.props.createGame(
-      userId,
-      this.state.date,
-      this.state.location,
-      this.state.teamOne.value,
-      this.state.teamTwo.value,
-      false,
-      0,
-      0,
-      this.state.sport
-    )
-  }
-
-  create = (e) => {
     if (!errorExists(this.state)) {
-      this.props.register(this.state.teamOne.value, this.state.teamTwo.value, this.state.location.value)
+      const userId = readCookie('user.id')
+      this.props.createGame(
+        userId,
+        this.state.date,
+        this.state.location.value,
+        this.state.teamOne.value,
+        this.state.teamTwo.value,
+        false,
+        0,
+        0,
+        this.state.sport
+      )
     }
   }
 
