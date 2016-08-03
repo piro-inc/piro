@@ -5,7 +5,7 @@
 }
 
 #content-wrapper {
-  // height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,10 +18,15 @@
     margin: .5em 0;
   }
   h3.team-one-name, h3.team-two-name {
-    font-weight: 600;
+    font-weight: 500;
+    text-align: center;
+    margin: 0 .5em;
   }
   h4 {
     font-weight: 600;
+    margin: 0;
+    text-align: center;
+    text-transform: uppercase;
   }
   h4.console-title {
     color: $piroRed;
@@ -31,9 +36,6 @@
     color: $white;
   }
   div.comment-history {
-    margin-top: 2em;
-    width: 100%;
-    height: 7em;
   }
 }
 
@@ -43,6 +45,9 @@
   width: 100%;
   h2 {
     text-align: center;
+    text-transform: uppercase;
+    font-size: 1em;
+    margin: 0;
   }
 }
 
@@ -116,17 +121,19 @@
   }
 }
 
-.add-comment-wrapper, .edit-comment-wrapper {
+.add-comment-wrapper {
   width: 85%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 1em;
   input.console-comment {
+    border: 1px solid $staticGrey;
     text-align: center;
     background-color: $inactiveGrey;
     width: 100%;
     padding: 0;
+    border-radius: 3px;
   }
   & :focus {
     background-color: $white;
@@ -141,16 +148,23 @@
 }
 
 .comment-history {
-  p.comment{
-    width: 100%;
-    word-wrap: break-word;
-    color: $black;
-  }
-  p:first-child {
-    color: $piroRed;
-    font-style: italic;
-    font-weight: 600;
-    background-color: $lightGreen;
-  }
+  flex: 1;
+  margin-top: 1em;
+  width: 100%;
+  background-color: $backgroundGrey;
+  overflow: scroll;
+  box-shadow: 0px 15px 10px -10px #999999 inset;
+    p.comment {
+      text-align: center;
+      margin: 0.5em 0 0 0;
+      padding-bottom: .5em;
+      border-bottom: solid 1px $inactiveGrey;
+      color: $black
+    }
+    p:first-child {
+      color: $piroRed;
+      font-style: italic;
+      font-weight: 600;
+      background-color: $lightGreen;
+    }
 }
-
