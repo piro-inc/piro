@@ -87,7 +87,7 @@ class Create extends React.Component {
             className='datePicker' />
           <div className='create-game-button'>
             <div className='create-game'>
-              <button onClick={this.createGame} className='create-button'>+ CREATE</button>
+              <button onClick={this.createGame} className='create-button'>CREATE</button>
             </div>
           </div>
         </div>
