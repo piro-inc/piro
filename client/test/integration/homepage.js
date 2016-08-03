@@ -1,7 +1,5 @@
-var path = require('path')
-
 module.exports = {
-  'Log in button renders login form' : function (browser) {
+  'Log in button renders login form': function (browser) {
     browser
       .url('http://localhost:3000')
       .waitForElementVisible('body', 5000)
@@ -12,7 +10,7 @@ module.exports = {
     browser.end()
   },
 
-  'Register button renders the register form' : function (browser) {
+  'Register button renders the register form': function (browser) {
     browser
       .url('http://localhost:3000')
       .waitForElementVisible('body', 5000)
@@ -23,7 +21,7 @@ module.exports = {
     browser.end()
   },
 
-  'Enter as a guest button redirects to the /games page' : function (browser) {
+  'Enter as a guest button redirects to the /games page': function (browser) {
     browser
       .url('http://localhost:3000')
       .waitForElementVisible('body', 5000)
@@ -33,7 +31,7 @@ module.exports = {
       .end()
   },
 
-  'Info button renders a modal' : function (browser) {
+  'Info button renders a modal': function (browser) {
     browser
       .url('http://localhost:3000')
       .waitForElementVisible('body', 5000)
@@ -42,7 +40,7 @@ module.exports = {
       .assert.elementPresent('.skylight-dialog', 'Welcome to PIRO')
   },
 
-  'Log in form redirects successfully' : function (browser) {
+  'Log in form redirects successfully': function (browser) {
     browser
       .url('http://localhost:3000')
       .waitForElementVisible('body', 5000)
