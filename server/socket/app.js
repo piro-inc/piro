@@ -118,8 +118,7 @@ function socketServer (io) {
     })
 
     socket.on('getTime', () => {
-      const time = Date.now()
-      console.log(time)
+      const time = new Date(Date.now())
       socket.emit('serverTime', { time })
     })
   })

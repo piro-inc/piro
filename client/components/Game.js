@@ -38,7 +38,7 @@ class Game extends React.Component {
     if (nextProps.game.game && nextProps.game.game.is_started && !this.state.syncTime) {
       if (!nextProps.game.game.is_running) {
         this.setState({ syncTime: true, timer: nextProps.game.game.time_elapsed })
-      } else {
+      } else if(nextProps.serverTime) {
         this.sync(nextProps)
       }
     }
@@ -46,7 +46,7 @@ class Game extends React.Component {
 
   sync = (nextProps) => {
     const startDate = new Date(nextProps.game.game.updated_at)
-    const diff = (this.props.serverTime || Date.now()) - startDate
+    const diff = new Date(nextProps.serverTime) - startDate
     const secs = Math.floor(diff / 1000) + nextProps.game.game.time_elapsed
     this.setState({ syncTime: true, timer: secs })
   }
