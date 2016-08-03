@@ -76,7 +76,7 @@ class Navbar extends React.Component {
                 </Menu>
               </div>
               <SkyLight hideOnOverlayClicked ref='simpleDialog' title='Help'>
-                <p>What to learn more about Piro.  Play around and see how it goes</p>
+                <p>What to learn more about Piro.  Play around and see how it works!</p>
               </SkyLight>
             </div>
           }
