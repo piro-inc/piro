@@ -25,3 +25,14 @@ test('Session reducer', (t) => {
   t.deepEqual(store.getState().session.get('user').toJS(), user, 'GET_USER_SUCCESS updates store correctly')
   t.end()
 })
+
+test('GET_SERVER_TIME', (t) => {
+  const store = configureStore()
+  const time = new Date(Date.now())
+  store.dispatch({
+    time,
+    type: sessionActions.GET_SERVER_TIME
+  })
+  t.deepEqual(store.getState().session.get('serverTime'), time, 'GET_SERVER_TIME updates store correctly')
+  t.end()
+})
