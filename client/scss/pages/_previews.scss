@@ -8,7 +8,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: scroll;
   h2 {
     color: $piroRed;
     text-align: center;
@@ -42,7 +41,7 @@
     }
   #icon-unfollow {
     color: $staticGrey;
-  } 
+  }
 }
 
 .preview-header {
