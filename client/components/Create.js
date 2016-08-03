@@ -6,7 +6,7 @@ import { DropdownList, DateTimePicker } from 'react-widgets'
 import 'react-widgets/lib/scss/react-widgets.scss'
 import Moment from 'moment'
 import momentLocalizer from 'react-widgets/lib/localizers/moment'
-import { readCookie, errorExists } from '../utils'
+import { readCookie } from '../utils'
 
 momentLocalizer(Moment)
 
@@ -48,7 +48,7 @@ class Create extends React.Component {
     this.setState({ teamOne: updateTeamOne })
     if (e.target.value.length < 4 || e.target.value.length > 20) {
       updateTeamOne.error = 'Team One name must be between 4 and 20 characters.'
-      this.setState({ username: updateTeamOne })
+      this.setState({ teamOne: updateTeamOne })
     }
   }
 
@@ -60,7 +60,7 @@ class Create extends React.Component {
     this.setState({ teamTwo: updateTeamTwo })
     if (e.target.value.length < 4 || e.target.value.length > 20) {
       updateTeamTwo.error = 'Team Two name must be between 4 and 20 characters.'
-      this.setState({ username: updateTeamTwo })
+      this.setState({ teamTwo: updateTeamTwo })
     }
   }
 
@@ -72,25 +72,23 @@ class Create extends React.Component {
     this.setState({ location: updateLocation })
     if (e.target.value.length < 4 || e.target.value.length > 20) {
       updateLocation.error = 'Location must be between 4 and 20 characters.'
-      this.setState({ username: updateLocation })
+      this.setState({ location: updateLocation })
     }
   }
 
   createGame = () => {
-    if (!errorExists(this.state)) {
-      const userId = readCookie('user.id')
-      this.props.createGame(
-        userId,
-        this.state.date,
-        this.state.location.value,
-        this.state.teamOne.value,
-        this.state.teamTwo.value,
-        false,
-        0,
-        0,
-        this.state.sport
-      )
-    }
+    const userId = readCookie('user.id')
+    this.props.createGame(
+      userId,
+      this.state.date,
+      this.state.location.value,
+      this.state.teamOne.value,
+      this.state.teamTwo.value,
+      false,
+      0,
+      0,
+      this.state.sport
+    )
   }
 
   render () {
