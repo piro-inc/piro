@@ -61,17 +61,17 @@ class Navbar extends React.Component {
 
               <div className='menu-dropdown'>
                 <Menu target='demo-menu-lower-right' align='right'>
-                  <MenuItem onClick={() => browserHistory.push('/games/new')}>Create Game</MenuItem>
-                  <MenuItem onClick={this.handleShowAllClick}>
+                  <MenuItem id="createGame" onClick={() => browserHistory.push('/games/new')}>Create Game</MenuItem>
+                  <MenuItem id="allgames" onClick={this.handleShowAllClick}>
                     {this.props.filter === 'all' && '>'} All Games
                   </MenuItem>
-                  <MenuItem onClick={this.handleMyGamesClick}>
+                  <MenuItem id="myGames" onClick={this.handleMyGamesClick}>
                     {this.props.filter === 'myGames' && '>'} My Games
                   </MenuItem>
-                  <MenuItem onClick={this.handleFollowingClick}>
+                  <MenuItem id="following" onClick={this.handleFollowingClick}>
                     {this.props.filter === 'following' && '>'} Following
                   </MenuItem>
-                  <MenuItem onClick={this.logout}>Logout</MenuItem>
+                  <MenuItem id="logout" onClick={this.logout}>Logout</MenuItem>
                 </Menu>
               </div>
             </div>
