@@ -8,6 +8,8 @@ export const CREATE_GAME_SUCCESS = 'CREATE_GAME_SUCCESS'
 export const UPDATE_GAME_SUCCESS = 'UPDATE_GAME_SUCCESS'
 export const FILTER_MY_GAMES = 'FILTER_MY_GAMES'
 export const FILTER_FOLLOW_GAMES = 'FILTER_FOLLOW_GAMES'
+export const FOLLOW_GAME = 'FOLLOW_GAME'
+export const UNFOLLOW_GAME = 'UNFOLLOW_GAME'
 
 export const fetchGameInfo = (id) => {
   const options = {

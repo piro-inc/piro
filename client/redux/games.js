@@ -45,6 +45,14 @@ const reducer = (state = initialState, action) => {
         .set('games', state.get('games').push(fromJS(action.game)))
     case gamesActions.CLEAR_GAME:
       return state.set('currentGame', fromJS({}))
+    case gamesActions.FOLLOW_GAME:
+      let followGames = state.get('games').toJS()
+      followGames.find((game) => { return game.id === action.gameId }).following = true
+      return state.set('games', fromJS(followGames))
+    case gamesActions.UNFOLLOW_GAME:
+      let unfollowGames = state.get('games').toJS()
+      unfollowGames.find((game) => { return game.id === action.gameId }).following = false
+      return state.set('games', fromJS(unfollowGames))
     default:
       return state
   }
