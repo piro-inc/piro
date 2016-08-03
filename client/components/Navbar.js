@@ -7,7 +7,6 @@ import { filterMyGames, filterFollowGames, showAllGames } from '../redux/gamesAc
 import { IconButton, Menu, MenuItem } from 'react-mdl'
 import SkyLight from 'react-skylight'
 
-
 class Navbar extends React.Component {
   componentDidMount () {
     this.props.authenticateUser(readCookie('user.id'))
@@ -76,8 +75,8 @@ class Navbar extends React.Component {
                   <MenuItem onClick={this.logout}>Logout</MenuItem>
                 </Menu>
               </div>
-              <SkyLight hideOnOverlayClicked ref='simpleDialog' title='Welcome to PIRO'>
-                Follow live games.....
+              <SkyLight hideOnOverlayClicked ref='simpleDialog' title='Help'>
+                <p>What to learn more about Piro.  Play around and see how it goes</p>
               </SkyLight>
             </div>
           }
