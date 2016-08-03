@@ -74,7 +74,8 @@ class Console extends React.Component {
     }
   }
 
-  addComment = () => {
+  addComment = (e) => {
+    e.preventDefault()
     this.props.addComment(this.state.timer, this.state.comment, this.props.params.id)
     this.setState({ comment: '' })
   }
@@ -125,11 +126,11 @@ class Console extends React.Component {
 
         {this.props.session.user.id &&
           <div id='user-console-wrapper'>
-            <div id='navbar-wrapper'>
-              <Navbar />
-            </div>
 
             <div id='content-wrapper'>
+              <div id='navbar-wrapper'>
+                <Navbar />
+              </div>
               <div className='console-title-header'>
                 <h2 className='console-heading'>Scoring Console: <em>{this.props.game.game && this.props.game.game.sport_name}</em></h2>
                 <h4 className='console-complete'>{this.props.game.game && this.props.game.game.is_complete && 'Game is complete.'}</h4>
@@ -173,11 +174,11 @@ class Console extends React.Component {
                 </div>
               </div>
 
-              <div className='add-comment-wrapper'>
+              <form className='add-comment-wrapper'>
                 {/* <h3 className='console-headers'>ADD COMMENT</h3>*/}
                 <input onChange={this.changeComment} placeholder='post comments to the game here' value={this.state.comment} type='text' className='console-comment' id='add-comment' />
                 <button className='submit button' id='submit-comment' onClick={this.addComment}>POST</button>
-              </div>
+              </form>
 
               <div className='comment-history'>
                 {orderedComments && orderedComments.map((obj, key) => {

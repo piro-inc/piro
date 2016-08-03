@@ -32,9 +32,21 @@
     .toggle a {
       align-self: center;
       color: $white;
-      font-size: .9em;
+      font-size: 1em;
       margin: .2em 0em;
     }
+}
+
+#about {
+  display: flex;
+  justify-content: center;
+  i {
+    font-size: 2em;
+  }
+  .about-icon {
+    background: none;
+    color: $white;
+  }
 }
 
 #input-wrapper {
@@ -65,9 +77,14 @@
   flex-direction: column;
   align-items: center;
   color: $white;
+    form {
+      display: flex;
+      flex-direction: column;
+    }
     input {
       margin: .2em;
     }
+
 }
 
 #register-form {
