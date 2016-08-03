@@ -74,7 +74,8 @@ class Console extends React.Component {
     }
   }
 
-  addComment = () => {
+  addComment = (e) => {
+    e.preventDefault()
     this.props.addComment(this.state.timer, this.state.comment, this.props.params.id)
     this.setState({ comment: '' })
   }
@@ -173,11 +174,11 @@ class Console extends React.Component {
                 </div>
               </div>
 
-              <div className='add-comment-wrapper'>
+              <form className='add-comment-wrapper'>
                 {/* <h3 className='console-headers'>ADD COMMENT</h3>*/}
                 <input onChange={this.changeComment} placeholder='post comments to the game here' value={this.state.comment} type='text' className='console-comment' id='add-comment' />
                 <button className='submit button' id='submit-comment' onClick={this.addComment}>POST</button>
-              </div>
+              </form>
 
               <div className='comment-history'>
                 {orderedComments && orderedComments.map((obj, key) => {
