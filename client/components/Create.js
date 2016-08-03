@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import SkyLight from 'react-skylight'
 import { createGame } from '../redux/gamesActions'
 import Navbar from './Navbar'
 import { DropdownList, DateTimePicker } from 'react-widgets'
@@ -69,8 +70,16 @@ class Create extends React.Component {
       <div id='create-wrapper'>
         <Navbar />
         <div id='create-form'>
-          <h2>CREATE GAME</h2>
-          <p className='create-description'>Create a new game below</p>
+          <div className='create-game-header'>
+            <h2>CREATE GAME</h2>
+            <button className='create-about-icon' onClick={() => this.refs.simpleDialog.show()}>
+              <i className='material-icons about'>&#xE8FD;</i>
+            </button>
+            <SkyLight hideOnOverlayClicked ref='simpleDialog'>
+              Add a game for people to follow
+            </SkyLight>
+          </div>
+
           <DropdownList
             data={sports}
             value={this.state.sport}
