@@ -6,7 +6,7 @@ import { followGame, unfollowGame } from '../redux/socketActions'
 import Preview from './Preview'
 import Navbar from './Navbar'
 
-function sortByMostRecent(games) {
+function sortByMostRecent (games) {
   const compareGames = (a, b) => {
     return new Date(a.date_time) - new Date(b.date_time)
   }
