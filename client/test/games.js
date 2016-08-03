@@ -123,7 +123,7 @@ test('FOLLOW_GAME', (t) => {
   t.end()
 })
 
-test('FOLLOW_GAME', (t) => {
+test('UNFOLLOW_GAME', (t) => {
   const store = configureStore()
   const gameId = 1
   const games = [
