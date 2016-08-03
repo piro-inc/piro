@@ -21,8 +21,8 @@ router.post('/login', (req, res, next) => {
         if (err) return next(err)
         delete user.password
         const token = createToken(user.id)
-        res.cookie('jwt.token', token, { httpOnly: true, maxAge: 1000 * 1000 })
-        res.cookie('user.id', user.id, { maxAge: 1000 * 1000 })
+        res.cookie('jwt.token', token, { httpOnly: true, maxAge: 30 * 24 * 60 * 60 * 1000 })
+        res.cookie('user.id', user.id, { maxAge: 30 * 24 * 60 * 60 * 1000 })
         res.json(user)
       })
     }
