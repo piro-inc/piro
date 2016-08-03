@@ -192,6 +192,7 @@ class Console extends React.Component {
             </div>
           </div>
         }
+        {this.props.game.game && !this.props.game.game.id && <div>No console found.</div>}
       </div>
     )
   }
