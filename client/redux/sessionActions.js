@@ -2,6 +2,7 @@ import { browserHistory } from 'react-router'
 
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS'
 export const SESSION_ERROR = 'SESSION_ERROR'
+export const GET_SERVER_TIME = 'GET_SERVER_TIME'
 
 export const login = (username, password) => {
   const options = {
