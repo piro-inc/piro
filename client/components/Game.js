@@ -96,7 +96,7 @@ class Game extends React.Component {
           <div id='manage-header'>
             <div id='manage'>
               {userID && (userID === currentGameID)
-              ? <Link to={`/console/${currentGame.id}`} className='console-link'>
+              ? <Link to={`/console/${currentGame.game.id}`} className='console-link'>
                 <IconButton name='mode_edit' className='manage-follow-button' />
               </Link>
               : null}
