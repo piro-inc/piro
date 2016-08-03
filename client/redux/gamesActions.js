@@ -8,6 +8,7 @@ export const CREATE_GAME_SUCCESS = 'CREATE_GAME_SUCCESS'
 export const UPDATE_GAME_SUCCESS = 'UPDATE_GAME_SUCCESS'
 export const FILTER_MY_GAMES = 'FILTER_MY_GAMES'
 export const FILTER_FOLLOW_GAMES = 'FILTER_FOLLOW_GAMES'
+export const SHOW_ALL_GAMES = 'SHOW_ALL_GAMES'
 export const FOLLOW_GAME = 'FOLLOW_GAME'
 export const UNFOLLOW_GAME = 'UNFOLLOW_GAME'
 
@@ -199,5 +200,11 @@ export const filterMyGames = (userId) => {
 export const filterFollowGames = () => {
   return {
     type: FILTER_FOLLOW_GAMES
+  }
+}
+
+export const showAllGames = () => {
+  return {
+    type: SHOW_ALL_GAMES
   }
 }
