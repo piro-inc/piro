@@ -111,9 +111,9 @@ class Create extends React.Component {
             onChange={this.changeSport}
             className='dropdown' />
           <div>
-            <input type='text' onBlur={this.changeTeamOne} placeholder='TEAM 1' id='team-one' className='team-name' error={this.state.teamOne.error} />
-            <input type='text' onBlur={this.changeTeamTwo} placeholder='TEAM 2' id='team-two' className='team-name' error={this.state.teamTwo.error} />
-            <input type='text' onBlur={this.changeLocation} placeholder='LOCATION' id='game-location' className='location' error={this.state.location.error} />
+            <input type='text' onBlur={this.changeTeamOne} placeholder='TEAM 1' id='team-one' className='team-name' />
+            <input type='text' onBlur={this.changeTeamTwo} placeholder='TEAM 2' id='team-two' className='team-name' />
+            <input type='text' onBlur={this.changeLocation} placeholder='LOCATION' id='game-location' className='location' />
           </div>
           <DateTimePicker
             defaultValue={new Date()}

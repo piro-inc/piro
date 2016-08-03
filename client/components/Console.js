@@ -143,24 +143,27 @@ class Console extends React.Component {
               </div>
               <div className='console-title-header'>
                 <h2 className='console-heading'>Scoring Console: <em>{this.props.game.game && this.props.game.game.sport_name}</em></h2>
-                <h4 className='console-complete'>{this.props.game.game && this.props.game.game.is_complete && 'Game is complete.'}</h4>
               </div>
-              <div className='console-timer-wrapper'>
-                <div className='pause'>
-                  <button className='button' id='pause' onClick={this.togglePause}>
-                    {this.props.game.game && this.props.game.game.is_running ? 'PAUSE' : 'RESUME'}
-                  </button>
-                </div>
-                <div className='start'>
+
+              {/* BUTTONS */}
+              {this.props.game.game && !this.props.game.game.is_complete
+               ? <div className='console-timer-wrapper'>
+                 <div className='pause'>
+                   <button className='button' id='pause' onClick={this.togglePause}>
+                  {this.props.game.game && this.props.game.game.is_running ? 'PAUSE' : 'RESUME'}
+                   </button>
+                 </div>
+                 <div className='start'>
                   {this.state.timer === 0
                   ? <button className='button' id='start' onClick={this.startGame}>START</button>
                   : <button className='button' id='start' onClick={this.startGame}>{this.format(this.state.timer.toString())}</button>
                   }
-                </div>
-                <div className='stop'>
-                  <button className='button' id='stop' onClick={this.stopGame}>STOP</button>
-                </div>
-              </div>
+                 </div>
+                 <div className='stop'>
+                   <button className='button' id='stop' onClick={this.stopGame}>STOP</button>
+                 </div>
+               </div>
+            : <h4 className='console-complete'>GAME IS COMPLETE. {this.format(this.state.timer.toString())}</h4>}
 
               <div className='console-scores-wrapper'>
                 <div className='console-teamone'>
